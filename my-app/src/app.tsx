@@ -1,10 +1,8 @@
 import * as ReactDOM from 'react-dom';
+import GetFile from './componets/GetFile';
 
 function render() {
-  ReactDOM.render(
-    <h2 className='bg-red-200 text-center text-cyan-400'>Hello from React!</h2>,
-    document.getElementById('root'),
-  );
+  ReactDOM.render(<GetFile></GetFile>, document.getElementById('root'));
 }
 
 render();
