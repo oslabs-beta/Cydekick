@@ -19,6 +19,7 @@
   "license": "MIT",
   "devDependencies": {
     "@babel/core": "^7.22.20",
+    "@babel/parser": "^7.22.16",
     "@babel/preset-react": "^7.22.15",
     "@electron-forge/cli": "^6.4.2",
     "@electron-forge/maker-deb": "^6.4.2",
@@ -49,7 +50,10 @@
   "dependencies": {
     "babel-plugin-react-css-modules": "^5.2.6",
     "electron-squirrel-startup": "^1.0.0",
+    "fs": "^0.0.1-security",
+    "path": "^0.12.7",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "util": "^0.12.5"
   }
 }
