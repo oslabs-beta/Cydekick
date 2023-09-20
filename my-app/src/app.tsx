@@ -1,8 +1,8 @@
 import * as ReactDOM from 'react-dom';
-import GetFile from './componets/GetFile';
+import HierarchyContainer from './componets/HierarchyContainer';
 
 function render() {
-  ReactDOM.render(<GetFile></GetFile>, document.getElementById('root'));
+  ReactDOM.render(<HierarchyContainer></HierarchyContainer>, document.getElementById('root'));
 }
 
 render();
