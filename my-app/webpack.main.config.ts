@@ -12,6 +12,9 @@ export const mainConfig: Configuration = {
   module: {
     rules,
   },
+  performance: {
+    hints: false,
+  },
   resolve: {
     extensions: ['.js', '.ts', '.jsx', '.tsx', '.css', '.json'],
   },
