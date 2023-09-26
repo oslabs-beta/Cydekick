@@ -15,7 +15,7 @@ const GetFile = (props) => {
 
   return (
     <div>
-      <input type='file' id='theInputFile' onChange={parseTree} />
+      <input data-cy='test' type='file' id='theInputFile' onChange={parseTree} />
     </div>
   );
 };

@@ -1,11 +1,13 @@
 import React from "react";
 
-const TreeNode = ({ node, isRoot, setCurrentComponent, currentComponent}) => {
+const TreeNode = ({ node, isRoot, setCurrentComponent, currentComponent, htmlData}) => {
     if (node.reactRouter) return;
     const [isSelected, setIsSelected] = React.useState(false);
+    const [showHTML, setShowHTML] = React.useState(false);
     const handleClick = () => {
         setIsSelected(!isSelected);
         setCurrentComponent(node);
+        setShowHTML(!showHTML)
     }
     React.useEffect(()=> {
         if (isSelected && currentComponent !== node)setIsSelected(!isSelected);
@@ -20,11 +22,12 @@ const TreeNode = ({ node, isRoot, setCurrentComponent, currentComponent}) => {
         >
           {node.name}
         </button>
+        {showHTML && <p>{htmlData}</p>}
         </div>
         {node.children && (
           <div className="pl-5">
             {node.children.map((child) => (
-              <TreeNode key={child.name} node={child} isRoot={false} setCurrentComponent={setCurrentComponent} currentComponent={currentComponent}/>
+              <TreeNode key={child.name} node={child} isRoot={false} setCurrentComponent={setCurrentComponent} currentComponent={currentComponent} htmlData={htmlData}/>
             ))}
           </div>
         )}
@@ -34,14 +37,14 @@ const TreeNode = ({ node, isRoot, setCurrentComponent, currentComponent}) => {
 
 const Tree = (props) => {
   // Extract the tree
-  const { data, setCurrentComponent, currentComponent} = props;
+  const { data, setCurrentComponent, currentComponent, htmlData} = props;
 
   // Make a node for the root
   data.parentName = null;
 
   return (
     <div id="treeContainer">
-        <TreeNode key={data.name} node={data} isRoot={true} setCurrentComponent={setCurrentComponent} currentComponent={currentComponent}/>
+        <TreeNode key={data.name} node={data} isRoot={true} setCurrentComponent={setCurrentComponent} currentComponent={currentComponent} htmlData={htmlData}/>
     </div>
   );
 };
