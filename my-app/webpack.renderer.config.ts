@@ -4,6 +4,7 @@ import { rules } from './webpack.rules';
 import { plugins } from './webpack.plugins';
 
 export const rendererConfig: Configuration = {
+  target: 'electron-renderer',
   module: {
     rules,
   },
