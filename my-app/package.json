@@ -58,7 +58,10 @@
     "path": "^0.12.7",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-flow-renderer": "^10.3.17",
     "react-monaco-editor": "^0.54.0",
+    "react-router": "^6.16.0",
+    "react-router-dom": "^6.16.0",
     "util": "^0.12.5"
   }
 }
