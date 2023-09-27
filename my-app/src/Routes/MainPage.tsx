@@ -8,13 +8,14 @@ const MainPage = (props) => {
   const [data, setData] = React.useState(null);
   return (
     <div className=" w-screen h-screen flex">
-      <div className="w-1/2 h-screen flex flex-col">
+      <div className="w-1/2 max-w-1/2 flex flex-col">
         <Tree
           data={fileTree}
           setCurrentComponent={setCurrentComponent}
           currentComponent={currentComponent}
           htmlData={data}
         ></Tree>
+        <div className="min-h-1/2"></div>
         {/* set testing area here */}
       </div>
       <Webview

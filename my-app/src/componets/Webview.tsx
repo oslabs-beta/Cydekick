@@ -17,7 +17,6 @@ const Webview = (props) => {
 
     function handleClick() {
         const webview = document.getElementById('webview');
-        webview.openDevTools();
         webview.executeJavaScript(
             `
             const leftColumn = document.querySelector('[data-cy="${currentComponent.name}"]');
@@ -47,7 +46,11 @@ const Webview = (props) => {
     }
     
     return (
-        <webview id='webview' src={url} className="w-1/2 h-screen"></webview>
+        <div className="w-1/2 h-screen flex flex-col p-2">
+        <button onClick={handleReset} className="self-end justify-self-end rounded-lg p-2 mb-2" style={{backgroundColor: "#1DF28F"}}>Refresh</button>
+        <webview id='webview' src={url} className="flex-grow"></webview>
+      </div>
+
     )
 }
 export default Webview;
