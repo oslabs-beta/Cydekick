@@ -1,4 +1,5 @@
 import SmallerPreviewPopup from './SmallerPreviewPopup';
+
 import React from 'react';
 const { ipcRenderer } = window.require('electron');
 
@@ -30,15 +31,18 @@ function ItBlockPage() {
   }
 
 
+
   return (
     <div>
       <h1 className='ml-8'>Name for test:</h1>
       <input type='text' className='border border-neutral-950 ml-8' />
       <br></br>
       <button className='border border-neutral-950 ml-8'>
+
         Create It block
       </button>
       <SmallerPreviewPopup />
+
     </div>
   );
 }

@@ -6,6 +6,7 @@ const { ipcRenderer } = window.require('electron');
 // const fs = remote.require('fs');
 
 const SmallerPreviewPopup = () => {
+
   const [code, setCode] = React.useState('');
 
   React.useEffect(() => {
@@ -41,3 +42,4 @@ const SmallerPreviewPopup = () => {
 };
 
 export default SmallerPreviewPopup;
+

@@ -14,9 +14,10 @@ const GetFile = (props) => {
   }
 
   return (
-    <div>
-      <input data-cy='test' type='file' id='theInputFile' onChange={parseTree} />
-    </div>
+      <div className='w-50 rounded-lg p-1 hover: cursor-pointer' style={{backgroundColor: "#1DF28F"}}> 
+      <label htmlFor='theInputFile' className='hover: cursor-pointer'>Choose File</label>
+      <input data-cy='test' type='file' id='theInputFile' onChange={parseTree} className='hidden'/>
+      </div>
   );
 };
 
