@@ -1,3 +1,4 @@
+import { color } from "d3";
 import React from "react";
 
 const TreeNode = ({ node, isRoot, setCurrentComponent, currentComponent, htmlData}) => {
@@ -13,12 +14,13 @@ const TreeNode = ({ node, isRoot, setCurrentComponent, currentComponent, htmlDat
         if (isSelected && currentComponent !== node)setIsSelected(!isSelected);
     },[currentComponent])
     return (
-        <div className={ isRoot ? "py-2 px-4" : "py-2 border-l-2 border-black"}>
+        <div className={ isRoot ? "py-2 px-4" : "py-2 border-l-2 border-dashed"} style={{borderColor:"#1DF28F"}}>
         <div className="flex items-center">
-          {!isRoot && <span className="arrow">&rarr;</span>}
+          {!isRoot && <span style={{color:"#1DF28F"}}>&rarr;</span>}
           <button
-          className={`border-2 ${isSelected ? "border-red-500" : "border-black"}`}
+          className={"rounded-lg p-2"}
           onClick={handleClick}
+          style={isSelected? {backgroundColor: "#048C7F"} : {backgroundColor: "#1DF28F"}}
         >
           {node.name}
         </button>
