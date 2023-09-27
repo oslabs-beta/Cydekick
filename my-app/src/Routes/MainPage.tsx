@@ -15,7 +15,7 @@ const MainPage = (props) => {
           currentComponent={currentComponent}
           htmlData={data}
         ></Tree>
-        <div className="min-h-1/2"></div>
+        <div className="h-1/2"></div>
         {/* set testing area here */}
       </div>
       <Webview

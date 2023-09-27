@@ -47,7 +47,7 @@ const Webview = (props) => {
     
     return (
         <div className="w-1/2 h-screen flex flex-col p-2">
-        <button onClick={handleReset} className="self-end justify-self-end rounded-lg p-2 mb-2" style={{backgroundColor: "#1DF28F"}}>Refresh</button>
+        <button onClick={handleReset} className="self-end justify-self-end rounded-lg p-2 mb-2 z-1" style={{backgroundColor: "#1DF28F"}}>Refresh</button>
         <webview id='webview' src={url} className="flex-grow"></webview>
       </div>
 
