@@ -3,7 +3,7 @@ import SmallerPreviewPopup from './SmallerPreviewPopup';
 import React from 'react';
 const { ipcRenderer } = window.require('electron');
 
-function ItBlockPage() {
+function ItBlockPage({SetCurrentPageNum}) {
   const [code, setCode] = React.useState('');
 
   React.useEffect(() => {
@@ -11,7 +11,7 @@ function ItBlockPage() {
     setCode(fileContent);
   }, []);
 
-  function createItBlock() {
+  function createItBlock(): void {
     // Create the content for the test.cy.js file
     // For example, you can use the current 'code' state value
     const testFileContent = itBlock('YourTestDescription'); // Replace with your desired description and test code
@@ -37,7 +37,7 @@ function ItBlockPage() {
       <h1 className='ml-8'>Name for test:</h1>
       <input type='text' className='border border-neutral-950 ml-8' />
       <br></br>
-      <button className='border border-neutral-950 ml-8'>
+      <button className='border border-neutral-950 ml-8' onClick={() => {SetCurrentPageNum(2)}}>
 
         Create It block
       </button>

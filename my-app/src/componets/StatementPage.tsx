@@ -33,9 +33,15 @@ const StatementPage: React.FC = () => {
     }
   }
 
+  const queryOptions = {};
+
+  const actionOptions = {};
+
+  const assertionOptions = {};
+
   return (
     <div className="flex h-screen">
-      <div className="flex flex-col w-2/3 p-5">
+      <div className="flex flex-col w-3/5 p-5">
         {/* Button and Dropdowns */}
         <div className="flex space-x-4 mb-5">
           <DropdownButton label="Query" onClickOption={handleOptionClick} />
@@ -61,7 +67,7 @@ const StatementPage: React.FC = () => {
         </div>
       </div>
 
-      <div className="w-1/3 border-l">
+      <div className="w-2/5 border-l">
         <SmallerPreviewPopup />
       </div>
     </div>
