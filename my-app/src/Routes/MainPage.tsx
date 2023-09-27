@@ -1,6 +1,8 @@
 import React from "react";
+
 import Tree from "../componets/tree";
 import Webview from "../componets/Webview";
+import StatementPage from "../componets/StatementPage"
 
 const MainPage = (props) => {
   const { url, fileTree } = props;
@@ -25,4 +27,4 @@ const MainPage = (props) => {
     </div>
   );
 };
-export default MainPage;
+

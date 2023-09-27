@@ -5,7 +5,8 @@ const { ipcRenderer } = window.require('electron');
 
 // const fs = remote.require('fs');
 
-const PreviewPopup = () => {
+const SmallerPreviewPopup = () => {
+
   const [code, setCode] = React.useState('');
 
   React.useEffect(() => {
@@ -22,23 +23,23 @@ const PreviewPopup = () => {
   };
 
   return (
-    <>
-      <div>
-        <MonacoEditor
-          width='500'
-          height='393'
-          language='javascript'
-          theme='vs-dark'
-          value={code}
-          options={{
-            selectOnLineNumbers: true,
-            autoClosingQuotes: 'always',
-          }}
-          onChange={handleEditorChange}
-        />
-      </div>
-    </>
+    <div className='fixed top-0 right-0 z-100'>
+      <MonacoEditor
+        width='370'
+        height='900'
+        language='javascript'
+        theme='vs-dark'
+        value={code}
+        options={{
+          selectOnLineNumbers: true,
+          autoClosingQuotes: 'always',
+        }}
+        onChange={handleEditorChange}
+      />
+      <button onClick={handleClose}>Close</button>
+    </div>
   );
 };
 
-export default PreviewPopup;
+export default SmallerPreviewPopup;
+

@@ -7,45 +7,45 @@
 import { parsedEvent } from './types';
 
 //action template
-function handleTests(event: parsedEvent): string {
-  if (event.selector){
-    if (event.selectorValue2){
-      return `cy.${event.method}('${event.query}').${event.selector}(${event.selectorValue1}, ${event.selectorValue2});`;
-    }
-    if (event.selectorValue1 && !event.selectorValue2){
-      return `cy.${event.method}('${event.query}').${event.selector}(${event.selectorValue1});`;
-    }
-    return `cy.${event.method}('${event.query}').${event.selector}();`;
-  } else {
-    return `cy.${event.method}('${event.query}')`;
-  }
-}
+// function handleTests(event: parsedEvent): string {
+//   if (event.selector){
+//     if (event.selectorValue2){
+//       return `cy.${event.method}('${event.query}').${event.selector}(${event.selectorValue1}, ${event.selectorValue2});`;
+//     }
+//     if (event.selectorValue1 && !event.selectorValue2){
+//       return `cy.${event.method}('${event.query}').${event.selector}(${event.selectorValue1});`;
+//     }
+//     return `cy.${event.method}('${event.query}').${event.selector}();`;
+//   } else {
+//     return `cy.${event.method}('${event.query}')`;
+//   }
+// }
 
-handleTests({
-  method: 'get', // This is allowed
-  query: 'button',
-  selector: 'click', // This is allowed
-  selectorValue1: 'anotherButton',
-});
+// handleTests({
+//   method: 'get', // This is allowed
+//   query: 'button',
+//   selector: 'click', // This is allowed
+//   selectorValue1: 'anotherButton',
+// });
 
-handleTests({
-  method: 'test', // This is not allowed
-  query: 'button',
-  selector: 'anotherValue', // This is not allowed
-  selectorValue1: 'anotherButton',
-});
+// handleTests({
+//   method: 'test', // This is not allowed
+//   query: 'button',
+//   selector: 'anotherValue', // This is not allowed
+//   selectorValue1: 'anotherButton',
+// });
 
 
 
-//describe block
-function describeBlock(string: string): string {
-  return `describe(${string}, () => {})`;
-}
+// //describe block
+// function describeBlock(string: string): string {
+//   return `describe(${string}, () => {})`;
+// }
 
 //it block
-function itBlock(string: string): string {
-  return `it(${string}, () => {})`;
-}
+// function itBlock(string: string): string {
+//   return `it(${string}, () => {})`;
+// }
 
 //on mount
 function handleMount(string: string): string {
@@ -58,7 +58,7 @@ function handleURL(url: string): string {
 }
 
 //create a visit block
-function createVisitBlock (url: string): string {
+function createVisitBlock(url: string): string {
   return `cy.visit(${url})`;
 }
 
