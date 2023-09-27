@@ -176,6 +176,7 @@ export class Parser {
           plugins: ['jsx', 'typescript'],
         },
       );
+      console.log('ast: ', ast);
     } catch (err) {
       componentTree.error = 'Error while processing this file/node';
       return componentTree;
@@ -183,8 +184,14 @@ export class Parser {
 
     // Find imports in the current file, then find child components in the current file
     const imports = this.getImports(ast.program.body);
-
     // Get any JSX Children of current file:
+    if (ast.tokens) {
+      componentTree.htmlChildrenTestIds = this.findTestIds(
+        ast.tokens,
+        imports,
+        componentTree,
+      );
+    }
     if (ast.tokens) {
       componentTree.children = this.getJSXChildren(
         ast.tokens,
@@ -200,7 +207,7 @@ export class Parser {
 
     // Recursively parse all child components
     componentTree.children.forEach(child => this.parser(child));
-
+    console.log('compTree', componentTree);
     return componentTree;
   }
 
@@ -277,7 +284,48 @@ export class Parser {
 
     return false;
   }
+  // Finds html components that have a test-id
+  private findTestIds(
+    astTokens: any[],
+    importsObj: ImportObj,
+    parentNode: Tree,
+  ): any {
+    console.log('it started');
+    const childNodes: { [key: string]: Tree } = {};
+    const props: { [key: string]: boolean } = {};
+    let token: { [key: string]: any };
+    const validTestId = [];
+    const diffrentTestIds = ['data-cy', 'data-test', 'data-testid'];
 
+    console.log('past declat');
+
+    for (let i = 0; i < astTokens.length; i++) {
+      if (
+        astTokens[i].type.label === 'jsxTagStart' &&
+        astTokens[i + 1].type.label === 'jsxName' &&
+        !importsObj[astTokens[i + 1].value]
+      ) {
+        console.log('big if true');
+        while (astTokens[i].type.label !== 'jsxTagEnd') {
+          console.log(astTokens[i]);
+          if (
+            astTokens[i].type.label === 'jsxName' &&
+            diffrentTestIds.includes(astTokens[i].value) &&
+            astTokens[i + 1].value === '='
+          ) {
+            validTestId.push(
+              `[${astTokens[i].value}${astTokens[i + 1].value}${
+                astTokens[i + 2].value
+              }]`,
+            );
+          }
+          i += 1;
+        }
+      }
+    }
+    console.log(validTestId);
+    return validTestId;
+  }
   // Finds JSX React Components in current file
   private getJSXChildren(
     astTokens: any[],
