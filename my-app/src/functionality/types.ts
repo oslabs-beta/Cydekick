@@ -1,7 +1,8 @@
 export interface parsedEvent {
-  method?: string,
-  selector?: string,
-  typeValue?: string,
-  key?: string,
-  action?: string,
+  method: 'get' | 'contains',
+  query: string,
+  selector?: 'should' | 'click' | 'type' ,
+  selectorValue1?: string,
+  selectorValue2?: string,
 }
+
