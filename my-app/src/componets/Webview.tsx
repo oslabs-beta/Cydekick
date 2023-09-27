@@ -1,11 +1,10 @@
 import React from "react";
-import Tree from "./tree";
 
 
-const HierarchyContainer = (props) => {
-    const {url, fileTree, currentComponent, setCurrentComponent} = props;
+const Webview = (props) => {
+    const {url, currentComponent, setData } = props;
 
-    const [data, setData] = React.useState(null);
+
 
     React.useEffect( () => {
         if (currentComponent){
@@ -48,11 +47,7 @@ const HierarchyContainer = (props) => {
     }
     
     return (
-        <div>
-            <Tree data={fileTree} setCurrentComponent={setCurrentComponent} currentComponent={currentComponent} htmlData={data}></Tree>
-            <webview id='webview' src={url}></webview>
-            {data}
-        </div>
+        <webview id='webview' src={url} className="w-1/2 h-screen"></webview>
     )
 }
-export default HierarchyContainer;
+export default Webview;
