@@ -1,7 +1,7 @@
 import React from "react";
 import HierarchyContainer from "../componets/HierarchyContainer";
 import { useNavigate } from "react-router";
-
+import StatementPage from "../componets/StatementPage"
 
 const MainPage = (props) =>{
     const {url, fileTree} = props;
