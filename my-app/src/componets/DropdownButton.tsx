@@ -20,7 +20,7 @@ const DropdownButton: React.FC<Props> = ({ label, onClickOption, options }) => {
     <div className="dropdown-container relative">
       <button onClick={() => setIsOpen(!isOpen)}>{label}</button>
       {isOpen && (
-        <div className="dropdown-menu absolute left-0 top-full mt-2 flex flex-col">
+        <div className="left-0 top-full mt-2 mb-2 flex flex-col border border-white">
           {Object.values(options).map((optionDetails) => (
             <button
               key={optionDetails.option}

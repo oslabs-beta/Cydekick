@@ -5,14 +5,14 @@ const { ipcRenderer } = window.require('electron');
 
 // const fs = remote.require('fs');
 
-const SmallerPreviewPopup = () => {
+const SmallerPreviewPopup = ({ code }) => {
 
-  const [code, setCode] = React.useState('');
+  // const [code, setCode] = React.useState('');
 
-  React.useEffect(() => {
-    const fileContent = ipcRenderer.sendSync('read-file');
-    setCode(fileContent);
-  }, []);
+  // React.useEffect(() => {
+  //   const fileContent = ipcRenderer.sendSync('read-file');
+  //   setCode(fileContent);
+  // }, []);
 
   const handleEditorChange = newValue => {
     setCode(newValue);

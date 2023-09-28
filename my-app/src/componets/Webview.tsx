@@ -2,7 +2,7 @@ import React from "react";
 
 
 const Webview = (props) => {
-    const {url, currentComponent, setData } = props;
+    const {url, currentComponent, setData, currentTestId } = props;
 
 
 
@@ -16,7 +16,10 @@ const Webview = (props) => {
     }, [currentComponent])
 
     function handleClick() {
+        console.log('entered function handleClick')
         const webview = document.getElementById('webview');
+        console.log('got webview')
+        console.log('current test id', currentTestId)
         webview.executeJavaScript(
             `
             const leftColumn = document.querySelector('[data-cy="${currentComponent.name}"]');

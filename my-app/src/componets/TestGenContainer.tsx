@@ -9,7 +9,7 @@ function TestGenContainer() {
   const arrayOfReact = [
     <DescribePage SetCurrentPageNum={SetCurrentPageNum} />,
     <ItBlockPage SetCurrentPageNum={SetCurrentPageNum}/>,
-    <StatementPage/>,
+    <StatementPage SetCurrentPageNum={SetCurrentPageNum}/>,
   ];
   return (
       <div>
