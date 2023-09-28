@@ -1,5 +1,4 @@
 import React from "react";
-
 import Tree from "../componets/tree";
 import Webview from "../componets/Webview";
 import StatementPage from "../componets/StatementPage"
@@ -7,14 +6,18 @@ import ButtonComponent from "../componets/ButtonComponent";
 import TestGenContainer from "../componets/TestGenContainer";
 
 const MainPage = (props) => {
-  const { url, fileTree } = props;
+  const { url, fileTree, setPageState } = props;
   const [currentComponent, setCurrentComponent] = React.useState(null);
   const [currentHTML, setCurrentHTML] = React.useState(null);
   const [currentTestId, setCurrentTestId] = React.useState(null);
   const [data, setData] = React.useState(null);
+  const handleBack = () =>{
+    setPageState('Home')
+  }
   return (
     <div className=" w-screen h-screen flex">
-      <div className="w-1/2 max-w-1/2 flex flex-col">
+      <div className="w-1/2 max-w-1/2 flex flex-col" >
+        <button className="rounded-lg p-2 w-fit mb-2" style={{backgroundColor: "#1DF28F"}} onClick={handleBack}>Back</button>
         <Tree
           data={fileTree}
           setCurrentComponent={setCurrentComponent}
@@ -24,6 +27,7 @@ const MainPage = (props) => {
           setCurrentTestId={setCurrentTestId}
           currentHTML={currentHTML}
           currentTestId={currentTestId}
+          url={url}
         ></Tree>
         <div className="h-1/2"></div>
         {/* set testing area here */}

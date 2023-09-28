@@ -4,17 +4,19 @@ import Home from "../Routes/Home";
 import MainPage from "../Routes/MainPage";
 
 const App = () => {
-    const [url, setUrl] = React.useState("http://localhost:9000/");
-    const [fileTree, setFileTree] = React.useState([]);
-    
+  const [url, setUrl] = React.useState("http://localhost:9000/");
+  const [fileTree, setFileTree] = React.useState([]);
+  const [pageState, setPageState] = React.useState("Home");
 
-  return (
-    <HashRouter>
-      <Routes>
-        <Route path="/" element={<Home setUrl={setUrl} setFileTree={setFileTree} url={url}/>} />
-        <Route path="/MainPage" element={<MainPage url={url} fileTree={fileTree}/>}/>
-      </Routes>
-    </HashRouter>
+  return pageState === "Home" ? (
+    <Home
+      setUrl={setUrl}
+      setFileTree={setFileTree}
+      url={url}
+      setPageState={setPageState}
+    />
+  ) : (
+    <MainPage fileTree={fileTree} url={url} setPageState={setPageState} />
   );
 };
 
