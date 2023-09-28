@@ -19,7 +19,7 @@ const Webview = (props) => {
         const webview = document.getElementById('webview');
         webview.executeJavaScript(
             `
-            const leftColumn = document.querySelector('[data-cy="${currentComponent.name}"]');
+            const leftColumn = document.querySelector('${currentComponent.htmlChildrenTestIds[0]}');
             let result = null;
             if (leftColumn) {
                 const clone = leftColumn.cloneNode(true);

@@ -2,15 +2,16 @@ import React from "react";
 
 const Node = ({ element, setCurrentHTML, setCurrentTestId, currentHTML, currentTestId }) => {
   const [isSelected, setIsSelected] = React.useState(false);
-  function handleClick() {
-    setIsSelected(!isSelected);
-    setCurrentHTML(element.nodeName)
-    setCurrentTestId(JSON.stringify(element.attributes))
-    console.log(currentHTML);
-    console.log(element.attributes)
+  function handleClick () {
+     if (element.attributes['data-cy']){
+      setIsSelected(!isSelected);
+      setCurrentHTML(element.nodeName)
+      setCurrentTestId(`data-cy=${element.attributes['data-cy'].value}`)
+    }
+    console.log(currentHTML, currentTestId)
   }
   React.useEffect(()=>{
-    if (isSelected && (currentHTML !== element.nodeName || currentTestId !== JSON.stringify(element.attributes))) setIsSelected(!isSelected);
+    if (isSelected && (currentHTML !== element.nodeName || currentTestId !== `data-cy=${element.attributes['data-cy'].value}`)) setIsSelected(!isSelected);
   }, [currentHTML, currentTestId])
 
   return (
