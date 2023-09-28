@@ -9,11 +9,10 @@ background color: #1B1E26
 
 */
 const Home = (props) => {
-  const { setUrl, setFileTree, url } = props;
-  const navigate = useNavigate();
+  const { setUrl, setFileTree, url, setPageState } = props;
   const handleSubmission = () => {
     setUrl(document.getElementById("url_form_id").value);
-    navigate("/MainPage");
+    setPageState('MainPage');
   };
 
   return (
