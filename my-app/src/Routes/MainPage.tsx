@@ -38,6 +38,7 @@ const MainPage = (props) => {
       <Webview
         url={url}
         currentComponent={currentComponent}
+        currentTestId={currentTestId}
         setData={setData}
       />
       
