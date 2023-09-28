@@ -3,7 +3,7 @@ import SmallerPreviewPopup from './SmallerPreviewPopup';
 import React from 'react';
 const { ipcRenderer } = window.require('electron');
 
-function ItBlockPage() {
+function ItBlockPage({SetCurrentPageNum}) {
   const [code, setCode] = React.useState('');
 
   React.useEffect(() => {
@@ -11,7 +11,7 @@ function ItBlockPage() {
     setCode(fileContent);
   }, []);
 
-  function createItBlock() {
+  function createItBlock(): void {
     // Create the content for the test.cy.js file
     // For example, you can use the current 'code' state value
     const testFileContent = itBlock('YourTestDescription'); // Replace with your desired description and test code
@@ -33,16 +33,28 @@ function ItBlockPage() {
 
 
   return (
-    <div>
-      <h1 className='ml-8'>Name for test:</h1>
-      <input type='text' className='border border-neutral-950 ml-8' />
-      <br></br>
-      <button className='border border-neutral-950 ml-8'>
-
-        Create It block
-      </button>
-      <SmallerPreviewPopup />
-
+    <div className='flex'>
+      <div
+        id='bot'
+        className='flex-1 w-3/5 h-3/5 flex items-center justify-center flex-col'>
+        <h1 className='text-2xl font-bold mb-4'>Name for test:</h1>
+        <input
+          type='text'
+          id='describeText'
+          className='text-2xl font-bold mb-4'
+        />
+        <br></br>
+        <button
+          className='px-4 py-2 bg-blue-500 text-white rounded-md'
+          onClick={() => {
+            SetCurrentPageNum(2);
+          }}>
+          Create it block
+        </button>
+      </div>
+      <div className='flex-1 w-2/5 h-2/5 bg-gray-200 border border-gray-400 rounded-r-lg overflow-hidden'>
+        <SmallerPreviewPopup />
+      </div>
     </div>
   );
 }

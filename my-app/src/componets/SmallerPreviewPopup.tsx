@@ -18,15 +18,11 @@ const SmallerPreviewPopup = () => {
     setCode(newValue);
   };
 
-  const handleClose = () => {
-    ipcRenderer.send('write-file', code);
-  };
-
   return (
-    <div className='fixed top-0 right-0 z-100'>
+    <div >
       <MonacoEditor
         width='370'
-        height='900'
+        height='400'
         language='javascript'
         theme='vs-dark'
         value={code}
@@ -36,7 +32,6 @@ const SmallerPreviewPopup = () => {
         }}
         onChange={handleEditorChange}
       />
-      <button onClick={handleClose}>Close</button>
     </div>
   );
 };

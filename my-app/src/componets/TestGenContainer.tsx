@@ -2,25 +2,19 @@ import React, { useState, FormEvent } from 'react';
 import { useMultistepForm } from './useMultiStepForm';
 import DescribePage from './DescribePage';
 import ItBlockPage from './ItBlockPage';
+import StatementPage from './StatementPage';
 
 function TestGenContainer() {
-  const {
-    steps,
-    currentStepIndex,
-    step,
-    isFirstStep,
-    isLastStep,
-    back,
-    next,
-    setCurrentStepIndex,
-  } = useMultistepForm([<DescribePage />, <ItBlockPage />, <div></div>]);
+  const [currentPageNum, SetCurrentPageNum] = useState(0);
+  const arrayOfReact = [
+    <DescribePage SetCurrentPageNum={SetCurrentPageNum} />,
+    <ItBlockPage SetCurrentPageNum={SetCurrentPageNum}/>,
+    <StatementPage/>,
+  ];
   return (
-    <div className='w-screen h-screen '>
-      <div className='w-3/5 h-2/5 border-2 border-green-400 rounded bg-slate-500'>
-        {step}
+      <div>
+        {arrayOfReact[currentPageNum]}
       </div>
-    </div>
   );
 }
-
 export default TestGenContainer;
