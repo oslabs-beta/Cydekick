@@ -7,16 +7,23 @@ import StatementPage from "../componets/StatementPage"
 const MainPage = (props) => {
   const { url, fileTree } = props;
   const [currentComponent, setCurrentComponent] = React.useState(null);
+  const [currentHTML, setCurrentHTML] = React.useState(null);
+  const [currentTestId, setCurrentTestId] = React.useState(null);
   const [data, setData] = React.useState(null);
   return (
     <div className=" w-screen h-screen flex">
-      <div className="w-1/2 h-screen flex flex-col">
+      <div className="w-1/2 max-w-1/2 flex flex-col">
         <Tree
           data={fileTree}
           setCurrentComponent={setCurrentComponent}
           currentComponent={currentComponent}
           htmlData={data}
+          setCurrentHTML={setCurrentHTML}
+          setCurrentTestId={setCurrentTestId}
+          currentHTML={currentHTML}
+          currentTestId={currentTestId}
         ></Tree>
+        <div className="h-1/2"></div>
         {/* set testing area here */}
       </div>
       <Webview
