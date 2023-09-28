@@ -21,7 +21,7 @@ const SmallerPreviewPopup = () => {
   return (
     <div >
       <MonacoEditor
-        width='300'
+        width='370'
         height='400'
         language='javascript'
         theme='vs-dark'

@@ -1,23 +1,36 @@
 // DropdownButton.tsx
 import React, { useState } from 'react';
 
-interface Props {
-  label: string;
-  onClickOption: (option: string) => void;
+interface OptionDetails {
+  option: string;
+  code: string;
+  tooltip: string;
 }
 
-const DropdownButton: React.FC<Props> = ({ label, onClickOption }) => {
+interface Props {
+  label: string;
+  options: Record<string, OptionDetails>;
+  onClickOption: (code: string, details: OptionDetails) => void;
+}
+
+const DropdownButton: React.FC<Props> = ({ label, onClickOption, options }) => {
   const [isOpen, setIsOpen] = useState(false);
   
   return (
-    <div className="dropdown-container">
+    <div className="dropdown-container relative">
       <button onClick={() => setIsOpen(!isOpen)}>{label}</button>
       {isOpen && (
-        <div className="dropdown-menu">
-          {/* Placeholder Options */}
-          <button onClick={() => onClickOption('Option 1')}>Option 1</button>
-          <button onClick={() => onClickOption('Option 2')}>Option 2</button>
-          <button onClick={() => onClickOption('Option 3')}>Option 3</button>
+        <div className="dropdown-menu absolute left-0 top-full mt-2 flex flex-col">
+          {Object.values(options).map((optionDetails) => (
+            <button
+              key={optionDetails.option}
+              onClick={() => onClickOption(optionDetails.code, optionDetails)}
+              title={optionDetails.tooltip}
+              className="mb-2 hover:bg-gray-200 p-1 rounded"
+            >
+              {optionDetails.option}
+            </button>
+          ))}
         </div>
       )}
     </div>
