@@ -5,3 +5,4 @@ export enum eventType {
   keyDown = 'keydown',
   submit = 'submit',
 }
+
