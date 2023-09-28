@@ -102,7 +102,7 @@ const Tree = (props) => {
   data.parentName = null;
 
   return (
-    <div className="max-h-1/2 overflow-auto">
+    <div className="max-h-1/2 overflow-auto" style={{border: "1px solid  #048C7F"}}>
       <TreeNode
         key={data.name}
         node={data}

@@ -16,8 +16,8 @@ const MainPage = (props) => {
   }
   return (
     <div className=" w-screen h-screen flex">
-      <div className="w-1/2 max-w-1/2 flex flex-col">
-        <button className="rounded-lg p-2" style={{backgroundColor: "#1DF28F"}} onClick={handleBack}>Back</button>
+      <div className="w-1/2 max-w-1/2 flex flex-col" >
+        <button className="rounded-lg p-2 w-fit mb-2" style={{backgroundColor: "#1DF28F"}} onClick={handleBack}>Back</button>
         <Tree
           data={fileTree}
           setCurrentComponent={setCurrentComponent}
