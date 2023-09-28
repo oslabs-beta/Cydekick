@@ -8,6 +8,11 @@ const TreeNode = ({
   setCurrentComponent,
   currentComponent,
   htmlData,
+  setCurrentHTML,
+  setCurrentTestId,
+  currentHTML, 
+  currentTestId
+
 }) => {
   if (node.reactRouter) return;
   const [isSelected, setIsSelected] = React.useState(false);
@@ -43,7 +48,15 @@ const TreeNode = ({
           }
         >
           <button onClick={handleClick}>{node.name}</button>
-          {isSelected && <HtmlDisplay htmlData={htmlData} />}
+          {isSelected && (
+            <HtmlDisplay
+              htmlData={htmlData}
+              setCurrentHTML={setCurrentHTML}
+              setCurrentTestId={setCurrentTestId}
+              currentHTML={currentHTML}
+              currentTestId={currentTestId}
+            />
+          )}
         </div>
       </div>
       {node.children && (
@@ -56,6 +69,10 @@ const TreeNode = ({
               setCurrentComponent={setCurrentComponent}
               currentComponent={currentComponent}
               htmlData={htmlData}
+              setCurrentHTML={setCurrentHTML}
+              setCurrentTestId={setCurrentTestId}
+              currentHTML={currentHTML}
+              currentTestId={currentTestId}
             />
           ))}
         </div>
@@ -66,7 +83,16 @@ const TreeNode = ({
 
 const Tree = (props) => {
   // Extract the tree
-  const { data, setCurrentComponent, currentComponent, htmlData } = props;
+  const {
+    data,
+    setCurrentComponent,
+    currentComponent,
+    htmlData,
+    setCurrentHTML,
+    setCurrentTestId,
+    currentHTML, 
+    currentTestId
+  } = props;
   // Make a node for the root
   data.parentName = null;
 
@@ -79,6 +105,10 @@ const Tree = (props) => {
         setCurrentComponent={setCurrentComponent}
         currentComponent={currentComponent}
         htmlData={htmlData}
+        setCurrentHTML={setCurrentHTML}
+        setCurrentTestId={setCurrentTestId}
+        currentHTML={currentHTML}
+        currentTestId={currentTestId}
       />
     </div>
   );

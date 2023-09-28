@@ -5,6 +5,8 @@ import Webview from "../componets/Webview";
 const MainPage = (props) => {
   const { url, fileTree } = props;
   const [currentComponent, setCurrentComponent] = React.useState(null);
+  const [currentHTML, setCurrentHTML] = React.useState(null);
+  const [currentTestId, setCurrentTestId] = React.useState(null);
   const [data, setData] = React.useState(null);
   return (
     <div className=" w-screen h-screen flex">
@@ -14,6 +16,10 @@ const MainPage = (props) => {
           setCurrentComponent={setCurrentComponent}
           currentComponent={currentComponent}
           htmlData={data}
+          setCurrentHTML={setCurrentHTML}
+          setCurrentTestId={setCurrentTestId}
+          currentHTML={currentHTML}
+          currentTestId={currentTestId}
         ></Tree>
         <div className="h-1/2"></div>
         {/* set testing area here */}
