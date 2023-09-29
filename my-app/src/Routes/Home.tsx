@@ -1,6 +1,5 @@
-import GetFile from "../componets/GetFile";
-import { useNavigate } from "react-router";
-
+import GetFile from "../components/GetFile";
+import {Tree} from "../types/Tree";
 
 /* 
 mint greenish: #1DF28F
@@ -8,16 +7,30 @@ darker green: #048C7F
 background color: #1B1E26
 
 */
-const Home = (props) => {
+type HomePageProps = {
+  setUrl: React.Dispatch<React.SetStateAction<string>>,
+  url: string,
+  setPageState: React.Dispatch<React.SetStateAction<string>>,
+  setFileTree: React.Dispatch<React.SetStateAction<Tree>>,
+}
+
+
+const Home = (props:HomePageProps) => {
   const { setUrl, setFileTree, url, setPageState } = props;
+
+  // Button Handler to switch Routes
   const handleSubmission = () => {
-    setUrl(document.getElementById("url_form_id").value);
-    setPageState('MainPage');
+    const urlInputElement = document.getElementById("url_form_id") as HTMLInputElement;
+    if (urlInputElement) {
+      setUrl(urlInputElement.value);
+      setPageState('MainPage');
+    }
   };
+  
 
   return (
     <div className="flex flex-col w-screen h-screen p-5 justify-center items-center">
-      <div className="bg-logo w-1/2 h-3/4 bg-cover bg-no-repeat bg-center bg-contain"></div>
+      <div className="bg-logo w-1/2 h-3/4 bg-cover bg-no-repeat bg-center"></div>
       <div className="flex flex-col rounded-lg p-2 z-10 w-2/3" style={{backgroundColor: "#048C7F"}}>
       <div className="flex justify-between mb-2">
         <label>Choose Root Component (ie. App.jsx): </label>

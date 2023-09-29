@@ -1,39 +1,52 @@
-// MainPage.tsx
 import React, { useState } from 'react';
 import SmallerPreviewPopup from './SmallerPreviewPopup';
 import DropdownButton from './DropdownButton'
 const fs = window.require('fs');
 const path = window.require('path')
+import { Tree } from '../types/Tree'
 
-const StatementPage: React.FC = ({SetCurrentPageNum, currentComponent, currentHTML, currentTestId}) => {
+type StatementPageProps = {
+  setCurrentPageNum: React.Dispatch<React.SetStateAction<number>>,
+  currentComponent: Tree,
+  currentHTML: string,
+  currentTestId: string,
+}
+
+const StatementPage: React.FC<StatementPageProps> = ({setCurrentPageNum, currentComponent, currentHTML, currentTestId}) => {
+  //state variables
   const [selectedOptions, setSelectedOptions] = useState<string[]>([]);
   const [dataCy, setDataCy] = useState<string>('');
   const [code, setCode] = React.useState<string>('');
   const filePath = path.join(process.cwd(), 'UserTests', 'TestBlock.cy.js')
   const filePreviewPath = path.join(process.cwd(), 'UserTests', 'UserTestFile.cy.js')
   
+  //renders current state of testblock.cy.js onto the monaco editor
   React.useEffect(() => {
     const filePath = path.join(process.cwd(), 'UserTests', 'TestBlock.cy.js');
     const fileContent = fs.readFileSync(filePath, 'utf8')
-    console.log(fileContent)
     setCode(fileContent);
   }, []);
 
+  //whenever we grab our data-cy test Id from the prop, we set it in state and is used as the testId for the component tests
   React.useEffect(() =>{
     setDataCy(currentTestId)
   },[currentTestId]);
   
+  //function is invoked whenever a user selects one of the option in the dropdown and reassigns state so that it appears in the statement bar
   const handleOptionClick = (option: string) => {
     setSelectedOptions([...selectedOptions, option]);
   };
+
+  //a function attached to a button to append the Itblock onto the editor
   function endItBlock(){
     fs.appendFileSync(filePath, "})");
-    SetCurrentPageNum(1)
+    setCurrentPageNum(1)
   }
-  function endDescribeBlock(){
 
+  //
+  function endDescribeBlock(){
     fs.appendFileSync(filePath, "\n\t" + "})" + "\n" + "})");
-    SetCurrentPageNum(0)
+    setCurrentPageNum(0)
     const testBlockContent = fs.readFileSync(filePath, 'utf8')
     fs.writeFileSync(filePreviewPath, testBlockContent)
   }
@@ -94,7 +107,6 @@ const StatementPage: React.FC = ({SetCurrentPageNum, currentComponent, currentHT
                               code: '.expect()',
                               tooltip: 'tooltip'
                             }, 
-                            
                           };
 
   return (
@@ -129,10 +141,10 @@ const StatementPage: React.FC = ({SetCurrentPageNum, currentComponent, currentHT
       </div>
 
       <div className="w-2/5 border-l overflow-hidden">
-        <SmallerPreviewPopup code={code}/>
+        <SmallerPreviewPopup code={code} setCode={setCode}/>
       </div>
     </div>
   );
 };
 
-export default StatementPage
+export default StatementPage;
