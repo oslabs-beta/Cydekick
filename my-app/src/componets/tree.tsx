@@ -11,8 +11,7 @@ const TreeNode = ({
   setCurrentHTML,
   setCurrentTestId,
   currentHTML, 
-  currentTestId,
-  url
+  currentTestId
 
 }) => {
   if (node.reactRouter) return;
@@ -56,8 +55,6 @@ const TreeNode = ({
               setCurrentTestId={setCurrentTestId}
               currentHTML={currentHTML}
               currentTestId={currentTestId}
-              url={url}
-              currentComponent={currentComponent}
             />
           )}
         </div>
@@ -76,7 +73,6 @@ const TreeNode = ({
               setCurrentTestId={setCurrentTestId}
               currentHTML={currentHTML}
               currentTestId={currentTestId}
-              url={url}
             />
           ))}
         </div>
@@ -95,14 +91,13 @@ const Tree = (props) => {
     setCurrentHTML,
     setCurrentTestId,
     currentHTML, 
-    currentTestId,
-    url
+    currentTestId
   } = props;
   // Make a node for the root
   data.parentName = null;
 
   return (
-    <div className="max-h-1/2 overflow-auto" style={{border: "1px solid  #048C7F"}}>
+    <div className="h-1/2 overflow-auto">
       <TreeNode
         key={data.name}
         node={data}
@@ -114,7 +109,6 @@ const Tree = (props) => {
         setCurrentTestId={setCurrentTestId}
         currentHTML={currentHTML}
         currentTestId={currentTestId}
-        url={url}
       />
     </div>
   );

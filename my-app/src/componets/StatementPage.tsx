@@ -2,17 +2,16 @@
 import React, { useState } from 'react';
 import SmallerPreviewPopup from './SmallerPreviewPopup';
 import DropdownButton from './DropdownButton'
-// import { parsedEvent } from '../functionality/types';
 const fs = window.require('fs');
 const path = window.require('path')
 
-const StatementPage: React.FC = ({SetCurrentPageNum}) => {
+const StatementPage: React.FC = ({SetCurrentPageNum, currentComponent, currentHTML, currentTestId}) => {
   const [selectedOptions, setSelectedOptions] = useState<string[]>([]);
-  const [dataCy, setDataCy] = useState<string>('poop');
+  const [dataCy, setDataCy] = useState<string>('');
   const [code, setCode] = React.useState<string>('');
   const filePath = path.join(process.cwd(), 'UserTests', 'TestBlock.cy.js')
   const filePreviewPath = path.join(process.cwd(), 'UserTests', 'UserTestFile.cy.js')
-
+  
   React.useEffect(() => {
     const filePath = path.join(process.cwd(), 'UserTests', 'TestBlock.cy.js');
     const fileContent = fs.readFileSync(filePath, 'utf8')
@@ -20,6 +19,10 @@ const StatementPage: React.FC = ({SetCurrentPageNum}) => {
     setCode(fileContent);
   }, []);
 
+  React.useEffect(() =>{
+    setDataCy(currentTestId)
+  },[currentTestId]);
+  
   const handleOptionClick = (option: string) => {
     setSelectedOptions([...selectedOptions, option]);
   };
@@ -46,13 +49,13 @@ const StatementPage: React.FC = ({SetCurrentPageNum}) => {
                         get: 
                           {
                             option: 'Get',
-                            code: `cy.get('[data-cy="${dataCy}"]')`,
+                            code: `cy.get('[${dataCy}]')`,
                             tooltip: 'tooltip'
                           }, 
                         contains: 
                           {
                             option: 'Contains',
-                            code: `cy.contains('[data-cy="${dataCy}"]')`,
+                            code: `cy.contains('[${dataCy}]')`,
                             tooltip: 'tooltip'
                           }, 
                        };
@@ -98,7 +101,7 @@ const StatementPage: React.FC = ({SetCurrentPageNum}) => {
     <div className="flex h-screen">
       <div className="flex flex-col w-3/5 p-5">
         {/* Button and Dropdowns */}
-        <div className="flex space-x-4 mb-5">
+        <div className="flex justify-between">
           <DropdownButton options={queryOptions} label="Query" onClickOption={handleOptionClick} />
           <DropdownButton options={actionOptions} label="Action" onClickOption={handleOptionClick} />
           <DropdownButton options={assertionOptions} label="Assertion" onClickOption={handleOptionClick} />
@@ -111,7 +114,10 @@ const StatementPage: React.FC = ({SetCurrentPageNum}) => {
 
         {/* Currently Selected Bar */}
         <div className="h-10 border mb-5 pl-2">
-          Currently selected:
+        Currently selected: 
+        {currentHTML}
+        {currentComponent && currentComponent.name && ` in ${currentComponent.name}`}
+        {currentTestId && ` with ${currentTestId}`}
         </div>
 
         {/* End Block Buttons */}
