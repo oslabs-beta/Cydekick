@@ -1,41 +1,32 @@
 import React from "react";
 
-const Node = ({ element, setCurrentHTML, setCurrentTestId, currentHTML, currentTestId, url, currentComponent }) => {
+type NodeProps = {
+  setCurrentHTML: React.Dispatch<React.SetStateAction<string>>,
+  currentHTML: string,
+  currentTestId: string,
+  element: Element,
+  setCurrentTestId: React.Dispatch<React.SetStateAction<string>>,
+}
+
+const Node = ({ element, setCurrentHTML, setCurrentTestId, currentHTML, currentTestId}:NodeProps) => {
   const [isSelected, setIsSelected] = React.useState(false);
   function handleClick () {
-     if (element.attributes['data-cy']){
+     if (element.attributes.getNamedItem("data-cy") ){
       setIsSelected(!isSelected);
       setCurrentHTML(element.nodeName)
-      setCurrentTestId(`data-cy=${element.attributes['data-cy'].value}`)
+      setCurrentTestId(`data-cy=${element.attributes.getNamedItem("data-cy") .value}`)
       // Highlight thing on page
-      const webview = document.getElementById('webview');
+      const webview = document.getElementById('webview') as Electron.WebviewTag | null;
       webview.executeJavaScript(`
-        document.querySelector('[data-cy=${element.attributes['data-cy'].value}]').style.border = "2px solid #1DF28F";
+        document.querySelector('[data-cy=${element.attributes.getNamedItem("data-cy") .value}]').style.border = "2px solid #1DF28F";
       `)
 
     }
     console.log(currentHTML, currentTestId)
   }
   React.useEffect(()=>{
-    if (isSelected && (currentHTML !== element.nodeName || currentTestId !== `data-cy=${element.attributes['data-cy'].value}`)){
+    if (isSelected && (currentHTML !== element.nodeName || currentTestId !== `data-cy=${element.attributes.getNamedItem("data-cy") .value}`)){
       setIsSelected(!isSelected);
-
-    // reload the webview, reselect component
-    const webview = document.getElementById('webview');
-    webview.loadURL(url);
-    
-    // reselect component
-    webview.executeJavaScript(`
-    const leftColumn = document.querySelector('${currentComponent.htmlChildrenTestIds[0]}');
-    let result = null;
-    if (leftColumn) {
-        const clone = leftColumn.cloneNode(true);
-        document.body.innerHTML = '';
-        document.body.appendChild(clone);
-        result = clone.outerHTML;
-    }
-    result;
-`)
     }
   }, [currentHTML, currentTestId])
 
@@ -69,8 +60,6 @@ const Node = ({ element, setCurrentHTML, setCurrentTestId, currentHTML, currentT
             setCurrentTestId={setCurrentTestId}
             currentHTML={currentHTML}
             currentTestId={currentTestId}
-            url={url}
-            currentComponent={currentComponent}
           />
         ))}
       </div>
@@ -78,7 +67,21 @@ const Node = ({ element, setCurrentHTML, setCurrentTestId, currentHTML, currentT
   );
 };
 
-const HtmlDisplay = ({ htmlData, setCurrentHTML, setCurrentTestId, currentHTML, currentTestId, url, currentComponent }) => {
+type HtmlDisplayProps = {
+  htmlData:string,
+  setCurrentHTML: React.Dispatch<React.SetStateAction<string>>,
+  setCurrentTestId: React.Dispatch<React.SetStateAction<string>>,
+  currentHTML:string,
+  currentTestId:string,
+}
+
+const HtmlDisplay: React.FC<HtmlDisplayProps> = ({
+  htmlData,
+  setCurrentHTML,
+  setCurrentTestId,
+  currentHTML,
+  currentTestId,
+}: HtmlDisplayProps) => {
   const parsedHtml = new DOMParser().parseFromString(htmlData, "text/html");
 
 
@@ -90,8 +93,6 @@ const HtmlDisplay = ({ htmlData, setCurrentHTML, setCurrentTestId, currentHTML, 
         setCurrentTestId={setCurrentTestId}
         currentHTML={currentHTML}
         currentTestId={currentTestId}
-        url={url}
-        currentComponent={currentComponent}
       />
     </div>
   );

@@ -1,20 +1,20 @@
 import { Parser } from '../parser';
 import React from 'react';
+import { Tree } from '../types/Tree';
 
-const GetFile = (props) => {
+type GetFileProps = {
+  setter: (tre:Tree) => void,
+}
+
+const GetFile = ({setter}: GetFileProps) => {
   const [fileName, setFileName] = React.useState('Choose File');
 
   function parseTree() {
-    const file = document.getElementById('theInputFile').files[0];
-    console.log(file.path);
+    const file = (document.getElementById('theInputFile') as HTMLInputElement).files[0];
     const DaParser = new Parser(file.path);
-    console.log('parser created');
     DaParser.parse();
-    console.log('tree parsed');
-    console.log(DaParser.tree);
     setFileName(DaParser.tree.fileName)
-    props.setter(DaParser.tree);
-    console.log('where the fuck is the console.log at');
+    setter(DaParser.tree);
   }
 
   return (

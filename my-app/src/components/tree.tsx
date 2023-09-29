@@ -1,6 +1,19 @@
-import { color } from "d3";
 import React from "react";
 import HtmlDisplay from "./HtmlDisplay";
+import {Tree as TreeType} from "../types/Tree"
+
+type TreeNode = {
+  node:TreeType,
+  isRoot:boolean,
+  setCurrentComponent:React.Dispatch<React.SetStateAction<TreeType>>
+  currentComponent:TreeType,
+  htmlData:string,
+  setCurrentHTML: React.Dispatch<React.SetStateAction<string>>,
+  setCurrentTestId: React.Dispatch<React.SetStateAction<string>>,
+  currentHTML:string,
+  currentTestId:string
+}
+
 
 const TreeNode = ({
   node,
@@ -13,7 +26,7 @@ const TreeNode = ({
   currentHTML, 
   currentTestId
 
-}) => {
+}:TreeNode) => {
   if (node.reactRouter) return;
   const [isSelected, setIsSelected] = React.useState(false);
   const [showHTML, setShowHTML] = React.useState(false);
@@ -80,8 +93,18 @@ const TreeNode = ({
     </div>
   );
 };
+type TreeProps = {
+  data:TreeType,
+  setCurrentComponent:React.Dispatch<React.SetStateAction<TreeType>>
+  currentComponent:TreeType,
+  htmlData:string,
+  setCurrentHTML: React.Dispatch<React.SetStateAction<string>>,
+  setCurrentTestId: React.Dispatch<React.SetStateAction<string>>,
+  currentHTML:string,
+  currentTestId:string
+}
 
-const Tree = (props) => {
+const Tree = (props:TreeProps) => {
   // Extract the tree
   const {
     data,
@@ -93,8 +116,6 @@ const Tree = (props) => {
     currentHTML, 
     currentTestId
   } = props;
-  // Make a node for the root
-  data.parentName = null;
 
   return (
     <div className="h-1/2 overflow-auto">

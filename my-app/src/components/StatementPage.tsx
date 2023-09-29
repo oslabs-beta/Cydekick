@@ -13,6 +13,7 @@ type StatementPageProps = {
 }
 
 const StatementPage: React.FC<StatementPageProps> = ({setCurrentPageNum, currentComponent, currentHTML, currentTestId}) => {
+  //state variables
   const [selectedOptions, setSelectedOptions] = useState<string[]>([]);
   const [dataCy, setDataCy] = useState<string>('');
   const [code, setCode] = React.useState<string>('');
@@ -36,13 +37,13 @@ const StatementPage: React.FC<StatementPageProps> = ({setCurrentPageNum, current
     setSelectedOptions([...selectedOptions, option]);
   };
 
-  //a function attached to a button to append the Itblock onto the monaco editor
+  //a function attached to a button to append the Itblock onto the editor
   function endItBlock(){
     fs.appendFileSync(filePath, "})");
     setCurrentPageNum(1)
   }
 
-  //a function attached to a button to append the completed block of code onto the main preview test file
+  //
   function endDescribeBlock(){
     fs.appendFileSync(filePath, "\n\t" + "})" + "\n" + "})");
     setCurrentPageNum(0)
@@ -50,7 +51,6 @@ const StatementPage: React.FC<StatementPageProps> = ({setCurrentPageNum, current
     fs.writeFileSync(filePreviewPath, testBlockContent)
   }
 
-  //a function attached to a button to append the statement to the current itblock on the editor
   function endStatement() {
     fs.appendFileSync(filePath, '\n\t\t' + selectedOptions.join(''))
     setSelectedOptions([])
@@ -58,7 +58,6 @@ const StatementPage: React.FC<StatementPageProps> = ({setCurrentPageNum, current
     setCode(fileContent)
   }
 
-  //options that is inserted into the dropdown menus
   const queryOptions = {
                         get: 
                           {

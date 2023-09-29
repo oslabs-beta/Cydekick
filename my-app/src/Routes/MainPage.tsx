@@ -1,16 +1,44 @@
 import React from "react";
-import Tree from "../componets/tree";
-import Webview from "../componets/Webview";
-// import StatementPage from "../componets/StatementPage"
-import ButtonComponent from "../componets/ButtonComponent";
-import TestGenContainer from "../componets/TestGenContainer";
+import Tree from "../components/tree";
+import Webview from "../components/Webview";
 
-const MainPage = (props) => {
+import ButtonComponent from "../components/ButtonComponent";
+import TestGenContainer from "../components/TestGenContainer";
+import {Tree as TreeType} from "../types/Tree"
+
+
+type MainPageProps = {
+  url:string,
+  fileTree:TreeType,
+  setPageState:React.Dispatch<React.SetStateAction<string>>
+};
+
+
+const MainPage = (props:MainPageProps) => {
   const { url, fileTree, setPageState } = props;
-  const [currentComponent, setCurrentComponent] = React.useState(null);
-  const [currentHTML, setCurrentHTML] = React.useState(null);
-  const [currentTestId, setCurrentTestId] = React.useState(null);
-  const [data, setData] = React.useState(null);
+  const [currentComponent, setCurrentComponent] = React.useState<TreeType>({
+    id: '',
+    name: '',
+    fileName: '',
+    filePath: '',
+    importPath: '',
+    expanded: false,
+    depth: 0,
+    count: 0,
+    thirdParty: false,
+    reactRouter: false,
+    reduxConnect: false,
+    children: [],
+    htmlChildrenTestIds: {},
+    parentList: [],
+    props: {},
+    error: '',
+  });
+  const [currentHTML, setCurrentHTML] = React.useState('');
+  const [currentTestId, setCurrentTestId] = React.useState('');
+  const [data, setData] = React.useState('');
+  
+  // Route Handling between pages
   const handleBack = () =>{
     setPageState('Home')
   }
@@ -27,7 +55,6 @@ const MainPage = (props) => {
           setCurrentTestId={setCurrentTestId}
           currentHTML={currentHTML}
           currentTestId={currentTestId}
-          url={url}
         ></Tree>
       <div className="fixed bottom-0 left-0 w-1/2 h-2/5 border-2 border-green-400 rounded bg-slate-500">
         <TestGenContainer currentTestId={currentTestId} currentHTML={currentHTML} currentComponent={currentComponent}/>

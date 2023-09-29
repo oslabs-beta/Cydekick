@@ -1,12 +1,12 @@
 import React from 'react';
 import MonacoEditor from 'react-monaco-editor';
-// import { remote } from 'electron';
 const { ipcRenderer } = window.require('electron');
 
+type PreviewPopupProps = {
+  onClose: () => void;
+}
 
-// const fs = remote.require('fs');
-
-const PreviewPopup = ({ onClose }) => {
+const PreviewPopup: React.FC<PreviewPopupProps> = ({ onClose }) => {
   const [code, setCode] = React.useState('');
 
   React.useEffect(() => {
@@ -14,7 +14,7 @@ const PreviewPopup = ({ onClose }) => {
     setCode(fileContent);
   }, []);
 
-  const handleEditorChange = (newValue) => {
+  const handleEditorChange = (newValue: string) => {
     setCode(newValue);
   };
 

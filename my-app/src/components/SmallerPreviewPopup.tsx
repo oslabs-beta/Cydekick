@@ -1,11 +1,14 @@
 import React from 'react';
 import MonacoEditor from 'react-monaco-editor';
-// import { remote } from 'electron';
-const { ipcRenderer } = window.require('electron');
 
-// const fs = remote.require('fs');
 
-const SmallerPreviewPopup = ({ code }) => {
+
+type SmallerPreviewPopupProps = {
+  code: string,
+  setCode: React.Dispatch<React.SetStateAction<string>>;
+}
+
+const SmallerPreviewPopup: React.FC<SmallerPreviewPopupProps> = ({ code, setCode }) => {
 
   // const [code, setCode] = React.useState('');
 
@@ -14,7 +17,7 @@ const SmallerPreviewPopup = ({ code }) => {
   //   setCode(fileContent);
   // }, []);
 
-  const handleEditorChange = newValue => {
+  const handleEditorChange = (newValue: string) => {
     setCode(newValue);
   };
 
