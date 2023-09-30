@@ -1,7 +1,7 @@
 import React from "react";
 import Tree from "../components/tree";
 import Webview from "../components/Webview";
-
+import Flow from '../components/Flow'
 import ButtonComponent from "../components/ButtonComponent";
 import TestGenContainer from "../components/TestGenContainer";
 import {Tree as TreeType} from "../types/Tree"
@@ -46,7 +46,9 @@ const MainPage = (props:MainPageProps) => {
     <div className=" w-screen h-screen flex">
       <div className="w-1/2 max-w-1/2 flex flex-col" >
         <button className="rounded-lg p-2 w-fit mb-2" style={{backgroundColor: "#1DF28F"}} onClick={handleBack}>Back</button>
-        <Tree
+        <Flow fileTree={fileTree}/>
+        
+        {/* <Tree
           data={fileTree}
           setCurrentComponent={setCurrentComponent}
           currentComponent={currentComponent}
@@ -55,7 +57,7 @@ const MainPage = (props:MainPageProps) => {
           setCurrentTestId={setCurrentTestId}
           currentHTML={currentHTML}
           currentTestId={currentTestId}
-        ></Tree>
+        ></Tree> */}
       <div className="fixed bottom-0 left-0 w-1/2 h-2/5 border-2 border-green-400 rounded bg-slate-500">
         <TestGenContainer currentTestId={currentTestId} currentHTML={currentHTML} currentComponent={currentComponent}/>
       </div>
