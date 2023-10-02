@@ -21,7 +21,6 @@ type FlowProps = {
 };
 
 const Flow = ({ fileTree }: FlowProps) => {
-  const [orientation, setOrientation] = React.useState("TB");
   const nodesArr = [];
   const edgesArr = [];
   (function treeParser(tree: TreeType) {
@@ -34,7 +33,6 @@ const Flow = ({ fileTree }: FlowProps) => {
           testid: tree.htmlChildrenTestIds,
           props: tree.props,
           filePath: tree.filePath,
-          orientation: orientation,
         },
         position: { x: 0, y: 0 },
       });
@@ -60,7 +58,7 @@ const Flow = ({ fileTree }: FlowProps) => {
   const dagreGraph = new dagre.graphlib.Graph();
   dagreGraph.setDefaultEdgeLabel(() => ({}));
 
-  const nodeWidth = 172;
+  const nodeWidth = 176;
   const nodeHeight = 36;
 
   const getLayoutedElements = (nodes, edges, direction = "TB") => {
@@ -80,9 +78,6 @@ const Flow = ({ fileTree }: FlowProps) => {
       const nodeWithPosition = dagreGraph.node(node.id);
       node.targetPosition = direction === "TB" ? "top" : "left"; // Swap 'top' and 'left'
       node.sourcePosition = direction === "TB" ? "bottom" : "right"; // Swap 'bottom' and 'right'
-
-      // Update node orientation for the custom handle rendering
-      node.data.orientation = direction;
 
       // We are shifting the dagre node position (anchor=center center) to the top left
       // so it matches the React Flow node anchor point (top left).
@@ -105,10 +100,8 @@ const Flow = ({ fileTree }: FlowProps) => {
 
   const onLayout = React.useCallback(
     (direction: string) => {
-      const newOrientation = direction === "TB" ? "LR" : "TB";
       const { nodes: layoutedNodes, edges: layoutedEdges } =
-        getLayoutedElements(nodes, edges, newOrientation);
-      setOrientation(newOrientation);
+        getLayoutedElements(nodes, edges, direction);
       setNodes([...layoutedNodes]);
       setEdges([...layoutedEdges]);
     },
@@ -128,10 +121,10 @@ const Flow = ({ fileTree }: FlowProps) => {
       >
         <Controls />
       </ReactFlow>
-      <button className="bg-white" onClick={() => onLayout("LR")}>
+      <button className="bg-white" onClick={() => onLayout("TB")}>
         vertical layout
       </button>
-      <button className="bg-white" onClick={() => onLayout("TB")}>
+      <button className="bg-white" onClick={() => onLayout("LR")}>
         horizontal layout
       </button>
     </div>
