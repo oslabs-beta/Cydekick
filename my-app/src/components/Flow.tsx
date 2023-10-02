@@ -18,11 +18,14 @@ const nodeTypes = {
 
 type FlowProps = {
   fileTree: TreeType;
+  currentComponent: TreeType,
+  setCurrentComponent: React.Dispatch<React.SetStateAction<TreeType>>
 };
 
-const Flow = ({ fileTree }: FlowProps) => {
+const Flow = ({ fileTree, currentComponent, setCurrentComponent }: FlowProps) => {
   const nodesArr = [];
   const edgesArr = [];
+
   (function treeParser(tree: TreeType) {
     if (!tree.reactRouter && !tree.reduxConnect) {
       nodesArr.push({
@@ -33,6 +36,9 @@ const Flow = ({ fileTree }: FlowProps) => {
           testid: tree.htmlChildrenTestIds,
           props: tree.props,
           filePath: tree.filePath,
+          setCurrentComponent: setCurrentComponent,
+          nodeData: tree,
+          isSelected:false,
         },
         position: { x: 0, y: 0 },
       });
@@ -54,6 +60,16 @@ const Flow = ({ fileTree }: FlowProps) => {
     if (tree.children.length > 0)
       tree.children.forEach((child) => treeParser(child));
   })(fileTree);
+
+  React.useEffect(() => {
+    nodes.forEach((node) =>{
+      if (node.data.nodeData === currentComponent) node.data.isSelected = true;
+      else node.data.isSelected = false;
+    })
+  }, [currentComponent])
+
+
+
 
   const dagreGraph = new dagre.graphlib.Graph();
   dagreGraph.setDefaultEdgeLabel(() => ({}));
@@ -111,7 +127,13 @@ const Flow = ({ fileTree }: FlowProps) => {
   return (
     <div className="h-1/2">
       <ReactFlow
-        nodes={nodes}
+        nodes={nodes.map((node) => ({
+          ...node,
+          data: {
+            ...node.data,
+            key: node.id, // Use the node's ID as the key prop
+          },
+        }))}
         edges={edges}
         onNodesChange={onNodesChange}
         onEdgesChange={onEdgesChange}

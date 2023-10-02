@@ -7,6 +7,7 @@ import TestGenContainer from "../components/TestGenContainer";
 import {Tree as TreeType} from "../types/Tree"
 
 
+
 type MainPageProps = {
   url:string,
   fileTree:TreeType,
@@ -46,8 +47,11 @@ const MainPage = (props:MainPageProps) => {
     <div className=" w-screen h-screen flex">
       <div className="w-1/2 max-w-1/2 flex flex-col" >
         <button className="rounded-lg p-2 w-fit mb-2" style={{backgroundColor: "#1DF28F"}} onClick={handleBack}>Back</button>
-        <Flow fileTree={fileTree}/>
-        
+        <Flow 
+        fileTree={fileTree}
+        currentComponent={currentComponent}
+        setCurrentComponent={setCurrentComponent}
+        />
         {/* <Tree
           data={fileTree}
           setCurrentComponent={setCurrentComponent}
