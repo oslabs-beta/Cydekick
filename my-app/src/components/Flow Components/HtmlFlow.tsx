@@ -3,20 +3,20 @@ import ReactFlow, { Controls } from "react-flow-renderer";
 
 import "react-flow-renderer/dist/style.css";
 
-import "../../tailwind.config";
+import "../../../tailwind.config";
 import CustomNode from "./HtmlCustomNode";
 
 const nodeTypes = {
   custom: CustomNode,
 };
 
-const HtmlFlow = ({ data, currentHTML, setCurrentHTML, setCurrentTestId, currentTestId }) => {
+const HtmlFlow = ({ onComponentFlow, data, currentHTML, setCurrentHTML, setCurrentTestId, currentTestId }) => {
+  
   const [edges, setEdges] = React.useState([]);
   const [nodes, setNodes] = React.useState([]);
   
   React.useEffect(() => {
-    if (data !== "") {
-      const parsedHtml = new DOMParser().parseFromString(data, "text/html");
+    const parsedHtml = new DOMParser().parseFromString(data, "text/html");
       let counter = 0;
       const nodesArr = [];
       const edgesArr = [];
@@ -84,9 +84,9 @@ const HtmlFlow = ({ data, currentHTML, setCurrentHTML, setCurrentTestId, current
           newNodesArr.push(...temp);
         }
       }
+      console.log(newNodesArr, edgesArr)
       setNodes(newNodesArr);
       setEdges(edgesArr);
-    }
   }, [data]);
   React.useEffect(() => {
     console.log('need to rerender!')
@@ -107,7 +107,7 @@ const HtmlFlow = ({ data, currentHTML, setCurrentHTML, setCurrentTestId, current
   }, [currentHTML, currentTestId]);
 
   return (
-    <div className="h-1/2">
+    <div className={`h-1/2 ${onComponentFlow ? 'hidden' : ''}`}>
       <ReactFlow
         nodes={nodes}
         edges={edges}

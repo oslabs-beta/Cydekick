@@ -5,11 +5,11 @@ import ReactFlow, {
   Controls,
 } from "react-flow-renderer";
 import dagre from "@dagrejs/dagre";
-import { Tree as TreeType } from "../types/Tree";
+import { Tree as TreeType } from "../../types/Tree";
 
 import "react-flow-renderer/dist/style.css";
 
-import "../../tailwind.config";
+import "../../../tailwind.config";
 import CustomNode from "./CustomNode";
 
 const nodeTypes = {
@@ -20,9 +20,10 @@ type FlowProps = {
   fileTree: TreeType;
   currentComponent: TreeType,
   setCurrentComponent: React.Dispatch<React.SetStateAction<TreeType>>
+  onComponentFlow: boolean
 };
 
-const Flow = ({ fileTree, currentComponent, setCurrentComponent }: FlowProps) => {
+const Flow = ({ onComponentFlow, fileTree, currentComponent, setCurrentComponent}: FlowProps) => {
   const nodesArr = [];
   const edgesArr = [];
 
@@ -114,18 +115,8 @@ const Flow = ({ fileTree, currentComponent, setCurrentComponent }: FlowProps) =>
   const [nodes, setNodes, onNodesChange] = useNodesState(layoutedNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState(layoutedEdges);
 
-  const onLayout = React.useCallback(
-    (direction: string) => {
-      const { nodes: layoutedNodes, edges: layoutedEdges } =
-        getLayoutedElements(nodes, edges, direction);
-      setNodes([...layoutedNodes]);
-      setEdges([...layoutedEdges]);
-    },
-    [nodes, edges]
-  );
-
   return (
-    <div className="h-1/2">
+    <div className={`h-1/2 ${onComponentFlow ? '' : 'hidden'}`}>
       <ReactFlow
         nodes={nodes.map((node) => ({
           ...node,
@@ -143,12 +134,6 @@ const Flow = ({ fileTree, currentComponent, setCurrentComponent }: FlowProps) =>
       >
         <Controls />
       </ReactFlow>
-      <button className="bg-white" onClick={() => onLayout("TB")}>
-        vertical layout
-      </button>
-      <button className="bg-white" onClick={() => onLayout("LR")}>
-        horizontal layout
-      </button>
     </div>
   );
 };
