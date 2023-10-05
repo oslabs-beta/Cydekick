@@ -52,16 +52,6 @@ const MainPage = (props:MainPageProps) => {
         currentComponent={currentComponent}
         setCurrentComponent={setCurrentComponent}
         />
-        {/* <Tree
-          data={fileTree}
-          setCurrentComponent={setCurrentComponent}
-          currentComponent={currentComponent}
-          htmlData={data}
-          setCurrentHTML={setCurrentHTML}
-          setCurrentTestId={setCurrentTestId}
-          currentHTML={currentHTML}
-          currentTestId={currentTestId}
-        ></Tree> */}
       <div className="fixed bottom-0 left-0 w-1/2 h-2/5 border-2 border-green-400 rounded bg-slate-500">
         <TestGenContainer currentTestId={currentTestId} currentHTML={currentHTML} currentComponent={currentComponent}/>
       </div>
