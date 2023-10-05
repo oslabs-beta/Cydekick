@@ -1,7 +1,5 @@
 describe('', () => {
 	it('', () => {
-		cy.readfile('poo')
-		cy.readfile('poo', 'poo')
-		cy.readfile('', 'poo')
+		.uncheck().uncheck('dasdsa').uncheck(2112)
 	})
 })

@@ -84,7 +84,7 @@ const StatementPage: React.FC<StatementPageProps> = ({
         } else {
           return `.as('${args[0]}', '${args[1]}')`;
         }
-      }
+      },
     },
     children: {
       option: 'Children',
@@ -120,7 +120,7 @@ const StatementPage: React.FC<StatementPageProps> = ({
           const value = isNaN(text[1]) ? `'${text[1]}'` : text[1];
           return `.contains('${text[0]}', ${value})`;
         }
-      }
+      },
     },
     document: {
       option: 'Document',
@@ -210,10 +210,10 @@ const StatementPage: React.FC<StatementPageProps> = ({
         { type: 'input', inputType: 'text' },
       ],
       modalCreateCode: function (text: []): string {
-        if (text[0] === empty){
-          return `cy.location()`
+        if (text[0] === empty) {
+          return `cy.location()`;
         } else {
-          return `cy.location('${text[0]}')`
+          return `cy.location('${text[0]}')`;
         }
       },
     },
@@ -226,10 +226,10 @@ const StatementPage: React.FC<StatementPageProps> = ({
         { type: 'input', inputType: 'text' },
       ],
       modalCreateCode: function (text: []): string {
-        if (text[0] === empty){
-          return `.next()`
+        if (text[0] === empty) {
+          return `.next()`;
         } else {
-          return `.next('${text[0]}')`
+          return `.next('${text[0]}')`;
         }
       },
     },
@@ -242,10 +242,10 @@ const StatementPage: React.FC<StatementPageProps> = ({
         { type: 'input', inputType: 'text' },
       ],
       modalCreateCode: function (text: []): string {
-        if (text[0] === empty){
-          return `.nextAll()`
+        if (text[0] === empty) {
+          return `.nextAll()`;
         } else {
-          return `.nextAll('${text[0]}')`
+          return `.nextAll('${text[0]}')`;
         }
       },
     },
@@ -287,10 +287,10 @@ const StatementPage: React.FC<StatementPageProps> = ({
         { type: 'input', inputType: 'text' },
       ],
       modalCreateCode: function (text: []): string {
-        if (text[0] === empty){
-          return `.parent()`
+        if (text[0] === empty) {
+          return `.parent()`;
         } else {
-          return `.parent('${text[0]}')`
+          return `.parent('${text[0]}')`;
         }
       },
     },
@@ -303,10 +303,10 @@ const StatementPage: React.FC<StatementPageProps> = ({
         { type: 'input', inputType: 'text' },
       ],
       modalCreateCode: function (text: []): string {
-        if (text[0] === empty){
-          return `.parents()`
+        if (text[0] === empty) {
+          return `.parents()`;
         } else {
-          return `.parents('${text[0]}')`
+          return `.parents('${text[0]}')`;
         }
       },
     },
@@ -336,10 +336,10 @@ const StatementPage: React.FC<StatementPageProps> = ({
         { type: 'input', inputType: 'text' },
       ],
       modalCreateCode: function (text: []): string {
-        if (text[0] === empty){
-          return `.prev()`
+        if (text[0] === empty) {
+          return `.prev()`;
         } else {
-          return `.prev('${text[0]}')`
+          return `.prev('${text[0]}')`;
         }
       },
     },
@@ -352,10 +352,10 @@ const StatementPage: React.FC<StatementPageProps> = ({
         { type: 'input', inputType: 'text' },
       ],
       modalCreateCode: function (text: []): string {
-        if (text[0] === empty){
-          return `.prevAll()`
+        if (text[0] === empty) {
+          return `.prevAll()`;
         } else {
-          return `.prevAll('${text[0]}')`
+          return `.prevAll('${text[0]}')`;
         }
       },
     },
@@ -399,59 +399,221 @@ const StatementPage: React.FC<StatementPageProps> = ({
       tooltip: 'tooltip',
     },
     shadow: {
-        option: 'Shadow',
-        code: `.shadow()`,
-        tooltip: 'tooltip',
-        modal: [
-          { type: 'label', labelText: 'Text to type' },
-          { type: 'input', inputType: 'text' },
-        ],
-        modalCreateCode: function (text: []): string {
-          if (text[0] === empty){
-            return `.shadow()`
-          } else {
-            return `.shadow('${text[0]}')`
-          }
-        },
+      option: 'Shadow',
+      code: `.shadow()`,
+      tooltip: 'tooltip',
+      modal: [
+        { type: 'label', labelText: 'Text to type' },
+        { type: 'input', inputType: 'text' },
+      ],
+      modalCreateCode: function (text: []): string {
+        if (text[0] === empty) {
+          return `.shadow()`;
+        } else {
+          return `.shadow('${text[0]}')`;
+        }
       },
-      siblings: {
-        option: 'Siblings',
-        code: `.siblings()`,
-        tooltip: 'tooltip',
-        modal: [
-          { type: 'label', labelText: 'Text to type' },
-          { type: 'input', inputType: 'text' },
-        ],
-        modalCreateCode: function (text: []): string {
-          if (text[0] === empty){
-            return `.siblings()`
-          } else {
-            return `.siblings('${text[0]}')`
-          }
-        },
+    },
+    siblings: {
+      option: 'Siblings',
+      code: `.siblings()`,
+      tooltip: 'tooltip',
+      modal: [
+        { type: 'label', labelText: 'Text to type' },
+        { type: 'input', inputType: 'text' },
+      ],
+      modalCreateCode: function (text: []): string {
+        if (text[0] === empty) {
+          return `.siblings()`;
+        } else {
+          return `.siblings('${text[0]}')`;
+        }
       },
-      title: {
-        option: 'Title',
-        code: `cy.title()`,
-        tooltip: 'tooltip',
-      },
-      url: {
-        option: 'URL',
-        code: `cy.url()`,
-        tooltip: 'tooltip',
-      },
-      window: {
-        option: 'Window',
-        code: `cy.window()`,
-        tooltip: 'tooltip',
-      },
+    },
+    title: {
+      option: 'Title',
+      code: `cy.title()`,
+      tooltip: 'tooltip',
+    },
+    url: {
+      option: 'URL',
+      code: `cy.url()`,
+      tooltip: 'tooltip',
+    },
+    window: {
+      option: 'Window',
+      code: `cy.window()`,
+      tooltip: 'tooltip',
+    },
   };
 
   const actionOptions = {
+    check: {
+      option: 'Check',
+      code: '.check()',
+      tooltip: 'tooltip',
+      modal: [
+        { type: 'label', labelText: 'Text to type' },
+        { type: 'input', inputType: 'text' },
+      ],
+      modalCreateCode: function (args: []): string {
+        if (args[0] === empty) {
+          return `.check()`;
+        } else {
+          return `.check('${args[0]}')`;
+        }
+      },
+    },
+    clear: {
+      option: 'Clear',
+      code: '.clear()',
+      tooltip: 'tooltip',
+    },
     click: {
       option: 'Click',
       code: '.click()',
       tooltip: 'tooltip',
+      modal: [
+        { type: 'label', labelText: 'Text to type' },
+        { type: 'input', inputType: 'text' },
+        { type: 'input', inputType: 'text' },
+      ],
+      modalCreateCode: function (args: []): string {
+        if (args[0] === empty && args[1] === empty) {
+          return `.click()`;
+        } else if (args[1] === empty) {
+          return `.click('${args[0]}')`;
+        } else if (args[0] !== empty && args[1] !== empty) {
+          const value1 = isNaN(args[0]) ? `'${args[0]}'` : args[0];
+          const value2 = isNaN(args[1]) ? `'${args[1]}'` : args[1];
+          return `.click(${value1}, ${value2})`;
+        }
+      },
+    },
+    doubleClick: {
+      option: 'Double Click',
+      code: '.dblclick()',
+      tooltip: 'tooltip',
+      modal: [
+        { type: 'label', labelText: 'Text to type' },
+        { type: 'input', inputType: 'text' },
+        { type: 'input', inputType: 'text' },
+      ],
+      modalCreateCode: function (args: []): string {
+        if (args[0] === empty && args[1] === empty) {
+          return `.dblclick()`;
+        } else if (args[1] === empty) {
+          return `.dblclick('${args[0]}')`;
+        } else if (args[0] !== empty && args[1] !== empty) {
+          const value1 = isNaN(args[0]) ? `'${args[0]}'` : args[0];
+          const value2 = isNaN(args[1]) ? `'${args[1]}'` : args[1];
+          return `.dblclick(${value1}, ${value2})`;
+        }
+      },
+    },
+    rightClick: {
+      option: 'Right Click',
+      code: '.rightclick()',
+      tooltip: 'tooltip',
+      modal: [
+        { type: 'label', labelText: 'Text to type' },
+        { type: 'input', inputType: 'text' },
+        { type: 'input', inputType: 'text' },
+      ],
+      modalCreateCode: function (args: []): string {
+        if (args[0] === empty && args[1] === empty) {
+          return `.rightclick()`;
+        } else if (args[1] === empty) {
+          return `.rightclick('${args[0]}')`;
+        } else if (args[0] !== empty && args[1] !== empty) {
+          const value1 = isNaN(args[0]) ? `'${args[0]}'` : args[0];
+          const value2 = isNaN(args[1]) ? `'${args[1]}'` : args[1];
+          return `.rightclick(${value1}, ${value2})`;
+        }
+      },
+    },
+    scrollIntoView: {
+      option: 'ScrollIntoView',
+      code: '.scrollIntoView()',
+      tooltip: 'tooltip',
+    },
+    scrollTo: {
+      option: 'Scroll To',
+      code: '.scrollTo()',
+      tooltip: 'tooltip',
+      modal: [
+        { type: 'label', labelText: 'Text to type' },
+        { type: 'input', inputType: 'text' },
+        { type: 'input', inputType: 'text' },
+      ],
+      modalCreateCode: function (args: []): string {
+        if (args[1] === empty) {
+          return `.scrollTo('${args[0]}')`;
+        } else if (args[0] !== empty && args[1] !== empty) {
+          const value1 = isNaN(args[0]) ? `'${args[0]}'` : args[0];
+          const value2 = isNaN(args[1]) ? `'${args[1]}'` : args[1];
+          return `.scrollTo(${value1}, ${value2})`;
+        }
+      },
+    },
+    select: {
+      option: 'Select',
+      code: '.select()',
+      tooltip: 'tooltip',
+      modal: [
+        { type: 'label', labelText: 'Text to type' },
+        { type: 'input', inputType: 'text' },
+      ],
+      modalCreateCode: function (args: []): string {
+        if (args[0] === empty) {
+          return `.select()`;
+        } else {
+          const value1 = isNaN(args[0]) ? `'${args[0]}'` : args[0];
+          return `.select(${value1})`;
+        }
+      },
+    },
+    selectFile: {
+      option: 'Select File',
+      code: '.selectFile()',
+      tooltip: 'tooltip',
+      modal: [
+        { type: 'label', labelText: 'Text to type' },
+        { type: 'input', inputType: 'text' },
+      ],
+      modalCreateCode: function (args: []): string {
+        return `.selectFile('${args[0]}')`;
+      },
+    },
+    trigger: {
+      option: 'Trigger',
+      code: '.trigger()',
+      tooltip: 'tooltip',
+      modal: [
+        { type: 'label', labelText: 'Text to type' },
+        { type: 'input', inputType: 'text' },
+        { type: 'input', inputType: 'text' },
+        { type: 'input', inputType: 'text' },
+      ],
+      modalCreateCode: function (args: []): string {
+        if (args[0] && args[1] === empty && args[2] === empty) {
+          return `.trigger('${args[0]}')`;
+        } else if (
+          args[0] !== empty &&
+          args[1] !== empty &&
+          args[2] === empty
+        ) {
+          return `.trigger('${args[0]}', '${args[1]}')`;
+        } else if (
+          args[0] !== empty &&
+          args[1] !== empty &&
+          args[2] !== empty
+        ) {
+          const value1 = isNaN(args[1]) ? `'${args[1]}'` : args[1];
+          const value2 = isNaN(args[2]) ? `'${args[2]}'` : args[2];
+          return `.trigger('${args[0]}', ${value1}, ${value2})`;
+        }
+      },
     },
     type: {
       option: 'Type',
@@ -465,12 +627,43 @@ const StatementPage: React.FC<StatementPageProps> = ({
         return `.type('${text[0]}')`;
       },
     },
-    doubleClick: {
-      option: 'Double Click',
-      code: '.dblClick()',
+    uncheck: {
+      option: 'UnCheck',
+      code: '.uncheck()',
       tooltip: 'tooltip',
+      modal: [
+        { type: 'label', labelText: 'Text to type' },
+        { type: 'input', inputType: 'text' },
+      ],
+      modalCreateCode: function (args: []): string {
+        if (args[0] === empty) {
+          return `.uncheck()`;
+        } else {
+          return `.uncheck('${args[0]}')`;
+        }
+      },
     },
   };
+
+  const commonAssertions = [
+    'have.length',
+    'not.have.class',
+    'have.value',
+    'have.text',
+    'include.text',
+    'not.contain',
+    'match',
+    'be.visible',
+    'not.be.visible',
+    'not.exist',
+    'be.checked',
+    'have.css',
+    'not.have.css',
+    'be.disabled',
+    'not.be.disabled',
+    'be-enabled',
+    'eq',
+  ];
 
   const assertionOptions = {
     should: {
@@ -479,24 +672,45 @@ const StatementPage: React.FC<StatementPageProps> = ({
       tooltip: 'tooltip',
       modal: [
         { type: 'label', labelText: 'Text to type' },
-        { type: 'select', options: ['be.visible', 'be.empty', 'eq'] },
+        { type: 'select', options: commonAssertions },
         { type: 'input', inputType: 'text' },
         { type: 'input', inputType: 'text' },
       ],
-      modalCreateCode: function (args): string {
+      modalCreateCode: function (args: []): string {
         if (args[1] === empty && args[2] === empty) {
           return `.should('${args[0]}')`;
         } else if (args[2] === empty) {
-          return `.should('${args[0]}', '${args[1]}')`;
+          const value1 = isNaN(args[1]) ? `'${args[1]}'` : args[1];
+          return `.should('${args[0]}', ${value1})`;
         } else if (args[0] && args[1] && args[2]) {
-          return `.should('${args[0]}', '${args[1]}', '${args[2]}')`;
+          const value1 = isNaN(args[1]) ? `'${args[1]}'` : args[1];
+          const value2 = isNaN(args[2]) ? `'${args[2]}'` : args[2];
+          return `.should('${args[0]}', ${value1}, ${value2})`;
         }
       },
     },
-    expect: {
-      option: 'Expect',
-      code: '.expect()',
+    and: {
+      option: 'And',
+      code: '.and()',
       tooltip: 'tooltip',
+      modal: [
+        { type: 'label', labelText: 'Text to type' },
+        { type: 'select', options: commonAssertions },
+        { type: 'input', inputType: 'text' },
+        { type: 'input', inputType: 'text' },
+      ],
+      modalCreateCode: function (args: []): string {
+        if (args[1] === empty && args[2] === empty) {
+          return `.and('${args[0]}')`;
+        } else if (args[2] === empty) {
+          const value1 = isNaN(args[1]) ? `'${args[1]}'` : args[1];
+          return `.and('${args[0]}', ${value1})`;
+        } else if (args[0] && args[1] && args[2]) {
+          const value1 = isNaN(args[1]) ? `'${args[1]}'` : args[1];
+          const value2 = isNaN(args[2]) ? `'${args[2]}'` : args[2];
+          return `.and('${args[0]}', ${value1}, ${value2})`;
+        }
+      },
     },
   };
 
