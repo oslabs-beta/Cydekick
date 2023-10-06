@@ -134,16 +134,16 @@ const Flow = ({
         onEdgesChange={onEdgesChange}
         nodeTypes={nodeTypes}
         fitView
-        className="bg-transparent"
+        className="h-7/8 bg-transparent"
       >
         <Controls />
-        <button
-          className="rounded-lg p-2 w-fit mb-2 bg-secondaryPrimaryDark"
+      </ReactFlow>
+      <button
+          className="h-1/8 rounded-lg p-2 w-full z-50 bg-secondaryPrimaryDark"
           onClick={flowToggle}
         >
-          {onComponentFlow ? "See HTML" : "See Components"}
+          {onComponentFlow ? " See HTML" : " See Components"}
         </button>
-      </ReactFlow>
     </div>
   );
 };

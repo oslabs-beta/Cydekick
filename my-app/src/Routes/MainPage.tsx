@@ -56,7 +56,7 @@ const MainPage = (props: MainPageProps) => {
           Back
         </button>
       </div>
-      <div className="w-full h-1/2 flex">
+      <div className="w-full h-3/5 flex">
         <Flow
           onComponentFlow={onComponentFlow}
           fileTree={fileTree}
@@ -66,6 +66,7 @@ const MainPage = (props: MainPageProps) => {
         />
         <HtmlFlow
           onComponentFlow={onComponentFlow}
+          flowToggle={flowToggle}
           data={data}
           currentHTML={currentHTML}
           setCurrentHTML={setCurrentHTML}
@@ -79,7 +80,7 @@ const MainPage = (props: MainPageProps) => {
         setData={setData}
       />
       </div>
-        <div className="fixed bottom-0 left-0 w-1/2 h-2/5 border-2 border-green-400 rounded bg-slate-500">
+        <div className="fixed bottom-0 left-0 w-1/2 h-1/5 border-2 border-green-400 rounded bg-slate-500">
           <TestGenContainer
             currentTestId={currentTestId}
             currentHTML={currentHTML}
