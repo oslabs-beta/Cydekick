@@ -83,10 +83,12 @@ const StatementPage: React.FC<StatementPageProps> = ({
         { type: 'input', inputType: 'text' },
       ],
       modalCreateCode: function (args: []): string {
-        if (args[1] === empty) {
+        if (args[0] !== empty && args[1] === empty) {
           return `.as('${args[0]}')`;
-        } else {
+        } else if (args[0] !== empty && args[1] !== empty) {
           return `.as('${args[0]}', '${args[1]}')`;
+        } else {
+          return;
         }
       },
     },
@@ -104,7 +106,11 @@ const StatementPage: React.FC<StatementPageProps> = ({
         { type: 'input', inputType: 'text' },
       ],
       modalCreateCode: function (text: []): string {
-        return `.closest('${text[0]}')`;
+        if (text[0]) {
+          return `.closest('${text[0]}')`;
+        } else {
+          return;
+        }
       },
     },
     contains: {
@@ -117,12 +123,14 @@ const StatementPage: React.FC<StatementPageProps> = ({
         { type: 'input', inputType: 'text' },
       ],
       modalCreateCode: function (text: []): string {
-        if (text[1] === empty) {
+        if (text[0] !== empty && text[1] === empty) {
           const value = isNaN(text[0]) ? `'${text[0]}'` : text[0];
           return `.contains(${value})`;
-        } else {
+        } else if (text[0] !== empty && text[1] !== empty) {
           const value = isNaN(text[1]) ? `'${text[1]}'` : text[1];
           return `.contains('${text[0]}', ${value})`;
+        } else {
+          return;
         }
       },
     },
@@ -140,7 +148,11 @@ const StatementPage: React.FC<StatementPageProps> = ({
         { type: 'input', inputType: 'text' },
       ],
       modalCreateCode: function (text: []): string {
-        return `.eq(${text[0]})`;
+        if (text[0]) {
+          return `.eq('${text[0]}')`;
+        } else {
+          return;
+        }
       },
     },
     filter: {
@@ -152,7 +164,11 @@ const StatementPage: React.FC<StatementPageProps> = ({
         { type: 'input', inputType: 'text' },
       ],
       modalCreateCode: function (text: []): string {
-        return `.filter('${text[0]}')`;
+        if (text[0]) {
+          return `.filter('${text[0]}')`;
+        } else {
+          return;
+        }
       },
     },
     find: {
@@ -164,7 +180,11 @@ const StatementPage: React.FC<StatementPageProps> = ({
         { type: 'input', inputType: 'text' },
       ],
       modalCreateCode: function (text: []): string {
-        return `.find('${text[0]}')`;
+        if (text[0]) {
+          return `.find('${text[0]}')`;
+        } else {
+          return;
+        }
       },
     },
     first: {
@@ -196,8 +216,12 @@ const StatementPage: React.FC<StatementPageProps> = ({
         { type: 'input', inputType: 'text' },
       ],
       modalCreateCode: function (text: []): string {
-        const value = isNaN(text[0]) ? `'${text[0]}'` : text[0];
-        return `.its(${value})`;
+        if (text[0]) {
+          const value = isNaN(text[0]) ? `'${text[0]}'` : text[0];
+          return `.its(${value})`;
+        } else {
+          return;
+        }
       },
     },
     last: {
@@ -263,10 +287,12 @@ const StatementPage: React.FC<StatementPageProps> = ({
         { type: 'input', inputType: 'text' },
       ],
       modalCreateCode: function (args: []): string {
-        if (args[1] === empty) {
+        if (args[0] !== empty && args[1] === empty) {
           return `.nextUntil('${args[0]}')`;
-        } else {
+        } else if (args[0] !== empty && args[1] !== empty) {
           return `.nextUntil('${args[0]}', '${args[1]}')`;
+        } else {
+          return;
         }
       },
     },
@@ -279,7 +305,11 @@ const StatementPage: React.FC<StatementPageProps> = ({
         { type: 'input', inputType: 'text' },
       ],
       modalCreateCode: function (text: []): string {
-        return `.not('${text[0]}')`;
+        if (text[0]) {
+          return `.not('${text[0]}')`;
+        } else {
+          return;
+        }
       },
     },
     parent: {
@@ -324,10 +354,12 @@ const StatementPage: React.FC<StatementPageProps> = ({
         { type: 'input', inputType: 'text' },
       ],
       modalCreateCode: function (args: []): string {
-        if (args[1] === empty) {
+        if (args[0] !== empty && args[1] === empty) {
           return `.parentsUntil('${args[0]}')`;
-        } else {
+        } else if (args[0] !== empty && args[1] !== empty) {
           return `.parentsUntil('${args[0]}', '${args[1]}')`;
+        } else {
+          return;
         }
       },
     },
@@ -373,10 +405,12 @@ const StatementPage: React.FC<StatementPageProps> = ({
         { type: 'input', inputType: 'text' },
       ],
       modalCreateCode: function (args: []): string {
-        if (args[1] === empty) {
+        if (args[0] !== empty && args[1] === empty) {
           return `.prevUntil('${args[0]}')`;
-        } else {
+        } else if (args[0] !== empty && args[1] !== empty){
           return `.prevUntil('${args[0]}', '${args[1]}')`;
+        } else {
+          return;
         }
       },
     },
@@ -390,10 +424,12 @@ const StatementPage: React.FC<StatementPageProps> = ({
         { type: 'input', inputType: 'text' },
       ],
       modalCreateCode: function (args: []): string {
-        if (args[1] === empty) {
+        if (args[0] !== empty && args[1] === empty) {
           return `cy.readFile('${args[0]}')`;
-        } else {
+        } else if (args[0] !== empty && args[1] !== empty){
           return `cy.readFile('${args[0]}', '${args[1]}')`;
+        } else {
+          return;
         }
       },
     },
@@ -450,6 +486,7 @@ const StatementPage: React.FC<StatementPageProps> = ({
       tooltip: 'tooltip',
     },
   };
+  
   return (
     <div className='flex h-screen'>
       <div className='flex flex-col w-3/5 p-5'>

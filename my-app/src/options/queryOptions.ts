@@ -12,10 +12,12 @@
 //         { type: 'input', inputType: 'text' },
 //       ],
 //       modalCreateCode: function (args: []): string {
-//         if (args[1] === empty) {
+//         if (args[0] !== empty && args[1] === empty) {
 //           return `.as('${args[0]}')`;
-//         } else {
+//         } else if (args[0] !== empty && args[1] !== empty) {
 //           return `.as('${args[0]}', '${args[1]}')`;
+//         } else {
+//           return;
 //         }
 //       },
 //     },
@@ -33,7 +35,11 @@
 //         { type: 'input', inputType: 'text' },
 //       ],
 //       modalCreateCode: function (text: []): string {
-//         return `.closest('${text[0]}')`;
+//         if (text[0]) {
+//           return `.closest('${text[0]}')`;
+//         } else {
+//           return;
+//         }
 //       },
 //     },
 //     contains: {
@@ -46,12 +52,14 @@
 //         { type: 'input', inputType: 'text' },
 //       ],
 //       modalCreateCode: function (text: []): string {
-//         if (text[1] === empty) {
+//         if (text[0] !== empty && text[1] === empty) {
 //           const value = isNaN(text[0]) ? `'${text[0]}'` : text[0];
 //           return `.contains(${value})`;
-//         } else {
+//         } else if (text[0] !== empty && text[1] !== empty) {
 //           const value = isNaN(text[1]) ? `'${text[1]}'` : text[1];
 //           return `.contains('${text[0]}', ${value})`;
+//         } else {
+//           return;
 //         }
 //       },
 //     },
@@ -69,7 +77,11 @@
 //         { type: 'input', inputType: 'text' },
 //       ],
 //       modalCreateCode: function (text: []): string {
-//         return `.eq(${text[0]})`;
+//         if (text[0]) {
+//           return `.eq('${text[0]}')`;
+//         } else {
+//           return;
+//         }
 //       },
 //     },
 //     filter: {
@@ -81,7 +93,11 @@
 //         { type: 'input', inputType: 'text' },
 //       ],
 //       modalCreateCode: function (text: []): string {
-//         return `.filter('${text[0]}')`;
+//         if (text[0]) {
+//           return `.filter('${text[0]}')`;
+//         } else {
+//           return;
+//         }
 //       },
 //     },
 //     find: {
@@ -93,7 +109,11 @@
 //         { type: 'input', inputType: 'text' },
 //       ],
 //       modalCreateCode: function (text: []): string {
-//         return `.find('${text[0]}')`;
+//         if (text[0]) {
+//           return `.find('${text[0]}')`;
+//         } else {
+//           return;
+//         }
 //       },
 //     },
 //     first: {
@@ -125,8 +145,12 @@
 //         { type: 'input', inputType: 'text' },
 //       ],
 //       modalCreateCode: function (text: []): string {
-//         const value = isNaN(text[0]) ? `'${text[0]}'` : text[0];
-//         return `.its(${value})`;
+//         if (text[0]) {
+//           const value = isNaN(text[0]) ? `'${text[0]}'` : text[0];
+//           return `.its(${value})`;
+//         } else {
+//           return;
+//         }
 //       },
 //     },
 //     last: {
@@ -192,10 +216,12 @@
 //         { type: 'input', inputType: 'text' },
 //       ],
 //       modalCreateCode: function (args: []): string {
-//         if (args[1] === empty) {
+//         if (args[0] !== empty && args[1] === empty) {
 //           return `.nextUntil('${args[0]}')`;
-//         } else {
+//         } else if (args[0] !== empty && args[1] !== empty) {
 //           return `.nextUntil('${args[0]}', '${args[1]}')`;
+//         } else {
+//           return;
 //         }
 //       },
 //     },
@@ -208,7 +234,11 @@
 //         { type: 'input', inputType: 'text' },
 //       ],
 //       modalCreateCode: function (text: []): string {
-//         return `.not('${text[0]}')`;
+//         if (text[0]) {
+//           return `.not('${text[0]}')`;
+//         } else {
+//           return;
+//         }
 //       },
 //     },
 //     parent: {
@@ -253,10 +283,12 @@
 //         { type: 'input', inputType: 'text' },
 //       ],
 //       modalCreateCode: function (args: []): string {
-//         if (args[1] === empty) {
+//         if (args[0] !== empty && args[1] === empty) {
 //           return `.parentsUntil('${args[0]}')`;
-//         } else {
+//         } else if (args[0] !== empty && args[1] !== empty) {
 //           return `.parentsUntil('${args[0]}', '${args[1]}')`;
+//         } else {
+//           return;
 //         }
 //       },
 //     },
@@ -302,10 +334,12 @@
 //         { type: 'input', inputType: 'text' },
 //       ],
 //       modalCreateCode: function (args: []): string {
-//         if (args[1] === empty) {
+//         if (args[0] !== empty && args[1] === empty) {
 //           return `.prevUntil('${args[0]}')`;
-//         } else {
+//         } else if (args[0] !== empty && args[1] !== empty){
 //           return `.prevUntil('${args[0]}', '${args[1]}')`;
+//         } else {
+//           return;
 //         }
 //       },
 //     },
@@ -319,10 +353,12 @@
 //         { type: 'input', inputType: 'text' },
 //       ],
 //       modalCreateCode: function (args: []): string {
-//         if (args[1] === empty) {
+//         if (args[0] !== empty && args[1] === empty) {
 //           return `cy.readFile('${args[0]}')`;
-//         } else {
+//         } else if (args[0] !== empty && args[1] !== empty){
 //           return `cy.readFile('${args[0]}', '${args[1]}')`;
+//         } else {
+//           return;
 //         }
 //       },
 //     },
