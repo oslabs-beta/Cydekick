@@ -47,20 +47,22 @@ const MainPage = (props: MainPageProps) => {
   };
 
   return (
-    <div className=" w-screen h-screen flex">
-      <div className="w-1/2 max-w-1/2 flex flex-col">
-        <button
-          className="rounded-lg p-2 w-fit mb-2"
-          style={{ backgroundColor: "#1DF28F" }}
+    <div className=" w-full h-screen flex flex-col">
+      <div id="NavBar" className="w-screen flex bg-secondaryPrimary">
+      <button
+          className="rounded-lg p-2 w-fit "
           onClick={handleBack}
         >
           Back
         </button>
+      </div>
+      <div className="w-full h-1/2 flex">
         <Flow
           onComponentFlow={onComponentFlow}
           fileTree={fileTree}
           currentComponent={currentComponent}
           setCurrentComponent={setCurrentComponent}
+          flowToggle={flowToggle}
         />
         <HtmlFlow
           onComponentFlow={onComponentFlow}
@@ -70,30 +72,23 @@ const MainPage = (props: MainPageProps) => {
           setCurrentTestId={setCurrentTestId}
           currentTestId={currentTestId}
         />
-        <button
-          className="rounded-lg p-2 w-fit mb-2"
-          style={{ backgroundColor: "#1DF28F" }}
-          onClick={flowToggle}
-        >
-          {onComponentFlow ? "See HTML" : "See Components"}
-        </button>
+         <Webview
+        url={url}
+        currentComponent={currentComponent}
+        currentTestId={currentTestId}
+        setData={setData}
+      />
+      </div>
         <div className="fixed bottom-0 left-0 w-1/2 h-2/5 border-2 border-green-400 rounded bg-slate-500">
           <TestGenContainer
             currentTestId={currentTestId}
             currentHTML={currentHTML}
             currentComponent={currentComponent}
           />
-        </div>
       </div>
-      <Webview
-        url={url}
-        currentComponent={currentComponent}
-        currentTestId={currentTestId}
-        setData={setData}
-      />
-
       <ButtonComponent />
     </div>
+    
   );
 };
 

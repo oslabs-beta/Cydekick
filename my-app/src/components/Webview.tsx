@@ -113,12 +113,12 @@ const Webview = (props: WebViewProps) => {
   }, [currentTestId]);
 
   return (
-    <div className="w-1/2 h-screen flex flex-col p-2">
+    <div className="w-1/2 p-2">
       <webview
         ref={webviewRef}
         id="webview"
         src={url}
-        className="flex-grow"
+        className="w-full h-full"
       ></webview>
     </div>
   );
