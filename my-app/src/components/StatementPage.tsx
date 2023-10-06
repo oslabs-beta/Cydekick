@@ -714,6 +714,62 @@ const StatementPage: React.FC<StatementPageProps> = ({
     },
   };
 
+  const otherCommandOptions = {
+    blur: {
+      option: 'Blur',
+      code: '.blur()',
+      tooltip: 'tooltip',
+    },
+    clearAllCookies: {
+      option: 'Clear All Cookies',
+      code: 'cy.clearAllCookies()',
+      tooltip: 'tooltip',
+    },
+    clearAllLocalStorage: {
+      option: 'Clear All Local Storage',
+      code: 'cy.clearAllLocalStorage()',
+      tooltip: 'tooltip',
+    },
+    clearAllSessionStorage: {
+      option: 'Clear All Session Storage',
+      code: 'cy.clearAllSessionStorage()',
+      tooltip: 'tooltip',
+    },
+    clearCookie: {
+      option: 'Clear Cookie',
+      code: 'cy.clearCookie()',
+      tooltip: 'tooltip',
+      modal: [
+        { type: 'label', labelText: 'Text to type' },
+        { type: 'input', inputType: 'text' },
+      ],
+      modalCreateCode: function (text: []): string {
+        return `cy.clearCookie('${text[0]}')`;
+      },
+    },
+    clearCookies: {
+      option: 'Clear Cookies',
+      code: 'cy.clearCookies()',
+      tooltip: 'tooltip',
+    },
+    clearLocalStorage: {
+      option: 'Clear Local Storage',
+      code: 'cy.clearLocalStorage()',
+      tooltip: 'tooltip',
+      modal: [
+        { type: 'label', labelText: 'Text to type' },
+        { type: 'input', inputType: 'text' },
+      ],
+      modalCreateCode: function (args: []): string {
+        if (args[0] === empty) {
+          return `cy.clearLocalStorage()`;
+        } else {
+          return `cy.clearLocalStorage('${args[0]}')`;
+        }
+      },
+    },
+  }
+
   return (
     <div className='flex h-screen'>
       <div className='flex flex-col w-3/5 p-5'>
@@ -732,6 +788,11 @@ const StatementPage: React.FC<StatementPageProps> = ({
           <DropdownButton
             options={assertionOptions}
             label='Assertion'
+            onClickOption={handleOptionClick}
+          />
+          <DropdownButton
+            options={otherCommandOptions}
+            label='Other Commands'
             onClickOption={handleOptionClick}
           />
         </div>

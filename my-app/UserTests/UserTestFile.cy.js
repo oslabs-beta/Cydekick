@@ -1,5 +1,5 @@
 describe('', () => {
 	it('', () => {
-		.uncheck().uncheck('dasdsa').uncheck(2112)
+		cy.clearCookie('test')
 	})
 })
