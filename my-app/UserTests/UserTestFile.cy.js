@@ -1,5 +1,6 @@
 describe('', () => {
 	it('', () => {
-		cy.clearCookie('test')
+		.check().check('poop')
+		.click().click('asdasd').click(12, 155)
 	})
 })
