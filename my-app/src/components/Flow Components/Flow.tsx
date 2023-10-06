@@ -18,12 +18,19 @@ const nodeTypes = {
 
 type FlowProps = {
   fileTree: TreeType;
-  currentComponent: TreeType,
-  setCurrentComponent: React.Dispatch<React.SetStateAction<TreeType>>
-  onComponentFlow: boolean
+  currentComponent: TreeType;
+  setCurrentComponent: React.Dispatch<React.SetStateAction<TreeType>>;
+  onComponentFlow: boolean;
+  flowToggle: () => void;
 };
 
-const Flow = ({ onComponentFlow, fileTree, currentComponent, setCurrentComponent}: FlowProps) => {
+const Flow = ({
+  flowToggle,
+  onComponentFlow,
+  fileTree,
+  currentComponent,
+  setCurrentComponent,
+}: FlowProps) => {
   const nodesArr = [];
   const edgesArr = [];
 
@@ -39,7 +46,7 @@ const Flow = ({ onComponentFlow, fileTree, currentComponent, setCurrentComponent
           filePath: tree.filePath,
           setCurrentComponent: setCurrentComponent,
           nodeData: tree,
-          isSelected:false,
+          isSelected: false,
         },
         position: { x: 0, y: 0 },
       });
@@ -63,14 +70,11 @@ const Flow = ({ onComponentFlow, fileTree, currentComponent, setCurrentComponent
   })(fileTree);
 
   React.useEffect(() => {
-    nodes.forEach((node) =>{
+    nodes.forEach((node) => {
       if (node.data.nodeData === currentComponent) node.data.isSelected = true;
       else node.data.isSelected = false;
-    })
-  }, [currentComponent])
-
-
-
+    });
+  }, [currentComponent]);
 
   const dagreGraph = new dagre.graphlib.Graph();
   dagreGraph.setDefaultEdgeLabel(() => ({}));
@@ -116,7 +120,7 @@ const Flow = ({ onComponentFlow, fileTree, currentComponent, setCurrentComponent
   const [edges, setEdges, onEdgesChange] = useEdgesState(layoutedEdges);
 
   return (
-    <div className={`h-1/2 ${onComponentFlow ? '' : 'hidden'}`}>
+    <div className={`w-1/2 p-2 ${onComponentFlow ? "" : "hidden"}`}>
       <ReactFlow
         nodes={nodes.map((node) => ({
           ...node,
@@ -130,10 +134,16 @@ const Flow = ({ onComponentFlow, fileTree, currentComponent, setCurrentComponent
         onEdgesChange={onEdgesChange}
         nodeTypes={nodeTypes}
         fitView
-        className="bg-teal-50"
+        className="h-7/8 bg-transparent"
       >
         <Controls />
       </ReactFlow>
+      <button
+          className="h-1/8 rounded-lg p-2 w-full z-50 bg-secondaryPrimaryDark"
+          onClick={flowToggle}
+        >
+          {onComponentFlow ? " See HTML" : " See Components"}
+        </button>
     </div>
   );
 };

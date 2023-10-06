@@ -37,6 +37,7 @@ const MainPage = (props: MainPageProps) => {
   const [data, setData] = React.useState("");
   const [onComponentFlow, setOnComponentFlow] = React.useState(true);
 
+  React.useEffect(() => console.log(currentTestId), [currentTestId])
   // Route Handling between pages
   const handleBack = () => {
     setPageState("Home");
@@ -46,53 +47,49 @@ const MainPage = (props: MainPageProps) => {
   };
 
   return (
-    <div className=" w-screen h-screen flex">
-      <div className="w-1/2 max-w-1/2 flex flex-col">
-        <button
-          className="rounded-lg p-2 w-fit mb-2"
-          style={{ backgroundColor: "#1DF28F" }}
+    <div className=" w-full h-screen flex flex-col">
+      <div id="NavBar" className="w-screen flex bg-secondaryPrimary">
+      <button
+          className="rounded-lg p-2 w-fit "
           onClick={handleBack}
         >
           Back
         </button>
+      </div>
+      <div className="w-full h-3/5 flex">
         <Flow
           onComponentFlow={onComponentFlow}
           fileTree={fileTree}
           currentComponent={currentComponent}
           setCurrentComponent={setCurrentComponent}
+          flowToggle={flowToggle}
         />
         <HtmlFlow
           onComponentFlow={onComponentFlow}
+          flowToggle={flowToggle}
           data={data}
           currentHTML={currentHTML}
           setCurrentHTML={setCurrentHTML}
           setCurrentTestId={setCurrentTestId}
           currentTestId={currentTestId}
         />
-        <button
-          className="rounded-lg p-2 w-fit mb-2"
-          style={{ backgroundColor: "#1DF28F" }}
-          onClick={flowToggle}
-        >
-          {onComponentFlow ? "See HTML" : "See Components"}
-        </button>
-        <div className="fixed bottom-0 left-0 w-1/2 h-2/5 border-2 border-green-400 rounded bg-slate-500">
-          <TestGenContainer
-            currentTestId={currentTestId}
-            currentHTML={currentHTML}
-            currentComponent={currentComponent}
-          />
-        </div>
-      </div>
-      <Webview
+         <Webview
         url={url}
         currentComponent={currentComponent}
         currentTestId={currentTestId}
         setData={setData}
       />
-
+      </div>
+        <div className="fixed bottom-0 left-0 w-1/2 h-1/5 border-2 border-green-400 rounded bg-slate-500">
+          <TestGenContainer
+            currentTestId={currentTestId}
+            currentHTML={currentHTML}
+            currentComponent={currentComponent}
+          />
+      </div>
       <ButtonComponent />
     </div>
+    
   );
 };
 

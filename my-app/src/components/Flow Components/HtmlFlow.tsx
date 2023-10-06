@@ -10,7 +10,7 @@ const nodeTypes = {
   custom: CustomNode,
 };
 
-const HtmlFlow = ({ onComponentFlow, data, currentHTML, setCurrentHTML, setCurrentTestId, currentTestId }) => {
+const HtmlFlow = ({ flowToggle, onComponentFlow, data, currentHTML, setCurrentHTML, setCurrentTestId, currentTestId }) => {
   
   const [edges, setEdges] = React.useState([]);
   const [nodes, setNodes] = React.useState([]);
@@ -107,16 +107,22 @@ const HtmlFlow = ({ onComponentFlow, data, currentHTML, setCurrentHTML, setCurre
   }, [currentHTML, currentTestId]);
 
   return (
-    <div className={`h-1/2 ${onComponentFlow ? 'hidden' : ''}`}>
+    <div className={`w-1/2 p-2 ${onComponentFlow ? "hidden" : '' }`}>
       <ReactFlow
         nodes={nodes}
         edges={edges}
         nodeTypes={nodeTypes}
         fitView
-        className="bg-teal-50"
+        className="h-7/8 bg-transparent"
       >
         <Controls />
       </ReactFlow>
+      <button
+          className="h-1/8 rounded-lg p-2 w-full bg-secondaryPrimaryDark"
+          onClick={flowToggle}
+        >
+          {onComponentFlow ? " See HTML" : " See Components"}
+        </button>
     </div>
   );
 };
