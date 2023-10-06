@@ -5,6 +5,10 @@ const fs = window.require('fs');
 const path = window.require('path');
 import { Tree } from '../types/Tree';
 import { text } from 'stream/consumers';
+// import queryOptions from '../options/queryOptions';
+import actionOptions from '../options/actionOptions';
+import assertionOptions from '../options/assertionOptions';
+import otherCommandOptions from '../options/otherCommandOptions';
 
 type StatementPageProps = {
   setCurrentPageNum: React.Dispatch<React.SetStateAction<number>>;
@@ -23,6 +27,7 @@ const StatementPage: React.FC<StatementPageProps> = ({
   const [selectedOptions, setSelectedOptions] = useState<string[]>([]);
   const [dataCy, setDataCy] = useState<string>('');
   const [code, setCode] = React.useState<string>('');
+  const [empty, setEmpty] = React.useState<string>('');
   const filePath = path.join(process.cwd(), 'UserTests', 'TestBlock.cy.js');
   const filePreviewPath = path.join(
     process.cwd(),
@@ -68,77 +73,383 @@ const StatementPage: React.FC<StatementPageProps> = ({
   }
 
   const queryOptions = {
-    get: {
-      option: 'Get',
-      code: `cy.get('[${dataCy}]')`,
+    as: {
+      option: 'as',
+      code: `cy.as()`,
+      tooltip: 'tooltip',
+      modal: [
+        { type: 'label', labelText: 'Text to type' },
+        { type: 'input', inputType: 'text' },
+        { type: 'input', inputType: 'text' },
+      ],
+      modalCreateCode: function (args: []): string {
+        if (args[1] === empty) {
+          return `.as('${args[0]}')`;
+        } else {
+          return `.as('${args[0]}', '${args[1]}')`;
+        }
+      },
+    },
+    children: {
+      option: 'Children',
+      code: `.children()`,
       tooltip: 'tooltip',
     },
-    contains: {
-      option: 'Contains',
-      code: `cy.contains('[${dataCy}]')`,
-      tooltip: 'tooltip',
-    },
-  };
-
-  const actionOptions = {
-    click: {
-      option: 'Click',
-      code: '.click()',
-      tooltip: 'tooltip',
-    },
-    type: {
-      option: 'Type',
-      code: '.type()',
+    closest: {
+      option: 'Closest',
+      code: `.closest()`,
       tooltip: 'tooltip',
       modal: [
         { type: 'label', labelText: 'Text to type' },
         { type: 'input', inputType: 'text' },
       ],
       modalCreateCode: function (text: []): string {
-        return `.type('${text[0]}')`;
+        return `.closest('${text[0]}')`;
       },
     },
-    doubleClick: {
+    contains: {
       option: 'Contains',
-      code: '.dlbClick()',
-      tooltip: 'tooltip',
-    },
-  };
-
-  const assertionOptions = {
-    should: {
-      option: 'Should',
-      code: '.should()',
+      code: `cy.contains('[${dataCy}]')`,
       tooltip: 'tooltip',
       modal: [
         { type: 'label', labelText: 'Text to type' },
-        { type: 'select', options: ['be.visible', 'be.empty', 'eq'] },
+        { type: 'input', inputType: 'text' },
+        { type: 'input', inputType: 'text' },
+      ],
+      modalCreateCode: function (text: []): string {
+        if (text[1] === empty) {
+          const value = isNaN(text[0]) ? `'${text[0]}'` : text[0];
+          return `.contains(${value})`;
+        } else {
+          const value = isNaN(text[1]) ? `'${text[1]}'` : text[1];
+          return `.contains('${text[0]}', ${value})`;
+        }
+      },
+    },
+    document: {
+      option: 'Document',
+      code: `cy.document()`,
+      tooltip: 'tooltip',
+    },
+    eq: {
+      option: 'Eq',
+      code: `.eq()`,
+      tooltip: 'tooltip',
+      modal: [
+        { type: 'label', labelText: 'Text to type' },
+        { type: 'input', inputType: 'text' },
+      ],
+      modalCreateCode: function (text: []): string {
+        return `.eq(${text[0]})`;
+      },
+    },
+    filter: {
+      option: 'Filter',
+      code: `.filter()`,
+      tooltip: 'tooltip',
+      modal: [
+        { type: 'label', labelText: 'Text to type' },
+        { type: 'input', inputType: 'text' },
+      ],
+      modalCreateCode: function (text: []): string {
+        return `.filter('${text[0]}')`;
+      },
+    },
+    find: {
+      option: 'Find',
+      code: `.find()`,
+      tooltip: 'tooltip',
+      modal: [
+        { type: 'label', labelText: 'Text to type' },
+        { type: 'input', inputType: 'text' },
+      ],
+      modalCreateCode: function (text: []): string {
+        return `.find('${text[0]}')`;
+      },
+    },
+    first: {
+      option: 'First',
+      code: `.first()`,
+      tooltip: 'tooltip',
+    },
+    focused: {
+      option: 'Focused',
+      code: `cy.focused()`,
+      tooltip: 'tooltip',
+    },
+    get: {
+      option: 'Get',
+      code: `cy.get('[${dataCy}]')`,
+      tooltip: 'tooltip',
+    },
+    hash: {
+      option: 'Hash',
+      code: `cy.hash()`,
+      tooltip: 'tooltip',
+    },
+    its: {
+      option: 'Its',
+      code: `.its()`,
+      tooltip: 'tooltip',
+      modal: [
+        { type: 'label', labelText: 'Text to type' },
+        { type: 'input', inputType: 'text' },
+      ],
+      modalCreateCode: function (text: []): string {
+        const value = isNaN(text[0]) ? `'${text[0]}'` : text[0];
+        return `.its(${value})`;
+      },
+    },
+    last: {
+      option: 'Last',
+      code: `.last()`,
+      tooltip: 'tooltip',
+    },
+    location: {
+      option: 'Location',
+      code: `cy.location()`,
+      tooltip: 'tooltip',
+      modal: [
+        { type: 'label', labelText: 'Text to type' },
+        { type: 'input', inputType: 'text' },
+      ],
+      modalCreateCode: function (text: []): string {
+        if (text[0] === empty) {
+          return `cy.location()`;
+        } else {
+          return `cy.location('${text[0]}')`;
+        }
+      },
+    },
+    next: {
+      option: 'Next',
+      code: `.next()`,
+      tooltip: 'tooltip',
+      modal: [
+        { type: 'label', labelText: 'Text to type' },
+        { type: 'input', inputType: 'text' },
+      ],
+      modalCreateCode: function (text: []): string {
+        if (text[0] === empty) {
+          return `.next()`;
+        } else {
+          return `.next('${text[0]}')`;
+        }
+      },
+    },
+    nextAll: {
+      option: 'NextAll',
+      code: `.nextAll()`,
+      tooltip: 'tooltip',
+      modal: [
+        { type: 'label', labelText: 'Text to type' },
+        { type: 'input', inputType: 'text' },
+      ],
+      modalCreateCode: function (text: []): string {
+        if (text[0] === empty) {
+          return `.nextAll()`;
+        } else {
+          return `.nextAll('${text[0]}')`;
+        }
+      },
+    },
+    nextUntil: {
+      option: 'NextUntil',
+      code: `.nextUntil()`,
+      tooltip: 'tooltip',
+      modal: [
+        { type: 'label', labelText: 'Text to type' },
         { type: 'input', inputType: 'text' },
         { type: 'input', inputType: 'text' },
       ],
       modalCreateCode: function (args: []): string {
-        console.log(args);
-        if (args.length === 1) {
-          return `.should('${args[0]}')`;
-        } else if (args.length === 2) {
-          return `.should('${args[0]}', '${args[1]}')`;
-        } else if (args.length === 3) {
-          return `.should('${args[0]}', '${args[1]}', '${args[2]}')`;
+        if (args[1] === empty) {
+          return `.nextUntil('${args[0]}')`;
+        } else {
+          return `.nextUntil('${args[0]}', '${args[1]}')`;
         }
       },
     },
-    expect: {
-      option: 'Expect',
-      code: '.expect()',
+    not: {
+      option: 'Not',
+      code: `.not()`,
+      tooltip: 'tooltip',
+      modal: [
+        { type: 'label', labelText: 'Text to type' },
+        { type: 'input', inputType: 'text' },
+      ],
+      modalCreateCode: function (text: []): string {
+        return `.not('${text[0]}')`;
+      },
+    },
+    parent: {
+      option: 'Parent',
+      code: `.parent()`,
+      tooltip: 'tooltip',
+      modal: [
+        { type: 'label', labelText: 'Text to type' },
+        { type: 'input', inputType: 'text' },
+      ],
+      modalCreateCode: function (text: []): string {
+        if (text[0] === empty) {
+          return `.parent()`;
+        } else {
+          return `.parent('${text[0]}')`;
+        }
+      },
+    },
+    parents: {
+      option: 'Parents',
+      code: `.parents()`,
+      tooltip: 'tooltip',
+      modal: [
+        { type: 'label', labelText: 'Text to type' },
+        { type: 'input', inputType: 'text' },
+      ],
+      modalCreateCode: function (text: []): string {
+        if (text[0] === empty) {
+          return `.parents()`;
+        } else {
+          return `.parents('${text[0]}')`;
+        }
+      },
+    },
+    parentsUntil: {
+      option: 'ParentsUntil',
+      code: `.parentsUntil()`,
+      tooltip: 'tooltip',
+      modal: [
+        { type: 'label', labelText: 'Text to type' },
+        { type: 'input', inputType: 'text' },
+        { type: 'input', inputType: 'text' },
+      ],
+      modalCreateCode: function (args: []): string {
+        if (args[1] === empty) {
+          return `.parentsUntil('${args[0]}')`;
+        } else {
+          return `.parentsUntil('${args[0]}', '${args[1]}')`;
+        }
+      },
+    },
+    prev: {
+      option: 'Prev',
+      code: `.prev()`,
+      tooltip: 'tooltip',
+      modal: [
+        { type: 'label', labelText: 'Text to type' },
+        { type: 'input', inputType: 'text' },
+      ],
+      modalCreateCode: function (text: []): string {
+        if (text[0] === empty) {
+          return `.prev()`;
+        } else {
+          return `.prev('${text[0]}')`;
+        }
+      },
+    },
+    prevAll: {
+      option: 'PrevAll',
+      code: `.prevAll()`,
+      tooltip: 'tooltip',
+      modal: [
+        { type: 'label', labelText: 'Text to type' },
+        { type: 'input', inputType: 'text' },
+      ],
+      modalCreateCode: function (text: []): string {
+        if (text[0] === empty) {
+          return `.prevAll()`;
+        } else {
+          return `.prevAll('${text[0]}')`;
+        }
+      },
+    },
+    prevUntil: {
+      option: 'PrevUntil',
+      code: `.prevUntil()`,
+      tooltip: 'tooltip',
+      modal: [
+        { type: 'label', labelText: 'Text to type' },
+        { type: 'input', inputType: 'text' },
+        { type: 'input', inputType: 'text' },
+      ],
+      modalCreateCode: function (args: []): string {
+        if (args[1] === empty) {
+          return `.prevUntil('${args[0]}')`;
+        } else {
+          return `.prevUntil('${args[0]}', '${args[1]}')`;
+        }
+      },
+    },
+    readFile: {
+      option: 'Readfile',
+      code: `cy.readFile()`,
+      tooltip: 'tooltip',
+      modal: [
+        { type: 'label', labelText: 'Text to type' },
+        { type: 'input', inputType: 'text' },
+        { type: 'input', inputType: 'text' },
+      ],
+      modalCreateCode: function (args: []): string {
+        if (args[1] === empty) {
+          return `cy.readFile('${args[0]}')`;
+        } else {
+          return `cy.readFile('${args[0]}', '${args[1]}')`;
+        }
+      },
+    },
+    Root: {
+      option: 'Root',
+      code: `cy.root()`,
+      tooltip: 'tooltip',
+    },
+    shadow: {
+      option: 'Shadow',
+      code: `.shadow()`,
+      tooltip: 'tooltip',
+      modal: [
+        { type: 'label', labelText: 'Text to type' },
+        { type: 'input', inputType: 'text' },
+      ],
+      modalCreateCode: function (text: []): string {
+        if (text[0] === empty) {
+          return `.shadow()`;
+        } else {
+          return `.shadow('${text[0]}')`;
+        }
+      },
+    },
+    siblings: {
+      option: 'Siblings',
+      code: `.siblings()`,
+      tooltip: 'tooltip',
+      modal: [
+        { type: 'label', labelText: 'Text to type' },
+        { type: 'input', inputType: 'text' },
+      ],
+      modalCreateCode: function (text: []): string {
+        if (text[0] === empty) {
+          return `.siblings()`;
+        } else {
+          return `.siblings('${text[0]}')`;
+        }
+      },
+    },
+    title: {
+      option: 'Title',
+      code: `cy.title()`,
+      tooltip: 'tooltip',
+    },
+    url: {
+      option: 'URL',
+      code: `cy.url()`,
+      tooltip: 'tooltip',
+    },
+    window: {
+      option: 'Window',
+      code: `cy.window()`,
       tooltip: 'tooltip',
     },
   };
-
-  //   .should(chainers)
-  // .should(chainers, value)
-  // .should(chainers, method, value)
-  // .should(callbackFn)
-
   return (
     <div className='flex h-screen'>
       <div className='flex flex-col w-3/5 p-5'>
@@ -157,6 +468,11 @@ const StatementPage: React.FC<StatementPageProps> = ({
           <DropdownButton
             options={assertionOptions}
             label='Assertion'
+            onClickOption={handleOptionClick}
+          />
+          <DropdownButton
+            options={otherCommandOptions}
+            label='Other Commands'
             onClickOption={handleOptionClick}
           />
         </div>

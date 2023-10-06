@@ -1,2 +1,0 @@
-describe('wow', () => {
-	it('test', () => {
