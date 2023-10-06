@@ -37,6 +37,7 @@ const MainPage = (props: MainPageProps) => {
   const [data, setData] = React.useState("");
   const [onComponentFlow, setOnComponentFlow] = React.useState(true);
 
+  React.useEffect(() => console.log(currentTestId), [currentTestId])
   // Route Handling between pages
   const handleBack = () => {
     setPageState("Home");

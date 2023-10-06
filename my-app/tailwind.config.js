@@ -8,6 +8,7 @@ module.exports = {
         secondary: "#14161d",
         primary: "#1DF28F",
         secondaryPrimary: "#048C7F",
+        secondaryPrimaryDark: "#037066"
       },
       backgroundImage: {
         'logo': "url('/logo.png')",
