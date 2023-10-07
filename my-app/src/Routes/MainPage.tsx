@@ -43,7 +43,7 @@ const MainPage = (props: MainPageProps) => {
     setPageState("Home");
   };
   const flowToggle = () => {
-    setOnComponentFlow(!onComponentFlow);
+    if (data) setOnComponentFlow(!onComponentFlow);
   };
   const handleReload = () =>{
     const webview = document.getElementById(
