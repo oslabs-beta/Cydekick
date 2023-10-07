@@ -488,8 +488,8 @@ const StatementPage: React.FC<StatementPageProps> = ({
   };
   
   return (
-    <div className='flex h-screen'>
-      <div className='flex flex-col w-3/5 p-5'>
+    <div className=' text-black flex h-screen'>
+      <div className=' flex flex-col w-3/5 p-5'>
         {/* Button and Dropdowns */}
         <div className='flex justify-between'>
           <DropdownButton
@@ -509,16 +509,16 @@ const StatementPage: React.FC<StatementPageProps> = ({
           />
           <DropdownButton
             options={otherCommandOptions}
-            label='Other Commands'
+            label='Other'
             onClickOption={handleOptionClick}
           />
         </div>
 
         {/* Statement Bar */}
-        <div className='h-10 border mb-2 pl-2'>{selectedOptions.join('')}</div>
+        <div className='bg-primary h-10 border mb-2 pl-2'>{selectedOptions.join('')}</div>
 
         {/* Currently Selected Bar */}
-        <div className='h-10 border mb-5 pl-2'>
+        <div className='bg-primary h-10 border mb-5 pl-2'>
           Currently selected:
           {currentHTML}
           {currentComponent &&
@@ -530,17 +530,17 @@ const StatementPage: React.FC<StatementPageProps> = ({
         {/* End Block Buttons */}
         <div className='flex space-x-4'>
           <button
-            className='bg-blue-500 text-white px-4 py-2 rounded'
+            className='bg-primary px-4 py-2 rounded'
             onClick={endDescribeBlock}>
             End describe block
           </button>
           <button
-            className='bg-blue-500 text-white px-4 py-2 rounded'
+            className='bg-primary px-4 py-2 rounded'
             onClick={endItBlock}>
             End it block
           </button>
           <button
-            className='bg-blue-500 text-white px-4 py-2 rounded'
+            className='bg-primary px-4 py-2 rounded'
             onClick={endStatement}>
             End statement
           </button>

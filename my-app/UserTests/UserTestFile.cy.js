@@ -1,5 +1,4 @@
 describe('', () => {
 	it('', () => {
-		.closest('asdasdas')
 	})
 })
