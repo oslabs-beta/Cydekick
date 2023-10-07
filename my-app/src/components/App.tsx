@@ -4,7 +4,7 @@ import MainPage from "../Routes/MainPage";
 import {Tree} from "../types/Tree"
 
 const App = () => {
-  const [url, setUrl] = React.useState(`http://localhost:9000/`);
+  const [url, setUrl] = React.useState('');
   const [fileTree, setFileTree] = React.useState<Tree>({
     id: '',
     name: '',
@@ -31,6 +31,7 @@ const App = () => {
       setFileTree={setFileTree}
       url={url}
       setPageState={setPageState}
+      fileTree={fileTree}
     />
   ) : (
     <MainPage fileTree={fileTree} url={url} setPageState={setPageState} />
