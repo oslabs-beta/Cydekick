@@ -3,6 +3,7 @@ import ReactFlow, {
   useNodesState,
   useEdgesState,
   Controls,
+  ControlButton
 } from "react-flow-renderer";
 import dagre from "@dagrejs/dagre";
 import { Tree as TreeType } from "../../types/Tree";
@@ -136,14 +137,16 @@ const Flow = ({
         fitView
         className="bg-transparent"
       >
-        <Controls />
-      </ReactFlow>
-      <button
-          className="absolute bottom-0 right-1/4 rounded-lg p-2 w-1/4 z-50 bg-secondaryPrimaryDark"
+        <Controls>
+        <ControlButton
           onClick={flowToggle}
+          style={{ fontSize: '10px' }}
         >
-          {onComponentFlow ? " See HTML" : " See Components"}
-        </button>
+          HTML
+        </ControlButton>
+        </Controls>
+      </ReactFlow>
+      
     </div>
   );
 };
