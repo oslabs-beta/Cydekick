@@ -34,27 +34,47 @@ function DescribePage({ setCurrentPageNum }: DescribePageProps) {
 
 
   return (
-    <div className='flex h-full p-2'>
-      <div
-        id='bot'
-        className='flex-1 w-1/2 flex items-center justify-center flex-col rounded-lg bg-gradient-to-b from-secondaryPrimary to-secondaryPrimaryDark'>
-        <h1 className='text-2xl font-bold mb-4'>Name for describe block:</h1>
-        <input
-          type='text'
-          id='describeText'
-          className='text-2xl font-bold mb-4'
-        />
-        <br></br>
-        <button
-          className='px-4 py-2 bg-blue-500 text-white rounded-md'
-          onClick={createDescribeBlock}>
-          Create describe block
-        </button>
-      </div>
-      <div className='w-1/2 overflow-hidden'>
-        <SmallerPreviewPopup code={code} setCode={setCode}/>
-      </div>
-    </div>
+  //   <div className='flex h-full p-2'>
+  //     <div
+  //       id='bot'
+  //       className='flex-1 w-1/2 flex items-center justify-center flex-col rounded-lg bg-gradient-to-b from-secondaryPrimary to-secondaryPrimaryDark'>
+  //       <h1 className='text-2xl font-bold mb-4'>Name for describe block:</h1>
+  //       <input
+  //         type='text'
+  //         id='describeText'
+  //         className='text-2xl font-bold rounded-lg p-2 bg-gradient-to-b from-primary to-primaryDark text-secondary text-center border border-transparent focus:outline-none focus:border-secondary transition duration-300 hover:shadow-lg"'
+  //       />
+  //       <br></br>
+  //       <button
+  //         className='px-4 py-2 rounded-lg bg-transparent text-primary hover:bg-primary hover:text-secondary transform transition duration-300 hover:scale-105'
+  //         onClick={createDescribeBlock}>
+  //         Create describe block
+  //       </button>
+  //     </div>
+  //     <div className='w-1/2 overflow-hidden'>
+  //       <SmallerPreviewPopup code={code} setCode={setCode}/>
+  //     </div>
+  //   </div>
+  <div className='flex h-full p-2'>
+  <div
+    id='bot'
+    className='flex-1 w-1/2 flex flex-col justify-center items-center rounded-lg bg-gradient-to-b from-secondaryPrimary to-secondaryPrimaryDark p-4'>
+    <h1 className='text-2xl font-semibold mb-4 text-secondary'>Name for describe block:</h1>
+    <input
+      type='text'
+      id='describeText'
+      className="w-1/2 rounded-full p-2 bg-gradient-to-b from-primary to-primaryDark text-secondary text-center border border-1 border-transparent border-b-primaryDark focus:outline-none focus:border-secondary focus:font-bold focus:shadow-lg focus:scale-105 transition duration-300 hover:font-bold hover:border-secondary hover:shadow-lg hover:scale-105"
+      />
+    <button
+  className="rounded-full p-2 mt-5 w-1/2 bg-gradient-to-b from-primary to-primaryDark text-secondary border border-1 border-transparent border-b-primaryDark transform transition duration-300 hover:shadow-lg hover:font-bold hover:border-secondary hover:scale-105"
+  onClick={createDescribeBlock}>
+      Create describe block
+    </button>
+  </div>
+  <div className='w-1/2 overflow-hidden'>
+    <SmallerPreviewPopup code={code} setCode={setCode}/>
+  </div>
+</div>
   );
 }
 

@@ -33,20 +33,20 @@ function ItBlockPage({ setCurrentPageNum }: ItBlockPageProps) {
   }
 
   return (
-    <div className='flex h-full'>
+    <div className='flex h-full p-2'>
       <div
         id='bot'
-        className='flex-1 w-3/5 h-3/5 flex items-center justify-center flex-col'>
-        <h1 className='text-2xl font-bold mb-4'>Name for test:</h1>
+        className='flex-1 w-1/2 flex flex-col justify-center items-center rounded-lg bg-gradient-to-b from-secondaryPrimary to-secondaryPrimaryDark p-4'>
+        <h1 className='text-2xl font-semibold mb-4 text-secondary'>Name for test:</h1>
         <input
           type='text'
           id='itText'
-          className='text-2xl font-bold mb-4'
-        />
+          className="w-1/2 rounded-full p-2 bg-gradient-to-b from-primary to-primaryDark text-secondary text-center border border-1 border-transparent border-b-primaryDark focus:outline-none focus:border-secondary focus:font-bold focus:shadow-lg focus:scale-105 transition duration-300 hover:font-bold hover:border-secondary hover:shadow-lg hover:scale-105"
+          />
         <br></br>
         <button
-          className='px-4 py-2 bg-blue-500 text-white rounded-md'
-          onClick={createItBlock}>
+  className="rounded-full p-2 mt-5 w-1/2 bg-gradient-to-b from-primary to-primaryDark text-secondary border border-1 border-transparent border-b-primaryDark transform transition duration-300 hover:shadow-lg hover:font-bold hover:border-secondary hover:scale-105"
+  onClick={createItBlock}>
           Create it block
         </button>
       </div>

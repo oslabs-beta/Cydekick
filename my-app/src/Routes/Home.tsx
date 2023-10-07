@@ -39,12 +39,12 @@ const Home = (props: HomePageProps) => {
       <input
         type="text"
         id="url_form_id"
-        className="w-1/2 rounded-full p-2 bg-primary text-secondary text-center border border-transparent focus:outline-none focus:border-secondary transition duration-300 hover:shadow-lg"
-        placeholder="Enter URL"
+        className="w-1/2 rounded-full p-2 bg-gradient-to-b from-primary to-primaryDark text-secondary text-center border border-1 border-transparent border-b-primaryDark focus:outline-none focus:border-secondary focus:font-bold focus:shadow-lg focus:scale-105 transition duration-300 hover:font-bold hover:border-secondary hover:shadow-lg hover:scale-105"
+        defaultValue="http://localhost:8080/"
       />
       <button
         onClick={handleSubmission}
-        className="rounded-full p-2 w-1/4 bg-transparent text-primary hover:bg-primary hover:text-secondary transform transition duration-300 hover:scale-105"
+        className="rounded-full p-2 w-1/4 bg-gradient-to-b from-primary to-primaryDark text-secondary border border-1 border-transparent border-b-primaryDark transform transition duration-300 hover:shadow-lg hover:font-bold hover:border-secondary hover:scale-105"
       >
         Next
       </button>
