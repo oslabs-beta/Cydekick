@@ -37,24 +37,40 @@ const MainPage = (props: MainPageProps) => {
   const [data, setData] = React.useState("");
   const [onComponentFlow, setOnComponentFlow] = React.useState(true);
 
-  React.useEffect(() => console.log(currentTestId), [currentTestId])
+  React.useEffect(() => console.log(currentTestId), [currentTestId]);
   // Route Handling between pages
   const handleBack = () => {
     setPageState("Home");
   };
   const flowToggle = () => {
-    setOnComponentFlow(!onComponentFlow);
+    if (data) setOnComponentFlow(!onComponentFlow);
+  };
+  const handleReload = () => {
+    const webview = document.getElementById(
+      "webview"
+    ) as Electron.WebviewTag | null;
+    webview.loadURL(url);
   };
 
   return (
     <div className=" w-full h-screen flex flex-col">
-      <div id="NavBar" className="w-screen flex bg-secondaryPrimary">
-      <button
-          className="rounded-lg p-2 w-fit "
+      <div
+        id="NavBar"
+        className="w-screen flex bg-gradient-to-b from-secondaryPrimary to-secondaryPrimaryDark rounded-b-lg"
+      >
+        <button
+          className="justify-center w-1/4 rounded-bl-lg border-2 border-transparent border-r-secondary transition duration-300 ease-in-out hover:bg-secondary hover:text-secondaryPrimary hover:font-bold hover:border-secondaryPrimary"
           onClick={handleBack}
         >
           Back
         </button>
+        <button
+          className="w-1/4 border-2 border-transparent border-r-secondary transition duration-300 ease-in-out hover:bg-secondary hover:text-secondaryPrimary hover:font-bold hover:border-secondaryPrimary"
+          onClick={handleReload}
+        >
+          Reload URL
+        </button>
+        <ButtonComponent />
       </div>
       <div className="w-full h-3/5 flex">
         <Flow
@@ -73,23 +89,21 @@ const MainPage = (props: MainPageProps) => {
           setCurrentTestId={setCurrentTestId}
           currentTestId={currentTestId}
         />
-         <Webview
-        url={url}
-        currentComponent={currentComponent}
-        currentTestId={currentTestId}
-        setData={setData}
-      />
+        <Webview
+          url={url}
+          currentComponent={currentComponent}
+          currentTestId={currentTestId}
+          setData={setData}
+        />
       </div>
-        <div className="fixed bottom-0 left-0 w-1/2 h-1/5 border-2 border-green-400 rounded bg-slate-500">
-          <TestGenContainer
-            currentTestId={currentTestId}
-            currentHTML={currentHTML}
-            currentComponent={currentComponent}
-          />
+      <div className="w-full flex-grow mt-2 bg-transparent">
+        <TestGenContainer
+          currentTestId={currentTestId}
+          currentHTML={currentHTML}
+          currentComponent={currentComponent}
+        />
       </div>
-      <ButtonComponent />
     </div>
-    
   );
 };
 

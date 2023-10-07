@@ -18,7 +18,7 @@ function TestGenContainer({currentComponent, currentHTML, currentTestId}: TestGe
     <StatementPage setCurrentPageNum={setCurrentPageNum} currentTestId={currentTestId} currentHTML={currentHTML} currentComponent={currentComponent} />,
   ];
   return (
-      <div>
+      <div className='w-full h-full'>
         {arrayOfReact[currentPageNum]}
       </div>
   );

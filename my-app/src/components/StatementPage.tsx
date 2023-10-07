@@ -451,10 +451,10 @@ const StatementPage: React.FC<StatementPageProps> = ({
     },
   };
   return (
-    <div className='flex h-screen'>
-      <div className='flex flex-col w-3/5 p-5'>
+    <div className='flex h-full p-2'>
+      <div className='flex-1 w-1/2 flex flex-col justify-center items-center rounded-lg bg-gradient-to-b from-secondaryPrimary to-secondaryPrimaryDark p-4'>
         {/* Button and Dropdowns */}
-        <div className='flex justify-between'>
+        <div className='flex w-full justify-around'>
           <DropdownButton
             options={queryOptions}
             label='Query'
@@ -478,11 +478,13 @@ const StatementPage: React.FC<StatementPageProps> = ({
         </div>
 
         {/* Statement Bar */}
-        <div className='h-10 border mb-2 pl-2'>{selectedOptions.join('')}</div>
+        <div className="rounded-full p-2 mt-5 mb-5 h-1/6 w-3/4 bg-gradient-to-b from-primary to-primaryDark text-xs text-secondary border border-1 border-transparent border-b-primaryDark transform transition duration-300 hover:shadow-lg hover:font-bold hover:border-secondary hover:scale-105">
+          {selectedOptions.join('')}
+        </div>
 
         {/* Currently Selected Bar */}
-        <div className='h-10 border mb-5 pl-2'>
-          Currently selected:
+        <div className="rounded-full p-2 mb-5 h-1/6 w-3/4 bg-gradient-to-b from-primary to-primaryDark text-xs text-secondary border border-1 border-transparent border-b-primaryDark transform transition duration-300 hover:shadow-lg hover:font-bold hover:border-secondary hover:scale-105">
+          <strong>Currently selected:</strong>
           {currentHTML}
           {currentComponent &&
             currentComponent.name &&
@@ -491,26 +493,26 @@ const StatementPage: React.FC<StatementPageProps> = ({
         </div>
 
         {/* End Block Buttons */}
-        <div className='flex space-x-4'>
+        <div className='flex w-full justify-around'>
           <button
-            className='bg-blue-500 text-white px-4 py-2 rounded'
+            className='rounded-lg p-1 w-1/4 bg-gradient-to-b from-primary to-primaryDark text-secondary border border-1 border-transparent border-b-primaryDark transform transition duration-300 hover:shadow-lg hover:font-bold hover:border-secondary hover:scale-105"'
             onClick={endDescribeBlock}>
             End describe block
           </button>
           <button
-            className='bg-blue-500 text-white px-4 py-2 rounded'
+            className='rounded-lg p-1 w-1/4 bg-gradient-to-b from-primary to-primaryDark text-secondary border border-1 border-transparent border-b-primaryDark transform transition duration-300 hover:shadow-lg hover:font-bold hover:border-secondary hover:scale-105"'
             onClick={endItBlock}>
             End it block
           </button>
           <button
-            className='bg-blue-500 text-white px-4 py-2 rounded'
+            className='rounded-lg p-1 w-1/4 bg-gradient-to-b from-primary to-primaryDark text-secondary border border-1 border-transparent border-b-primaryDark transform transition duration-300 hover:shadow-lg hover:font-bold hover:border-secondary hover:scale-105"'
             onClick={endStatement}>
             End statement
           </button>
         </div>
       </div>
 
-      <div className='w-2/5 border-l overflow-hidden'>
+      <div className='w-1/2 h-full overflow-hidden'>
         <SmallerPreviewPopup code={code} setCode={setCode} />
       </div>
     </div>

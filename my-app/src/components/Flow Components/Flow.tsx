@@ -3,6 +3,7 @@ import ReactFlow, {
   useNodesState,
   useEdgesState,
   Controls,
+  ControlButton
 } from "react-flow-renderer";
 import dagre from "@dagrejs/dagre";
 import { Tree as TreeType } from "../../types/Tree";
@@ -120,7 +121,7 @@ const Flow = ({
   const [edges, setEdges, onEdgesChange] = useEdgesState(layoutedEdges);
 
   return (
-    <div className={`w-1/2 p-2 ${onComponentFlow ? "" : "hidden"}`}>
+    <div className={`relative w-1/2 p-2 ${onComponentFlow ? "" : "hidden"}`}>
       <ReactFlow
         nodes={nodes.map((node) => ({
           ...node,
@@ -134,16 +135,18 @@ const Flow = ({
         onEdgesChange={onEdgesChange}
         nodeTypes={nodeTypes}
         fitView
-        className="h-7/8 bg-transparent"
+        className="bg-transparent"
       >
-        <Controls />
-      </ReactFlow>
-      <button
-          className="h-1/8 rounded-lg p-2 w-full z-50 bg-secondaryPrimaryDark"
+        <Controls>
+        <ControlButton
           onClick={flowToggle}
+          style={{ fontSize: '10px' }}
         >
-          {onComponentFlow ? " See HTML" : " See Components"}
-        </button>
+          HTML
+        </ControlButton>
+        </Controls>
+      </ReactFlow>
+      
     </div>
   );
 };
