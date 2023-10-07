@@ -40,12 +40,12 @@ const ButtonComponent = () => {
   return (
     <div className='w-1/2 flex justify-between'>
       <button onClick={handleOpen}
-      className= "w-1/2 border-secondary border-r-2 transition duration-300 ease-in-out hover:bg-secondary hover:text-primary hover:font-bold"
+      className= "w-1/2 border-2 border-transparent border-r-secondary transition duration-300 ease-in-out hover:bg-secondary hover:text-secondaryPrimary hover:font-bold hover:border-secondaryPrimary"
       >
         Preview and Edit File
       </button>
      
-      <button onClick={handleSaveFile} className="w-1/2 transition duration-300 ease-in-out hover:bg-secondary hover:text-primary hover:font-bold"      >
+      <button onClick={handleSaveFile} className="w-1/2 rounded-br-lg border-2 border-transparent transition duration-300 ease-in-out hover:bg-secondary hover:text-secondaryPrimary hover:font-bold hover:border-secondaryPrimary"    >
         Save File As...
       </button>
       {open && <PreviewPopup onClose={handleClose} />}

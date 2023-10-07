@@ -57,13 +57,13 @@ const MainPage = (props: MainPageProps) => {
     <div className=" w-full h-screen flex flex-col">
       <div id="NavBar" className="w-screen flex bg-gradient-to-b from-secondaryPrimary to-secondaryPrimaryDark rounded-b-lg">
       <button
-className="justify-center w-1/4 border-secondary border-r-2 transition duration-300 ease-in-out hover:bg-secondary hover:text-primary hover:font-bold"
+className="justify-center w-1/4 rounded-bl-lg border-2 border-transparent border-r-secondary transition duration-300 ease-in-out hover:bg-secondary hover:text-secondaryPrimary hover:font-bold hover:border-secondaryPrimary"
           onClick={handleBack}
         >
           Back
         </button>
         <button
-          className="w-1/4 border-secondary border-r-2 transition duration-300 ease-in-out hover:bg-secondary hover:text-primary hover:font-bold"
+          className="w-1/4 border-2 border-transparent border-r-secondary transition duration-300 ease-in-out hover:bg-secondary hover:text-secondaryPrimary hover:font-bold hover:border-secondaryPrimary"
           onClick={handleReload}
         >
           Reload URL
