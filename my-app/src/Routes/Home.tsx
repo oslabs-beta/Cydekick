@@ -44,7 +44,7 @@ const Home = (props: HomePageProps) => {
         type="text"
         id="url_form_id"
         className="w-1/2 rounded-full p-2 bg-gradient-to-b from-primary to-primaryDark text-secondary text-center border border-1 border-transparent border-b-primaryDark focus:outline-none focus:border-secondary focus:font-bold focus:shadow-lg focus:scale-105 transition duration-300 hover:font-bold hover:border-secondary hover:shadow-lg hover:scale-105"
-        defaultValue="http://localhost:8080/"
+        defaultValue={url}
         onChange={handleChange}
       />
       <button

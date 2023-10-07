@@ -71,7 +71,7 @@ function DescribePage({ setCurrentPageNum }: DescribePageProps) {
       Create describe block
     </button>
   </div>
-  <div className='w-1/2 overflow-hidden'>
+  <div className='w-1/2 h-full overflow-hidden'>
     <SmallerPreviewPopup code={code} setCode={setCode}/>
   </div>
 </div>

@@ -43,14 +43,13 @@ function ItBlockPage({ setCurrentPageNum }: ItBlockPageProps) {
           id='itText'
           className="w-1/2 rounded-full p-2 bg-gradient-to-b from-primary to-primaryDark text-secondary text-center border border-1 border-transparent border-b-primaryDark focus:outline-none focus:border-secondary focus:font-bold focus:shadow-lg focus:scale-105 transition duration-300 hover:font-bold hover:border-secondary hover:shadow-lg hover:scale-105"
           />
-        <br></br>
         <button
   className="rounded-full p-2 mt-5 w-1/2 bg-gradient-to-b from-primary to-primaryDark text-secondary border border-1 border-transparent border-b-primaryDark transform transition duration-300 hover:shadow-lg hover:font-bold hover:border-secondary hover:scale-105"
   onClick={createItBlock}>
           Create it block
         </button>
       </div>
-      <div className='w-1/2 overflow-hidden'>
+      <div className='w-1/2 h-full overflow-hidden'>
         <SmallerPreviewPopup code={code} setCode={setCode}/>
       </div>
     </div>

@@ -10,26 +10,24 @@ type SmallerPreviewPopupProps = {
 
 const SmallerPreviewPopup: React.FC<SmallerPreviewPopupProps> = ({ code, setCode }) => {
 
-  // const [code, setCode] = React.useState('');
-
-  // React.useEffect(() => {
-  //   const fileContent = ipcRenderer.sendSync('read-file');
-  //   setCode(fileContent);
-  // }, []);
-
   const handleEditorChange = (newValue: string) => {
     setCode(newValue);
   };
 
+
+
   return (
-    <div className='bg-transparent p-2 w-full h-full'>
+    <div className='bg-transparent p-2 h-full w-full'>
       <MonacoEditor
+        width='100%'
+        height='100%'
         language='javascript'
         theme='vs-dark'
         value={code}
         options={{
           selectOnLineNumbers: true,
           autoClosingQuotes: 'always',
+          automaticLayout:true,
         }}
         onChange={handleEditorChange}
       />
@@ -37,5 +35,5 @@ const SmallerPreviewPopup: React.FC<SmallerPreviewPopupProps> = ({ code, setCode
   );
 };
 
-export default SmallerPreviewPopup;
+export default SmallerPreviewPopup
 
