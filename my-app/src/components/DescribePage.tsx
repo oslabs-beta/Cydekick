@@ -34,10 +34,10 @@ function DescribePage({ setCurrentPageNum }: DescribePageProps) {
 
 
   return (
-    <div className='flex'>
+    <div className='flex h-full p-2'>
       <div
         id='bot'
-        className='flex-1 w-3/5 h-3/5 flex items-center justify-center flex-col'>
+        className='flex-1 w-1/2 flex items-center justify-center flex-col rounded-lg bg-gradient-to-b from-secondaryPrimary to-secondaryPrimaryDark'>
         <h1 className='text-2xl font-bold mb-4'>Name for describe block:</h1>
         <input
           type='text'
@@ -51,7 +51,7 @@ function DescribePage({ setCurrentPageNum }: DescribePageProps) {
           Create describe block
         </button>
       </div>
-      <div className='flex-1 w-2/5 h-2/5 bg-gray-200 border border-gray-400 rounded-r-lg overflow-hidden'>
+      <div className='w-1/2 overflow-hidden'>
         <SmallerPreviewPopup code={code} setCode={setCode}/>
       </div>
     </div>

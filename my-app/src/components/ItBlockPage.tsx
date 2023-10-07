@@ -33,7 +33,7 @@ function ItBlockPage({ setCurrentPageNum }: ItBlockPageProps) {
   }
 
   return (
-    <div className='flex'>
+    <div className='flex h-full'>
       <div
         id='bot'
         className='flex-1 w-3/5 h-3/5 flex items-center justify-center flex-col'>
@@ -50,7 +50,7 @@ function ItBlockPage({ setCurrentPageNum }: ItBlockPageProps) {
           Create it block
         </button>
       </div>
-      <div className='flex-1 w-2/5 h-2/5 bg-gray-200 border border-gray-400 rounded-r-lg overflow-hidden'>
+      <div className='w-1/2 overflow-hidden'>
         <SmallerPreviewPopup code={code} setCode={setCode}/>
       </div>
     </div>

@@ -510,7 +510,7 @@ const StatementPage: React.FC<StatementPageProps> = ({
         </div>
       </div>
 
-      <div className='w-2/5 border-l overflow-hidden'>
+      <div className='w-1/2 overflow-hidden'>
         <SmallerPreviewPopup code={code} setCode={setCode} />
       </div>
     </div>

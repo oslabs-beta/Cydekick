@@ -45,16 +45,30 @@ const MainPage = (props: MainPageProps) => {
   const flowToggle = () => {
     setOnComponentFlow(!onComponentFlow);
   };
+  const handleReload = () =>{
+    const webview = document.getElementById(
+      "webview"
+    ) as Electron.WebviewTag | null;
+    webview.loadURL(url);
+  }
+
 
   return (
     <div className=" w-full h-screen flex flex-col">
-      <div id="NavBar" className="w-screen flex bg-secondaryPrimary">
+      <div id="NavBar" className="w-screen flex bg-gradient-to-b from-secondaryPrimary to-secondaryPrimaryDark rounded-b-lg">
       <button
-          className="rounded-lg p-2 w-fit "
+className="justify-center w-1/4 border-secondary border-r-2 transition duration-300 ease-in-out hover:bg-secondary hover:text-primary hover:font-bold"
           onClick={handleBack}
         >
           Back
         </button>
+        <button
+          className="w-1/4 border-secondary border-r-2 transition duration-300 ease-in-out hover:bg-secondary hover:text-primary hover:font-bold"
+          onClick={handleReload}
+        >
+          Reload URL
+        </button>
+        <ButtonComponent />
       </div>
       <div className="w-full h-3/5 flex">
         <Flow
@@ -80,14 +94,14 @@ const MainPage = (props: MainPageProps) => {
         setData={setData}
       />
       </div>
-        <div className="fixed bottom-0 left-0 w-1/2 h-1/5 border-2 border-green-400 rounded bg-slate-500">
+        <div className="w-full flex-grow mt-2 bg-transparent">
           <TestGenContainer
             currentTestId={currentTestId}
             currentHTML={currentHTML}
             currentComponent={currentComponent}
           />
       </div>
-      <ButtonComponent />
+
     </div>
     
   );

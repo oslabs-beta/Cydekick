@@ -120,7 +120,7 @@ const Flow = ({
   const [edges, setEdges, onEdgesChange] = useEdgesState(layoutedEdges);
 
   return (
-    <div className={`w-1/2 p-2 ${onComponentFlow ? "" : "hidden"}`}>
+    <div className={`relative w-1/2 p-2 ${onComponentFlow ? "" : "hidden"}`}>
       <ReactFlow
         nodes={nodes.map((node) => ({
           ...node,
@@ -134,12 +134,12 @@ const Flow = ({
         onEdgesChange={onEdgesChange}
         nodeTypes={nodeTypes}
         fitView
-        className="h-7/8 bg-transparent"
+        className="bg-transparent"
       >
         <Controls />
       </ReactFlow>
       <button
-          className="h-1/8 rounded-lg p-2 w-full z-50 bg-secondaryPrimaryDark"
+          className="absolute bottom-0 right-1/4 rounded-lg p-2 w-1/4 z-50 bg-secondaryPrimaryDark"
           onClick={flowToggle}
         >
           {onComponentFlow ? " See HTML" : " See Components"}
