@@ -1,4 +1,5 @@
 import GetFile from "../components/GetFile";
+import React from "react";
 import { Tree } from "../types/Tree";
 
 /* 
@@ -17,10 +18,14 @@ type HomePageProps = {
 
 const Home = (props: HomePageProps) => {
   const { fileTree, setUrl, setFileTree, url, setPageState } = props;
-
+  const [buttonSlide, setButtonSlide] = React.useState(false);
   // Button Handler to switch Routes
   const handleSubmission = () => {
+    setButtonSlide(true)  
+    setTimeout(()=>{
       setPageState("MainPage");
+      setButtonSlide(false)
+    }, 300);
     }
 
   const handleChange = () => {
@@ -51,8 +56,10 @@ const Home = (props: HomePageProps) => {
         onClick={handleSubmission}
         className={`rounded-full p-2 w-1/4 bg-gradient-to-b from-primary to-primaryDark text-secondary border border-1 border-transparent border-b-primaryDark transform transition duration-300 ${
           !url || !fileTree.name
-            ? 'opacity-50 cursor-not-allowed'
-            : 'hover:shadow-lg hover:font-bold hover:border-secondary hover:scale-105'
+            ? "opacity-50 cursor-not-allowed"
+            : buttonSlide
+            ? "translate-x-full opacity-0"
+            : "hover:shadow-lg hover:font-bold hover:border-secondary hover:scale-105"
         }`}        
         disabled={!url || !fileTree.name}
       >
