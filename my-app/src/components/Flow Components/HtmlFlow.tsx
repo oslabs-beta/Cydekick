@@ -68,7 +68,7 @@ const HtmlFlow = ({ flowToggle, onComponentFlow, data, currentHTML, setCurrentHT
       connectParentToChildren(parsedHtml.body, 0);
       // depth is correct, need to fix horizonatl positioning of the nodes arr.
       const newNodesArr = [];
-      for (let i = 0; i < maxDepth; i++) {
+      for (let i = 0; i <= maxDepth; i++) {
         // grab all nodes on the same y level;
         let temp = nodesArr.filter((el) => el.position.y === i * 150);
         if (temp.length !== 0) {
