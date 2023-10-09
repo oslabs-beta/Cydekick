@@ -1,4 +1,2 @@
-describe('test', () => {
-	it('it clicks', () => {
-	})
-})
+describe('', () => {
+	it('', () => {

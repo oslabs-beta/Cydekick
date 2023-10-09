@@ -13,9 +13,11 @@ interface Props {
   label: string;
   options: Record<string, OptionDetails>;
   onClickOption: (code: string, details: OptionDetails) => void;
+  dropDown: string;
+  setDropDown: (param:string)=>void
 }
 
-const DropdownButton: React.FC<Props> = ({ label, onClickOption, options }) => {
+const DropdownButton: React.FC<Props> = ({ dropDown, setDropDown, label, onClickOption, options }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   // array to keep track of state
@@ -42,18 +44,35 @@ const DropdownButton: React.FC<Props> = ({ label, onClickOption, options }) => {
     updatedModalStates[index] = false;
     setModalOpenStates(updatedModalStates);
   }
-
+  React.useEffect(() =>{
+    if (label !== dropDown){
+      setIsOpen(false)
+    }
+  }, [dropDown])
   return (
-    <div className='dropdown-container relative'>
-      <button onClick={() => setIsOpen(!isOpen)}>{label}</button>
+    <div className='text-black dropdown-container relative  bg-transparent rounded border border-1 border-secondary w-full h-full'>
+      <div className='flex space-x-2'>
+        {' '}
+        {/* Adjust spacing between parent buttons */}
+        <button className='hover:bg-secondary hover:text-secondaryPrimary w-full h-full' onClick={() => {
+          setDropDown(label);
+          setIsOpen(!isOpen);
+
+        }}>
+          {label}
+        </button>
+        {/* Add other parent buttons here */}
+      </div>
       {isOpen && (
-        <div className='left-0 top-full mt-2 mb-2 flex flex-col border border-white'>
+        <div className='text-center absolute z-50 left-0 mt-2 mb-2 flex flex-col max-h-44 overflow-y-auto border border-1 border-secondary'>
           {Object.values(options).map((optionDetails, index) => (
-            <div key={optionDetails.option}>
+            <div className='bg-secondaryPrimary' key={optionDetails.option}>
               <button
-                onClick={() => onButtonClick(index, optionDetails)}
+                onClick={() => {
+                  onButtonClick(index, optionDetails);
+                }}
                 title={optionDetails.tooltip}
-                className='mb-2 hover.bg-gray-200 p-1 rounded'>
+                className='w-full h-full text-center mb-2 hover:bg-secondary hover:text-secondaryPrimary p-1 rounded'>
                 {optionDetails.option}
               </button>
               <DynamicModal

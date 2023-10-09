@@ -12,7 +12,7 @@ module.exports = {
         secondaryPrimaryDark: "#037066"
       },
       backgroundImage: {
-        'logo': "url('/logo.png')",
+        logo: "url('/logo.png')",
       },
     },
   },
