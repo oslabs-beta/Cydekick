@@ -19,7 +19,7 @@ const GetFile = ({ setter }: GetFileProps) => {
   }
 
   return (
-<div className="flex flex-col rounded-full justify-center items-center w-full p-2 border border-transparent bg-primary hover:shadow-xl hover:border-secondary transition duration-300">
+<div className="flex flex-col rounded-full justify-center items-center w-full p-2 bg-gradient-to-b from-primary to-primaryDark text-secondary text-center border border-1 border-transparent border-b-primaryDark transition duration-300 hover:font-bold hover:shadow-lg hover:border-secondary hover:scale-105">
   <label htmlFor="theInputFile" className="cursor-pointer">
     Choose Root Component (e.g., App.jsx):
   </label>

@@ -1,4 +1,5 @@
 import GetFile from "../components/GetFile";
+import React from "react";
 import { Tree } from "../types/Tree";
 
 /* 
@@ -10,23 +11,31 @@ background color: #1B1E26
 type HomePageProps = {
   setUrl: React.Dispatch<React.SetStateAction<string>>;
   url: string;
+  fileTree:Tree;
   setPageState: React.Dispatch<React.SetStateAction<string>>;
   setFileTree: React.Dispatch<React.SetStateAction<Tree>>;
 };
 
 const Home = (props: HomePageProps) => {
-  const { setUrl, setFileTree, url, setPageState } = props;
-
+  const { fileTree, setUrl, setFileTree, url, setPageState } = props;
+  const [buttonSlide, setButtonSlide] = React.useState(false);
   // Button Handler to switch Routes
   const handleSubmission = () => {
+    setButtonSlide(true)  
+    setTimeout(()=>{
+      setPageState("MainPage");
+      setButtonSlide(false)
+    }, 300);
+    }
+
+  const handleChange = () => {
     const urlInputElement = document.getElementById(
       "url_form_id"
     ) as HTMLInputElement;
     if (urlInputElement) {
       setUrl(urlInputElement.value);
-      setPageState("MainPage");
-    }
-  };
+  }
+}
 
   return (
 <div className="flex flex-col w-screen h-screen p-5 justify-center items-center">
@@ -39,12 +48,20 @@ const Home = (props: HomePageProps) => {
       <input
         type="text"
         id="url_form_id"
-        className="w-1/2 rounded-full p-2 bg-primary text-secondary text-center border border-transparent focus:outline-none focus:border-secondary transition duration-300 hover:shadow-lg"
-        placeholder="Enter URL"
+        className="w-1/2 rounded-full p-2 bg-gradient-to-b from-primary to-primaryDark text-secondary text-center border border-1 border-transparent border-b-primaryDark focus:outline-none focus:border-secondary focus:font-bold focus:shadow-lg focus:scale-105 transition duration-300 hover:font-bold hover:border-secondary hover:shadow-lg hover:scale-105"
+        defaultValue={url}
+        onChange={handleChange}
       />
       <button
         onClick={handleSubmission}
-        className="rounded-full p-2 w-1/4 bg-transparent text-primary hover:bg-primary hover:text-secondary transform transition duration-300 hover:scale-105"
+        className={`rounded-full p-2 w-1/4 bg-gradient-to-b from-primary to-primaryDark text-secondary border border-1 border-transparent border-b-primaryDark transform transition duration-300 ${
+          !url || !fileTree.name
+            ? "opacity-50 cursor-not-allowed"
+            : buttonSlide
+            ? "translate-x-full opacity-0"
+            : "hover:shadow-lg hover:font-bold hover:border-secondary hover:scale-105"
+        }`}        
+        disabled={!url || !fileTree.name}
       >
         Next
       </button>

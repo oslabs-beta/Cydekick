@@ -38,16 +38,14 @@ const ButtonComponent = () => {
 
 
   return (
-    <div style={{ position: 'absolute', bottom: '20px', right: '20px' }}>
+    <div className='w-1/2 flex justify-between'>
       <button onClick={handleOpen}
-      style={{ border: '1px solid black', padding: '5px 10px', cursor: 'pointer', marginRight: '5px' }}
+      className= "w-1/2 border-2 border-transparent border-r-secondary transition duration-300 ease-in-out hover:bg-secondary hover:text-secondaryPrimary hover:font-bold hover:border-secondaryPrimary"
       >
         Preview and Edit File
       </button>
      
-      <button onClick={handleSaveFile}
-      style={{ border: '1px solid black', padding: '5px 10px', cursor: 'pointer', marginRight: '5px' }}
-      >
+      <button onClick={handleSaveFile} className="w-1/2 rounded-br-lg border-2 border-transparent transition duration-300 ease-in-out hover:bg-secondary hover:text-secondaryPrimary hover:font-bold hover:border-secondaryPrimary"    >
         Save File As...
       </button>
       {open && <PreviewPopup onClose={handleClose} />}

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import ReactFlow, { Controls } from "react-flow-renderer";
+import ReactFlow, { Controls, ControlButton } from "react-flow-renderer";
 
 import "react-flow-renderer/dist/style.css";
 
@@ -107,22 +107,23 @@ const HtmlFlow = ({ flowToggle, onComponentFlow, data, currentHTML, setCurrentHT
   }, [currentHTML, currentTestId]);
 
   return (
-    <div className={`w-1/2 p-2 ${onComponentFlow ? "hidden" : '' }`}>
+    <div className={`relative w-1/2 p-2 ${onComponentFlow ? "hidden" : '' }`}>
       <ReactFlow
         nodes={nodes}
         edges={edges}
         nodeTypes={nodeTypes}
         fitView
-        className="h-7/8 bg-transparent"
+        className="bg-transparent"
       >
-        <Controls />
-      </ReactFlow>
-      <button
-          className="h-1/8 rounded-lg p-2 w-full bg-secondaryPrimaryDark"
+        <Controls>
+        <ControlButton
           onClick={flowToggle}
+          style={{ fontSize: '10px' }}
         >
-          {onComponentFlow ? " See HTML" : " See Components"}
-        </button>
+          COMP
+        </ControlButton>
+        </Controls>
+      </ReactFlow>
     </div>
   );
 };
