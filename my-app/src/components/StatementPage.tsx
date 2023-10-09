@@ -9,6 +9,7 @@ import { text } from 'stream/consumers';
 import actionOptions from '../options/actionOptions';
 import assertionOptions from '../options/assertionOptions';
 import otherCommandOptions from '../options/otherCommandOptions';
+import {encodingArray} from '../options/optionVariables'
 
 type StatementPageProps = {
   setCurrentPageNum: React.Dispatch<React.SetStateAction<number>>;
@@ -420,7 +421,7 @@ const StatementPage: React.FC<StatementPageProps> = ({
       modal: [
         { type: 'label', labelText: 'Read and parse a file.' },
         { type: 'input', inputType: 'A path to a file within the project root ' },
-        { type: 'input', inputType: 'OPTIONAL: The encoding to be used when reading the file.' },
+        { type: "select", options: encodingArray },      
       ],
       modalCreateCode: function (args: []): string {
         if (args[0] !== empty && args[1] === empty) {

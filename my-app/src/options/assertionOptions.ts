@@ -8,8 +8,14 @@ const assertionOptions = {
     modal: [
       { type: "label", labelText: "Assert element state or value." },
       { type: "select", options: commonAssertions },
-      { type: "input", inputType: "text" },
-      { type: "input", inputType: "text" },
+      {
+        type: "input",
+        inputType: "OPTIONAL: Value to assert against chainer.",
+      },
+      {
+        type: "input",
+        inputType: "OPTIONAL: A method to be called on the chainer.",
+      },
     ],
     modalCreateCode: function (args: []): string {
       if (args[1] === empty && args[2] === empty) {
@@ -33,8 +39,14 @@ const assertionOptions = {
     modal: [
       { type: "label", labelText: "Chain additional assertions." },
       { type: "select", options: commonAssertions },
-      { type: "input", inputType: "text" },
-      { type: "input", inputType: "text" },
+      {
+        type: "input",
+        inputType: "OPTIONAL: Value to assert against chainer.",
+      },
+      {
+        type: "input",
+        inputType: "OPTIONAL: A method to be called on the chainer.",
+      },
     ],
     modalCreateCode: function (args: []): string {
       if (args[1] === empty && args[2] === empty) {

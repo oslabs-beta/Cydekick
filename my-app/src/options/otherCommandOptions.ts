@@ -27,7 +27,7 @@ const otherCommandOptions = {
     tooltip: "Clear a specific cookie by name.",
     modal: [
       { type: "label", labelText: "Clear a specific cookie by name." },
-      { type: "input", inputType: "text" },
+      { type: "input", inputType: "The name of the cookie to be cleared." },
     ],
     modalCreateCode: function (text: []): string {
       if (text[0]) {
@@ -48,7 +48,10 @@ const otherCommandOptions = {
     tooltip: "Clear all items from the local storage.",
     modal: [
       { type: "label", labelText: "Clear all items from the local storage." },
-      { type: "input", inputType: "text" },
+      {
+        type: "input",
+        inputType: "OPTIONAL: Specify key to be cleared in localStorage.",
+      },
     ],
     modalCreateCode: function (args: []): string {
       if (args[0] === empty) {
@@ -77,7 +80,10 @@ const otherCommandOptions = {
         type: "label",
         labelText: "Execute a system command from within a Cypress test.",
       },
-      { type: "input", inputType: "text" },
+      {
+        type: "input",
+        inputType: "The system command to be executed from the project root",
+      },
     ],
     modalCreateCode: function (text: []): string {
       if (text[0]) {
@@ -96,7 +102,11 @@ const otherCommandOptions = {
         type: "label",
         labelText: "Load a fixture file's contents for use in tests.",
       },
-      { type: "input", inputType: "text" },
+      {
+        type: "input",
+        inputType:
+          "A path to a file within the fixturesFolder , which defaults to cypress/fixtures.",
+      },
       { type: "select", options: encodingArray },
     ],
     modalCreateCode: function (args: []): string {
@@ -138,7 +148,7 @@ const otherCommandOptions = {
         type: "label",
         labelText: "Retrieve the value of a specific cookie by name.",
       },
-      { type: "input", inputType: "text" },
+      { type: "input", inputType: "The name of the cookie to get." },
     ],
     modalCreateCode: function (text: []): string {
       if (text[0]) {
@@ -162,7 +172,11 @@ const otherCommandOptions = {
         type: "label",
         labelText: "Navigate forward or backward in the browser's history.",
       },
-      { type: "input", inputType: "text" },
+      {
+        type: "input",
+        inputType:
+          "The direction to navigate. You can use back or forward to go one step back or forward. You could also navigate to a specific history position (-1 goes back one page, 1 goes forward one page, etc).",
+      },
     ],
     modalCreateCode: function (args: []): string {
       const value1 = isNaN(args[0]) ? `'${args[0]}'` : args[0];
@@ -179,7 +193,11 @@ const otherCommandOptions = {
     tooltip: "Log a message to the Cypress Command Log.",
     modal: [
       { type: "label", labelText: "Log a message to the Cypress Command Log." },
-      { type: "input", inputType: "text" },
+      {
+        type: "input",
+        inputType:
+          "Message to be printed to Cypress Command Log. Accepts a Markdown formatted message.",
+      },
     ],
     modalCreateCode: function (text: []): string {
       if (text[0]) {
@@ -242,8 +260,8 @@ const otherCommandOptions = {
         type: "label",
         labelText: "Set a specific cookie with a name and value.",
       },
-      { type: "input", inputType: "text" },
-      { type: "input", inputType: "text" },
+      { type: "input", inputType: "The name of the cookie to set." },
+      { type: "input", inputType: "The value of the cookie to set." },
     ],
     modalCreateCode: function (text: []): string {
       if (text[0] && text[1]) {
@@ -267,7 +285,11 @@ const otherCommandOptions = {
         type: "label",
         labelText: "Control the Cypress clock to manipulate time in tests.",
       },
-      { type: "input", inputType: "text" },
+      {
+        type: "input",
+        inputType:
+          "The number of milliseconds to move the clock. Any timers within the affected range of time will be called.",
+      },
     ],
     modalCreateCode: function (text: []): string {
       if (text[0]) {
@@ -286,8 +308,16 @@ const otherCommandOptions = {
         type: "label",
         labelText: "Set the dimensions of the browser's viewport.",
       },
-      { type: "input", inputType: "text" },
-      { type: "input", inputType: "text" },
+      {
+        type: "input",
+        inputType:
+          "Width of viewport in pixels (must be a non-negative, finite number).",
+      },
+      {
+        type: "input",
+        inputType:
+          "Height of viewport in pixels (must be a non-negative, finite number).",
+      },
     ],
     modalCreateCode: function (args: []): string {
       if (args[0] !== empty && args[1] !== empty) {
@@ -305,7 +335,7 @@ const otherCommandOptions = {
     tooltip: "Navigate to a specific URL.",
     modal: [
       { type: "label", labelText: "Navigate to a specific URL." },
-      { type: "input", inputType: "text" },
+      { type: "input", inputType: "The URL to visit." },
     ],
     modalCreateCode: function (text: []): string {
       if (text[0]) {
@@ -326,7 +356,10 @@ const otherCommandOptions = {
         labelText:
           "Pause the test to wait for a specific amount of time or until a specific event occurs.",
       },
-      { type: "input", inputType: "text" },
+      {
+        type: "input",
+        inputType: "The amount of time to wait in milliseconds.",
+      },
     ],
     modalCreateCode: function (args: []): string {
       if (args[0] !== empty && args[1] !== empty) {
@@ -346,8 +379,11 @@ const otherCommandOptions = {
         type: "label",
         labelText: "Write content to a file with optional encoding.",
       },
-      { type: "input", inputType: "text" },
-      { type: "input", inputType: "text" },
+      { type: "input", inputType: "A path to a file within the project root" },
+      {
+        type: "input",
+        inputType: "The contents to be written to the file.xt",
+      },
       { type: "select", options: encodingArray },
     ],
     modalCreateCode: function (args: []): string {
