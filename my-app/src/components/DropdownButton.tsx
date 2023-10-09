@@ -44,17 +44,17 @@ const DropdownButton: React.FC<Props> = ({ label, onClickOption, options }) => {
   }
 
   return (
-    <div className='text-black dropdown-container relative border-green-400 rounded border-2 w-full h-full'>
+    <div className='text-black dropdown-container relative  bg-transparent rounded border border-1 border-secondary w-full h-full'>
       <div className='flex space-x-2'>
         {' '}
         {/* Adjust spacing between parent buttons */}
-        <button className='hover:bg-gray-200 w-full h-full' onClick={() => setIsOpen(!isOpen)}>
+        <button className='hover:bg-secondary hover:text-secondaryPrimary w-full h-full' onClick={() => setIsOpen(!isOpen)}>
           {label}
         </button>
         {/* Add other parent buttons here */}
       </div>
       {isOpen && (
-        <div className='text-center absolute left-0 mt-2 mb-2 flex flex-col border border-white max-h-48 overflow-y-auto'>
+        <div className='text-center absolute z-50 left-0 mt-2 mb-2 flex flex-col  max-h-48 overflow-y-auto border border-1 border-secondary'>
           {Object.values(options).map((optionDetails, index) => (
             <div className='bg-secondaryPrimary' key={optionDetails.option}>
               <button
@@ -62,7 +62,7 @@ const DropdownButton: React.FC<Props> = ({ label, onClickOption, options }) => {
                   onButtonClick(index, optionDetails);
                 }}
                 title={optionDetails.tooltip}
-                className='w-full h-full text-center mb-2 hover:bg-gray-200 p-1 rounded'>
+                className='w-full h-full text-center mb-2 hover:bg-secondary hover:text-secondaryPrimary p-1 rounded'>
                 {optionDetails.option}
               </button>
               <DynamicModal

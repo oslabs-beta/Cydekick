@@ -75,12 +75,11 @@ const StatementPage: React.FC<StatementPageProps> = ({
   const queryOptions = {
     as: {
       option: 'as',
-      code: `cy.as()`,
-      tooltip: 'tooltip',
+      code: `.as()`,
+      tooltip: 'Retrieve and alias elements.',
       modal: [
-        { type: 'label', labelText: 'Text to type' },
-        { type: 'input', inputType: 'text' },
-        { type: 'input', inputType: 'text' },
+        { type: 'label', labelText: 'Retrieve and alias elements.' },
+        { type: 'input', inputType: 'The name of the alias to be referenced later within a cy.get() or cy.wait() command using an @ prefix.' },
       ],
       modalCreateCode: function (args: []): string {
         if (args[0] !== empty && args[1] === empty) {
@@ -95,15 +94,15 @@ const StatementPage: React.FC<StatementPageProps> = ({
     children: {
       option: 'Children',
       code: `.children()`,
-      tooltip: 'tooltip',
+      tooltip: 'Select child elements.',
     },
     closest: {
       option: 'Closest',
       code: `.closest()`,
-      tooltip: 'tooltip',
+      tooltip: 'Find nearest matching ancestor.',
       modal: [
-        { type: 'label', labelText: 'Text to type' },
-        { type: 'input', inputType: 'text' },
+        { type: 'label', labelText: 'Find nearest matching ancestor.' },
+        { type: 'input', inputType: 'A selector used to filter matching DOM elements.' },
       ],
       modalCreateCode: function (text: []): string {
         if (text[0]) {
@@ -116,11 +115,11 @@ const StatementPage: React.FC<StatementPageProps> = ({
     contains: {
       option: 'Contains',
       code: `cy.contains('[${dataCy}]')`,
-      tooltip: 'tooltip',
+      tooltip: 'Locate element with specified text.',
       modal: [
-        { type: 'label', labelText: 'Text to type' },
-        { type: 'input', inputType: 'text' },
-        { type: 'input', inputType: 'text' },
+        { type: 'label', labelText: 'Locate element with specified text.' },
+        { type: 'input', inputType: 'Get the DOM element containing the content.' },
+        { type: 'input', inputType: 'Specify a selector to filter DOM elements containing the text. Cypress will ignore its default preference order for the specified selector. Using a selector allows you to return more shallow elements (higher in the tree) that contain the specific text.' },
       ],
       modalCreateCode: function (text: []): string {
         if (text[0] !== empty && text[1] === empty) {
@@ -137,15 +136,15 @@ const StatementPage: React.FC<StatementPageProps> = ({
     document: {
       option: 'Document',
       code: `cy.document()`,
-      tooltip: 'tooltip',
+      tooltip: 'Access the document object.',
     },
     eq: {
       option: 'Eq',
       code: `.eq()`,
-      tooltip: 'tooltip',
+      tooltip: 'Select by index position.',
       modal: [
-        { type: 'label', labelText: 'Text to type' },
-        { type: 'input', inputType: 'text' },
+        { type: 'label', labelText: 'Select by index position.' },
+        { type: 'input', inputType: 'A number indicating the index to find the element at within an array of elements. A negative number indicates the index position from the end to find the element at within an array of elements.' },
       ],
       modalCreateCode: function (text: []): string {
         if (text[0]) {
@@ -158,10 +157,10 @@ const StatementPage: React.FC<StatementPageProps> = ({
     filter: {
       option: 'Filter',
       code: `.filter()`,
-      tooltip: 'tooltip',
+      tooltip: 'Filter elements by selector.',
       modal: [
-        { type: 'label', labelText: 'Text to type' },
-        { type: 'input', inputType: 'text' },
+        { type: 'label', labelText: 'Filter elements by selector.' },
+        { type: 'input', inputType: 'A selector used to filter matching DOM elements.' },
       ],
       modalCreateCode: function (text: []): string {
         if (text[0]) {
@@ -174,10 +173,10 @@ const StatementPage: React.FC<StatementPageProps> = ({
     find: {
       option: 'Find',
       code: `.find()`,
-      tooltip: 'tooltip',
+      tooltip: 'Search for nested elements.',
       modal: [
-        { type: 'label', labelText: 'Text to type' },
-        { type: 'input', inputType: 'text' },
+        { type: 'label', labelText: 'Search for nested elements.' },
+        { type: 'input', inputType: 'A selector used to filter matching DOM elements.' },
       ],
       modalCreateCode: function (text: []): string {
         if (text[0]) {
@@ -190,30 +189,30 @@ const StatementPage: React.FC<StatementPageProps> = ({
     first: {
       option: 'First',
       code: `.first()`,
-      tooltip: 'tooltip',
+      tooltip: 'Select the first element.',
     },
     focused: {
       option: 'Focused',
       code: `cy.focused()`,
-      tooltip: 'tooltip',
+      tooltip: 'Select the focused element.',
     },
     get: {
       option: 'Get',
       code: `cy.get('[${dataCy}]')`,
-      tooltip: 'tooltip',
+      tooltip: 'Select elements by selector.',
     },
     hash: {
       option: 'Hash',
       code: `cy.hash()`,
-      tooltip: 'tooltip',
+      tooltip: 'Access the URL hash.',
     },
     its: {
       option: 'Its',
       code: `.its()`,
-      tooltip: 'tooltip',
+      tooltip: 'Access element properties.',
       modal: [
-        { type: 'label', labelText: 'Text to type' },
-        { type: 'input', inputType: 'text' },
+        { type: 'label', labelText: 'Access element properties.' },
+        { type: 'input', inputType: 'Index, name of property or name of nested properties (with dot notation) to get.' },
       ],
       modalCreateCode: function (text: []): string {
         if (text[0]) {
@@ -227,15 +226,15 @@ const StatementPage: React.FC<StatementPageProps> = ({
     last: {
       option: 'Last',
       code: `.last()`,
-      tooltip: 'tooltip',
+      tooltip: 'Select the last element.',
     },
     location: {
       option: 'Location',
       code: `cy.location()`,
-      tooltip: 'tooltip',
+      tooltip: 'Access the URL location.',
       modal: [
-        { type: 'label', labelText: 'Text to type' },
-        { type: 'input', inputType: 'text' },
+        { type: 'label', labelText: 'Access the URL location.' },
+        { type: 'input', inputType: 'OPTIONAL: A key on the location object. Returns this value instead of the full location object.' },
       ],
       modalCreateCode: function (text: []): string {
         if (text[0] === empty) {
@@ -248,10 +247,10 @@ const StatementPage: React.FC<StatementPageProps> = ({
     next: {
       option: 'Next',
       code: `.next()`,
-      tooltip: 'tooltip',
+      tooltip: 'Select the next sibling element.',
       modal: [
-        { type: 'label', labelText: 'Text to type' },
-        { type: 'input', inputType: 'text' },
+        { type: 'label', labelText: 'Select the next sibling element.' },
+        { type: 'input', inputType: 'OPTIONAL: A selector used to filter matching DOM elements.'},
       ],
       modalCreateCode: function (text: []): string {
         if (text[0] === empty) {
@@ -264,10 +263,10 @@ const StatementPage: React.FC<StatementPageProps> = ({
     nextAll: {
       option: 'NextAll',
       code: `.nextAll()`,
-      tooltip: 'tooltip',
+      tooltip: 'Select all next siblings.',
       modal: [
-        { type: 'label', labelText: 'Text to type' },
-        { type: 'input', inputType: 'text' },
+        { type: 'label', labelText: 'Select all next siblings.' },
+        { type: 'input', inputType: 'OPTIONAL: A selector used to filter matching DOM elements.' },
       ],
       modalCreateCode: function (text: []): string {
         if (text[0] === empty) {
@@ -280,11 +279,11 @@ const StatementPage: React.FC<StatementPageProps> = ({
     nextUntil: {
       option: 'NextUntil',
       code: `.nextUntil()`,
-      tooltip: 'tooltip',
+      tooltip: 'Select until specified sibling.',
       modal: [
-        { type: 'label', labelText: 'Text to type' },
-        { type: 'input', inputType: 'text' },
-        { type: 'input', inputType: 'text' },
+        { type: 'label', labelText: 'Select until specified sibling.' },
+        { type: 'input', inputType: 'The selector where you want finding next siblings to stop.'},
+        { type: 'input', inputType: 'OPTIONAL: A selector used to filter matching DOM elements.' },
       ],
       modalCreateCode: function (args: []): string {
         if (args[0] !== empty && args[1] === empty) {
@@ -299,10 +298,10 @@ const StatementPage: React.FC<StatementPageProps> = ({
     not: {
       option: 'Not',
       code: `.not()`,
-      tooltip: 'tooltip',
+      tooltip: 'Exclude elements by selector.',
       modal: [
-        { type: 'label', labelText: 'Text to type' },
-        { type: 'input', inputType: 'text' },
+        { type: 'label', labelText: 'Exclude elements by selector.' },
+        { type: 'input', inputType: 'A selector used to remove matching DOM elements.' },
       ],
       modalCreateCode: function (text: []): string {
         if (text[0]) {
@@ -315,10 +314,10 @@ const StatementPage: React.FC<StatementPageProps> = ({
     parent: {
       option: 'Parent',
       code: `.parent()`,
-      tooltip: 'tooltip',
+      tooltip: 'Select the parent element.',
       modal: [
-        { type: 'label', labelText: 'Text to type' },
-        { type: 'input', inputType: 'text' },
+        { type: 'label', labelText: 'Select the parent element.' },
+        { type: 'input', inputType: 'OPTIONAL: A selector used to filter matching DOM elements.' },
       ],
       modalCreateCode: function (text: []): string {
         if (text[0] === empty) {
@@ -331,10 +330,10 @@ const StatementPage: React.FC<StatementPageProps> = ({
     parents: {
       option: 'Parents',
       code: `.parents()`,
-      tooltip: 'tooltip',
+      tooltip: 'Select all ancestor elements.',
       modal: [
-        { type: 'label', labelText: 'Text to type' },
-        { type: 'input', inputType: 'text' },
+        { type: 'label', labelText: 'Select all ancestor elements.' },
+        { type: 'input', inputType: 'OPTIONAL: A selector used to filter matching DOM elements.' },
       ],
       modalCreateCode: function (text: []): string {
         if (text[0] === empty) {
@@ -347,11 +346,11 @@ const StatementPage: React.FC<StatementPageProps> = ({
     parentsUntil: {
       option: 'ParentsUntil',
       code: `.parentsUntil()`,
-      tooltip: 'tooltip',
+      tooltip: 'Select ancestors until specified.',
       modal: [
-        { type: 'label', labelText: 'Text to type' },
-        { type: 'input', inputType: 'text' },
-        { type: 'input', inputType: 'text' },
+        { type: 'label', labelText: 'Select ancestors until specified.' },
+        { type: 'input', inputType: 'The selector where you want finding parent ancestors to stop.' },
+        { type: 'input', inputType: 'OPTIONAL: A selector used to filter matching DOM elements.' },
       ],
       modalCreateCode: function (args: []): string {
         if (args[0] !== empty && args[1] === empty) {
@@ -366,10 +365,10 @@ const StatementPage: React.FC<StatementPageProps> = ({
     prev: {
       option: 'Prev',
       code: `.prev()`,
-      tooltip: 'tooltip',
+      tooltip: 'Select the previous sibling element.',
       modal: [
-        { type: 'label', labelText: 'Text to type' },
-        { type: 'input', inputType: 'text' },
+        { type: 'label', labelText: 'Select the previous sibling element.' },
+        { type: 'input', inputType: 'OPTIONAL: A selector used to filter matching DOM elements.' },
       ],
       modalCreateCode: function (text: []): string {
         if (text[0] === empty) {
@@ -382,10 +381,10 @@ const StatementPage: React.FC<StatementPageProps> = ({
     prevAll: {
       option: 'PrevAll',
       code: `.prevAll()`,
-      tooltip: 'tooltip',
+      tooltip: 'Select all previous siblings.',
       modal: [
-        { type: 'label', labelText: 'Text to type' },
-        { type: 'input', inputType: 'text' },
+        { type: 'label', labelText: 'Select all previous siblings.' },
+        { type: 'input', inputType: 'OPTIONAL: A selector used to filter matching DOM elements.' },
       ],
       modalCreateCode: function (text: []): string {
         if (text[0] === empty) {
@@ -398,11 +397,11 @@ const StatementPage: React.FC<StatementPageProps> = ({
     prevUntil: {
       option: 'PrevUntil',
       code: `.prevUntil()`,
-      tooltip: 'tooltip',
+      tooltip: 'Select until specified sibling.',
       modal: [
-        { type: 'label', labelText: 'Text to type' },
-        { type: 'input', inputType: 'text' },
-        { type: 'input', inputType: 'text' },
+        { type: 'label', labelText: 'Select until specified sibling.' },
+        { type: 'input', inputType: 'The selector where you want finding previous siblings to stop.' },
+        { type: 'input', inputType: 'OPTIONAL: A selector used to filter matching DOM elements.' },
       ],
       modalCreateCode: function (args: []): string {
         if (args[0] !== empty && args[1] === empty) {
@@ -417,11 +416,11 @@ const StatementPage: React.FC<StatementPageProps> = ({
     readFile: {
       option: 'Readfile',
       code: `cy.readFile()`,
-      tooltip: 'tooltip',
+      tooltip: 'Read and parse a file.',
       modal: [
-        { type: 'label', labelText: 'Text to type' },
-        { type: 'input', inputType: 'text' },
-        { type: 'input', inputType: 'text' },
+        { type: 'label', labelText: 'Read and parse a file.' },
+        { type: 'input', inputType: 'A path to a file within the project root ' },
+        { type: 'input', inputType: 'OPTIONAL: The encoding to be used when reading the file.' },
       ],
       modalCreateCode: function (args: []): string {
         if (args[0] !== empty && args[1] === empty) {
@@ -436,31 +435,20 @@ const StatementPage: React.FC<StatementPageProps> = ({
     Root: {
       option: 'Root',
       code: `cy.root()`,
-      tooltip: 'tooltip',
+      tooltip: 'Select the root element.',
     },
     shadow: {
       option: 'Shadow',
       code: `.shadow()`,
-      tooltip: 'tooltip',
-      modal: [
-        { type: 'label', labelText: 'Text to type' },
-        { type: 'input', inputType: 'text' },
-      ],
-      modalCreateCode: function (text: []): string {
-        if (text[0] === empty) {
-          return `.shadow()`;
-        } else {
-          return `.shadow('${text[0]}')`;
-        }
-      },
+      tooltip: 'Select shadow DOM elements.',
     },
     siblings: {
       option: 'Siblings',
       code: `.siblings()`,
-      tooltip: 'tooltip',
+      tooltip: 'Select all siblings.',
       modal: [
-        { type: 'label', labelText: 'Text to type' },
-        { type: 'input', inputType: 'text' },
+        { type: 'label', labelText: 'Select all siblings.' },
+        { type: 'input', inputType: 'OPTIONAL: A selector used to filter matching DOM elements.' },
       ],
       modalCreateCode: function (text: []): string {
         if (text[0] === empty) {
@@ -473,17 +461,17 @@ const StatementPage: React.FC<StatementPageProps> = ({
     title: {
       option: 'Title',
       code: `cy.title()`,
-      tooltip: 'tooltip',
+      tooltip: 'Access the document title.',
     },
     url: {
       option: 'URL',
       code: `cy.url()`,
-      tooltip: 'tooltip',
+      tooltip: 'Access the current URL.',
     },
     window: {
       option: 'Window',
       code: `cy.window()`,
-      tooltip: 'tooltip',
+      tooltip: 'Access the window object.',
     },
   };
   
@@ -515,12 +503,12 @@ const StatementPage: React.FC<StatementPageProps> = ({
         </div>
 
         {/* Statement Bar */}
-        <div className="rounded-full p-2 mt-5 mb-5 h-1/6 w-3/4 bg-gradient-to-b from-primary to-primaryDark text-xs text-secondary border border-1 border-transparent border-b-primaryDark transform transition duration-300 hover:shadow-lg hover:font-bold hover:border-secondary hover:scale-105">
+        <div className="rounded-sm p-2 mt-5 mb-5 h-1/5 w-10/12 bg-gradient-to-b from-primary to-primaryDark text-xs text-secondary border border-1 border-transparent border-b-primaryDark transform transition duration-300 hover:shadow-lg hover:font-bold hover:border-secondary hover:scale-105">
           {selectedOptions.join('')}
         </div>
 
         {/* Currently Selected Bar */}
-        <div className="rounded-full p-2 mb-5 h-1/6 w-3/4 bg-gradient-to-b from-primary to-primaryDark text-xs text-secondary border border-1 border-transparent border-b-primaryDark transform transition duration-300 hover:shadow-lg hover:font-bold hover:border-secondary hover:scale-105">
+        <div className="rounded-sm p-1 mb-5 h-1/5 w-10/12 overflow-y-auto bg-gradient-to-b from-primary to-primaryDark text-xs text-secondary border border-1 border-transparent border-b-primaryDark transform transition duration-300 hover:shadow-lg hover:font-bold hover:border-secondary hover:scale-105">
           <strong>Currently selected:</strong>
           {currentHTML}
           {currentComponent &&
@@ -532,17 +520,17 @@ const StatementPage: React.FC<StatementPageProps> = ({
         {/* End Block Buttons */}
         <div className='flex w-full justify-around'>
           <button
-            className='rounded-lg p-1 w-1/4 bg-gradient-to-b from-primary to-primaryDark text-secondary border border-1 border-transparent border-b-primaryDark transform transition duration-300 hover:shadow-lg hover:font-bold hover:border-secondary hover:scale-105"'
+            className='rounded-lg p-1 w-1/4 bg-gradient-to-b from-primary to-primaryDark text-secondary text-sm border border-1 border-transparent border-b-primaryDark transform transition duration-300 hover:shadow-lg hover:font-bold hover:border-secondary hover:scale-105"'
             onClick={endDescribeBlock}>
             End describe block
           </button>
           <button
-            className='rounded-lg p-1 w-1/4 bg-gradient-to-b from-primary to-primaryDark text-secondary border border-1 border-transparent border-b-primaryDark transform transition duration-300 hover:shadow-lg hover:font-bold hover:border-secondary hover:scale-105"'
+            className='rounded-lg p-1 w-1/4 bg-gradient-to-b from-primary to-primaryDark text-secondary text-sm border border-1 border-transparent border-b-primaryDark transform transition duration-300 hover:shadow-lg hover:font-bold hover:border-secondary hover:scale-105"'
             onClick={endItBlock}>
             End it block
           </button>
           <button
-            className='rounded-lg p-1 w-1/4 bg-gradient-to-b from-primary to-primaryDark text-secondary border border-1 border-transparent border-b-primaryDark transform transition duration-300 hover:shadow-lg hover:font-bold hover:border-secondary hover:scale-105"'
+            className='rounded-lg p-1 w-1/4 bg-gradient-to-b from-primary to-primaryDark text-secondary text-sm border border-1 border-transparent border-b-primaryDark transform transition duration-300 hover:shadow-lg hover:font-bold hover:border-secondary hover:scale-105"'
             onClick={endStatement}>
             End statement
           </button>
