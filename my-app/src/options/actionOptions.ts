@@ -119,9 +119,9 @@ const actionOptions = {
     tooltip: "Scroll the element into view.",
   },
   scrollTo: {
-    option: "Scroll To",
+    option: "ScrollTo",
     code: ".scrollTo()",
-    tooltip: "Scroll the element to a specific position.",
+    tooltip: "Scroll the element to a specific position (Chained Off Dom el).",
     modal: [
       {
         type: "label",
@@ -145,6 +145,38 @@ const actionOptions = {
         const value1 = isNaN(args[0]) ? `'${args[0]}'` : args[0];
         const value2 = isNaN(args[1]) ? `'${args[1]}'` : args[1];
         return `.scrollTo(${value1}, ${value2})`;
+      } else {
+        return;
+      }
+    },
+  },
+  scrollToCy: {
+    option: "Cy.ScrollTo",
+    code: "cy.scrollTo()",
+    tooltip: "Scroll the element to a specific position (Chained Off Cy).",
+    modal: [
+      {
+        type: "label",
+        labelText: "Scroll the element to a specific position.",
+      },
+      {
+        type: "input",
+        inputType:
+          "A specified position to scroll the window or element to. Valid positions are topLeft, top, topRight, left, center, right, bottomLeft, bottom, and bottomRight.",
+      },
+      {
+        type: "input",
+        inputType:
+          "(x,y) x: The distance in pixels from window/element's left or percentage of the window/element's width to scroll to. y: the distance in pixels from window/element's top or percentage of the window/element's height to scroll to.",
+      },
+    ],
+    modalCreateCode: function (args: []): string {
+      if (args[1] === empty) {
+        return `cy.scrollTo('${args[0]}')`;
+      } else if (args[0] !== empty && args[1] !== empty) {
+        const value1 = isNaN(args[0]) ? `'${args[0]}'` : args[0];
+        const value2 = isNaN(args[1]) ? `'${args[1]}'` : args[1];
+        return `cy.scrollTo(${value1}, ${value2})`;
       } else {
         return;
       }

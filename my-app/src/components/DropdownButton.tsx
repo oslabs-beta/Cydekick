@@ -13,9 +13,11 @@ interface Props {
   label: string;
   options: Record<string, OptionDetails>;
   onClickOption: (code: string, details: OptionDetails) => void;
+  dropDown: string;
+  setDropDown: (param:string)=>void
 }
 
-const DropdownButton: React.FC<Props> = ({ label, onClickOption, options }) => {
+const DropdownButton: React.FC<Props> = ({ dropDown, setDropDown, label, onClickOption, options }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   // array to keep track of state
@@ -42,19 +44,27 @@ const DropdownButton: React.FC<Props> = ({ label, onClickOption, options }) => {
     updatedModalStates[index] = false;
     setModalOpenStates(updatedModalStates);
   }
-
+  React.useEffect(() =>{
+    if (label !== dropDown){
+      setIsOpen(false)
+    }
+  }, [dropDown])
   return (
     <div className='text-black dropdown-container relative  bg-transparent rounded border border-1 border-secondary w-full h-full'>
       <div className='flex space-x-2'>
         {' '}
         {/* Adjust spacing between parent buttons */}
-        <button className='hover:bg-secondary hover:text-secondaryPrimary w-full h-full' onClick={() => setIsOpen(!isOpen)}>
+        <button className='hover:bg-secondary hover:text-secondaryPrimary w-full h-full' onClick={() => {
+          setDropDown(label);
+          setIsOpen(!isOpen);
+
+        }}>
           {label}
         </button>
         {/* Add other parent buttons here */}
       </div>
       {isOpen && (
-        <div className='text-center absolute z-50 left-0 mt-2 mb-2 flex flex-col  max-h-48 overflow-y-auto border border-1 border-secondary'>
+        <div className='text-center absolute z-50 left-0 mt-2 mb-2 flex flex-col max-h-44 overflow-y-auto border border-1 border-secondary'>
           {Object.values(options).map((optionDetails, index) => (
             <div className='bg-secondaryPrimary' key={optionDetails.option}>
               <button

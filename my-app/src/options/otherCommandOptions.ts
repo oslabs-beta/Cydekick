@@ -64,7 +64,12 @@ const otherCommandOptions = {
   debug: {
     option: "Debug",
     code: ".debug()",
-    tooltip: "Trigger a debug breakpoint in your test.",
+    tooltip: "Trigger a debug breakpoint in your test (Chained Off Dom El).",
+  },
+  debugCy: {
+    option: "Cy.Debug",
+    code: "cy.debug()",
+    tooltip: "Trigger a debug breakpoint in your test (Chained Off Cy).",
   },
   end: {
     option: "End",
@@ -209,8 +214,15 @@ const otherCommandOptions = {
   },
   pause: {
     option: "Pause",
+    code: ".pause()",
+    tooltip:
+      "Pause the test execution to inspect the application's state (Chained Off Dom el).",
+  },
+  pauseCy: {
+    option: "Pause",
     code: "cy.pause()",
-    tooltip: "Pause the test execution to inspect the application's state.",
+    tooltip:
+      "Pause the test execution to inspect the application's state (Chained Off Cy).",
   },
   reload: {
     option: "Reload",
@@ -233,8 +245,30 @@ const otherCommandOptions = {
   },
   screenshot: {
     option: "Screenshot",
+    code: ".screenshot()",
+    tooltip:
+      "Take a screenshot of the current viewport or a specific element (Chained Off Dom El).",
+    modal: [
+      {
+        type: "label",
+        labelText:
+          "Take a screenshot of the current viewport or a specific element.",
+      },
+      { type: "select", options: ["null", "true", "false"] },
+    ],
+    modalCreateCode: function (args: []): string {
+      if (args[0] === "null") {
+        return `.screenshot()`;
+      } else {
+        return `.screenshot('${args[0]}')`;
+      }
+    },
+  },
+  screenshotCy: {
+    option: "Screenshot",
     code: "cy.screenshot()",
-    tooltip: "Take a screenshot of the current viewport or a specific element.",
+    tooltip:
+      "Take a screenshot of the current viewport or a specific element (Chained Off Cy).",
     modal: [
       {
         type: "label",
