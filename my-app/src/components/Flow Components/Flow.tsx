@@ -3,7 +3,7 @@ import ReactFlow, {
   useNodesState,
   useEdgesState,
   Controls,
-  ControlButton
+  ControlButton,
 } from "react-flow-renderer";
 import dagre from "@dagrejs/dagre";
 import { Tree as TreeType } from "../../types/Tree";
@@ -24,6 +24,25 @@ type FlowProps = {
   onComponentFlow: boolean;
   flowToggle: () => void;
 };
+type NodeType = {
+  id:string;
+  type:string;
+  data:{
+    name:string;
+    testid:string;
+    props:{[key: string]: boolean;}
+    filePath:string;
+    setCurrentComponent: React.Dispatch<React.SetStateAction<TreeType>>;
+    nodeData:TreeType;
+    isSelected:boolean
+  }
+  position:{x:number, y:number}
+}
+type EdgeType = {
+  id:string;
+  target:string;
+  source:string;
+}
 
 const Flow = ({
   flowToggle,
@@ -32,8 +51,8 @@ const Flow = ({
   currentComponent,
   setCurrentComponent,
 }: FlowProps) => {
-  const nodesArr = [];
-  const edgesArr = [];
+  const nodesArr:NodeType[] = [];
+  const edgesArr:EdgeType[] = [];
 
   (function treeParser(tree: TreeType) {
     if (!tree.reactRouter && !tree.reduxConnect) {
@@ -83,7 +102,7 @@ const Flow = ({
   const nodeWidth = 176;
   const nodeHeight = 36;
 
-  const getLayoutedElements = (nodes, edges, direction = "TB") => {
+  const getLayoutedElements = (nodes:NodeType[], edges:EdgeType[], direction = "TB") => {
     dagreGraph.setGraph({ rankdir: direction });
 
     nodes.forEach((node) => {
@@ -98,11 +117,6 @@ const Flow = ({
 
     nodes.forEach((node) => {
       const nodeWithPosition = dagreGraph.node(node.id);
-      node.targetPosition = direction === "TB" ? "top" : "left"; // Swap 'top' and 'left'
-      node.sourcePosition = direction === "TB" ? "bottom" : "right"; // Swap 'bottom' and 'right'
-
-      // We are shifting the dagre node position (anchor=center center) to the top left
-      // so it matches the React Flow node anchor point (top left).
       node.position = {
         x: nodeWithPosition.x - nodeWidth / 2,
         y: nodeWithPosition.y - nodeHeight / 2,

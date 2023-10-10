@@ -1,37 +1,60 @@
-import { create } from 'domain';
 import React from 'react';
 
-function DynamicModal({ infoObj, isOpen, setIsOpen, onClickOption }): any {
+interface Modal {
+  type: string;
+  labelText?: string;
+  inputType?: string;
+  options?: string[]
+}
+
+
+interface OptionDetails {
+  option: string;
+  code: string;
+  tooltip: string;
+  modal?: Modal[];
+  modalCreateCode?: (text:string[]) => string;
+}
+
+type DynamicModalType = {
+  infoObj:OptionDetails;
+  isOpen:boolean;
+  setIsOpen:React.Dispatch<React.SetStateAction<boolean>>;
+  onClickOption:(code: string, details: OptionDetails) => void;
+}
+
+function DynamicModal({ infoObj, isOpen, setIsOpen, onClickOption }:DynamicModalType) {
   function createCode(): void {
-    const modalForm = document.getElementById('modalForm');
-    const modalElements = modalForm.elements;
-    console.log(modalElements);
-    const arrayOfEleVal = [];
+    const modalForm = document.getElementById('modalForm') as HTMLFormElement | null;
+    if (modalForm){
+
+    const modalElements = modalForm.elements as HTMLFormControlsCollection;
+    const arrayOfEleVal: any[] = [];
     for (const ele of modalElements) {
-      arrayOfEleVal.push(ele.value);
+        if (ele instanceof HTMLTextAreaElement || ele instanceof HTMLSelectElement) arrayOfEleVal.push(ele.value);
     }
-    console.log(arrayOfEleVal);
     onClickOption(infoObj.modalCreateCode(arrayOfEleVal), infoObj);
     setIsOpen(false);
+  }
   }
 
   function createLabel(labelText: string) {
     return <label className='rounded-sm bg-primary text-secondary text-s'>{labelText}</label>;
   }
 
-  function createInput(inputType) {
+  function createInput(inputType:string) {
     return <textarea placeholder={inputType} className='w-full text-xs p-1 h-fit outline-none resize-none focus:outline-primary'/>;
   }
   
-  function createSelect(options) {
-    const allOptions = options.map((opt, index) => {
+  function createSelect(options:string[]) {
+    const allOptions = options.map((opt) => {
       return <option value={opt}>{opt}</option>;
     });
     return <select>{allOptions}</select>;
   }
 
-  function createFormContent(arrOfForm) {
-    const modalContent = arrOfForm.map((item, index) => {
+  function createFormContent(arrOfForm:Modal[]) {
+    const modalContent = arrOfForm.map((item) => {
       if (item.type === 'label') {
         return createLabel(item.labelText);
       } else if (item.type === 'input') {

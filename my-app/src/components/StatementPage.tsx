@@ -4,13 +4,12 @@ import DropdownButton from "./DropdownButton";
 const fs = window.require("fs");
 const path = window.require("path");
 import { Tree } from "../types/Tree";
-import { text } from "stream/consumers";
-// import queryOptions from '../options/queryOptions';
 import actionOptions from "../options/actionOptions";
 import assertionOptions from "../options/assertionOptions";
 import otherCommandOptions from "../options/otherCommandOptions";
 import { encodingArray } from "../options/optionVariables";
-import { select } from "d3";
+
+type ModalCreateCodeType = (string | number)[];
 
 type StatementPageProps = {
   setCurrentPageNum: React.Dispatch<React.SetStateAction<number>>;
@@ -87,7 +86,7 @@ const StatementPage: React.FC<StatementPageProps> = ({
             "The name of the alias to be referenced later within a cy.get() or cy.wait() command using an @ prefix.",
         },
       ],
-      modalCreateCode: function (args: []): string {
+      modalCreateCode: function (args: ModalCreateCodeType): string {
         if (args[0] !== empty && args[1] === empty) {
           return `.as('${args[0]}')`;
         } else if (args[0] !== empty && args[1] !== empty) {
@@ -113,7 +112,7 @@ const StatementPage: React.FC<StatementPageProps> = ({
           inputType: "A selector used to filter matching DOM elements.",
         },
       ],
-      modalCreateCode: function (text: []): string {
+      modalCreateCode: function (text: ModalCreateCodeType): string {
         if (text[0]) {
           return `.closest('${text[0]}')`;
         } else {
@@ -137,12 +136,12 @@ const StatementPage: React.FC<StatementPageProps> = ({
             "Specify a selector to filter DOM elements containing the text. Cypress will ignore its default preference order for the specified selector. Using a selector allows you to return more shallow elements (higher in the tree) that contain the specific text.",
         },
       ],
-      modalCreateCode: function (text: []): string {
+      modalCreateCode: function (text: ModalCreateCodeType): string {
         if (text[0] !== empty && text[1] === empty) {
-          const value = isNaN(text[0]) ? `'${text[0]}'` : text[0];
+          const value =  typeof text[0] === 'number' ? `'${text[0]}'` : text[0];
           return `.contains(${value})`;
         } else if (text[0] !== empty && text[1] !== empty) {
-          const value = isNaN(text[1]) ? `'${text[1]}'` : text[1];
+          const value = typeof text[1] === 'number' ? `'${text[1]}'` : text[1];
           return `.contains('${text[0]}', ${value})`;
         } else {
           return;
@@ -165,12 +164,12 @@ const StatementPage: React.FC<StatementPageProps> = ({
             "Specify a selector to filter DOM elements containing the text. Cypress will ignore its default preference order for the specified selector. Using a selector allows you to return more shallow elements (higher in the tree) that contain the specific text.",
         },
       ],
-      modalCreateCode: function (text: []): string {
+      modalCreateCode: function (text: ModalCreateCodeType): string {
         if (text[0] !== empty && text[1] === empty) {
-          const value = isNaN(text[0]) ? `'${text[0]}'` : text[0];
+          const value = typeof text[0] === 'number' ? `'${text[0]}'` : text[0];
           return `cy.contains(${value})`;
         } else if (text[0] !== empty && text[1] !== empty) {
-          const value = isNaN(text[1]) ? `'${text[1]}'` : text[1];
+          const value = typeof text[1] === 'number' ? `'${text[1]}'` : text[1];
           return `cy.contains('${text[0]}', ${value})`;
         } else {
           return;
@@ -194,7 +193,7 @@ const StatementPage: React.FC<StatementPageProps> = ({
             "A number indicating the index to find the element at within an array of elements. A negative number indicates the index position from the end to find the element at within an array of elements.",
         },
       ],
-      modalCreateCode: function (text: []): string {
+      modalCreateCode: function (text: ModalCreateCodeType): string {
         if (text[0]) {
           return `.eq('${text[0]}')`;
         } else {
@@ -213,7 +212,7 @@ const StatementPage: React.FC<StatementPageProps> = ({
           inputType: "A selector used to filter matching DOM elements.",
         },
       ],
-      modalCreateCode: function (text: []): string {
+      modalCreateCode: function (text: ModalCreateCodeType): string {
         if (text[0]) {
           return `.filter('${text[0]}')`;
         } else {
@@ -232,7 +231,7 @@ const StatementPage: React.FC<StatementPageProps> = ({
           inputType: "A selector used to filter matching DOM elements.",
         },
       ],
-      modalCreateCode: function (text: []): string {
+      modalCreateCode: function (text: ModalCreateCodeType): string {
         if (text[0]) {
           return `.find('${text[0]}')`;
         } else {
@@ -272,9 +271,9 @@ const StatementPage: React.FC<StatementPageProps> = ({
             "Index, name of property or name of nested properties (with dot notation) to get.",
         },
       ],
-      modalCreateCode: function (text: []): string {
+      modalCreateCode: function (text: ModalCreateCodeType): string {
         if (text[0]) {
-          const value = isNaN(text[0]) ? `'${text[0]}'` : text[0];
+          const value = typeof text[0] === 'number' ? `'${text[0]}'` : text[0];
           return `.its(${value})`;
         } else {
           return;
@@ -298,7 +297,7 @@ const StatementPage: React.FC<StatementPageProps> = ({
             "OPTIONAL: A key on the location object. Returns this value instead of the full location object.",
         },
       ],
-      modalCreateCode: function (text: []): string {
+      modalCreateCode: function (text: ModalCreateCodeType): string {
         if (text[0] === empty) {
           return `cy.location()`;
         } else {
@@ -318,7 +317,7 @@ const StatementPage: React.FC<StatementPageProps> = ({
             "OPTIONAL: A selector used to filter matching DOM elements.",
         },
       ],
-      modalCreateCode: function (text: []): string {
+      modalCreateCode: function (text: ModalCreateCodeType): string {
         if (text[0] === empty) {
           return `.next()`;
         } else {
@@ -338,7 +337,7 @@ const StatementPage: React.FC<StatementPageProps> = ({
             "OPTIONAL: A selector used to filter matching DOM elements.",
         },
       ],
-      modalCreateCode: function (text: []): string {
+      modalCreateCode: function (text: ModalCreateCodeType): string {
         if (text[0] === empty) {
           return `.nextAll()`;
         } else {
@@ -363,7 +362,7 @@ const StatementPage: React.FC<StatementPageProps> = ({
             "OPTIONAL: A selector used to filter matching DOM elements.",
         },
       ],
-      modalCreateCode: function (args: []): string {
+      modalCreateCode: function (args: ModalCreateCodeType): string {
         if (args[0] !== empty && args[1] === empty) {
           return `.nextUntil('${args[0]}')`;
         } else if (args[0] !== empty && args[1] !== empty) {
@@ -384,7 +383,7 @@ const StatementPage: React.FC<StatementPageProps> = ({
           inputType: "A selector used to remove matching DOM elements.",
         },
       ],
-      modalCreateCode: function (text: []): string {
+      modalCreateCode: function (text: ModalCreateCodeType): string {
         if (text[0]) {
           return `.not('${text[0]}')`;
         } else {
@@ -404,7 +403,7 @@ const StatementPage: React.FC<StatementPageProps> = ({
             "OPTIONAL: A selector used to filter matching DOM elements.",
         },
       ],
-      modalCreateCode: function (text: []): string {
+      modalCreateCode: function (text: ModalCreateCodeType): string {
         if (text[0] === empty) {
           return `.parent()`;
         } else {
@@ -424,7 +423,7 @@ const StatementPage: React.FC<StatementPageProps> = ({
             "OPTIONAL: A selector used to filter matching DOM elements.",
         },
       ],
-      modalCreateCode: function (text: []): string {
+      modalCreateCode: function (text: ModalCreateCodeType): string {
         if (text[0] === empty) {
           return `.parents()`;
         } else {
@@ -449,7 +448,7 @@ const StatementPage: React.FC<StatementPageProps> = ({
             "OPTIONAL: A selector used to filter matching DOM elements.",
         },
       ],
-      modalCreateCode: function (args: []): string {
+      modalCreateCode: function (args: ModalCreateCodeType): string {
         if (args[0] !== empty && args[1] === empty) {
           return `.parentsUntil('${args[0]}')`;
         } else if (args[0] !== empty && args[1] !== empty) {
@@ -471,7 +470,7 @@ const StatementPage: React.FC<StatementPageProps> = ({
             "OPTIONAL: A selector used to filter matching DOM elements.",
         },
       ],
-      modalCreateCode: function (text: []): string {
+      modalCreateCode: function (text: ModalCreateCodeType): string {
         if (text[0] === empty) {
           return `.prev()`;
         } else {
@@ -491,7 +490,7 @@ const StatementPage: React.FC<StatementPageProps> = ({
             "OPTIONAL: A selector used to filter matching DOM elements.",
         },
       ],
-      modalCreateCode: function (text: []): string {
+      modalCreateCode: function (text: ModalCreateCodeType): string {
         if (text[0] === empty) {
           return `.prevAll()`;
         } else {
@@ -516,7 +515,7 @@ const StatementPage: React.FC<StatementPageProps> = ({
             "OPTIONAL: A selector used to filter matching DOM elements.",
         },
       ],
-      modalCreateCode: function (args: []): string {
+      modalCreateCode: function (args: ModalCreateCodeType): string {
         if (args[0] !== empty && args[1] === empty) {
           return `.prevUntil('${args[0]}')`;
         } else if (args[0] !== empty && args[1] !== empty) {
@@ -538,7 +537,7 @@ const StatementPage: React.FC<StatementPageProps> = ({
         },
         { type: "select", options: encodingArray },
       ],
-      modalCreateCode: function (args: []): string {
+      modalCreateCode: function (args: ModalCreateCodeType): string {
         if (args[0] !== empty && args[1] === empty) {
           return `cy.readFile('${args[0]}')`;
         } else if (args[0] !== empty && args[1] !== empty) {
@@ -570,7 +569,7 @@ const StatementPage: React.FC<StatementPageProps> = ({
             "OPTIONAL: A selector used to filter matching DOM elements.",
         },
       ],
-      modalCreateCode: function (text: []): string {
+      modalCreateCode: function (text: ModalCreateCodeType): string {
         if (text[0] === empty) {
           return `.siblings()`;
         } else {

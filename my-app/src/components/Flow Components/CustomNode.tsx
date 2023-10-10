@@ -1,8 +1,19 @@
 import React, { memo } from "react";
-import { Handle } from "react-flow-renderer";
-
-
-function CustomNode({ data, sourcePosition, targetPosition }) {
+import { Handle, Position } from "react-flow-renderer";
+import { Tree as TreeType } from "../../types/Tree";
+type CustomNodeProps = {
+  data:{
+    name:string;
+    testid:string;
+    props:{[key: string]: boolean;}
+    filePath:string;
+    setCurrentComponent: React.Dispatch<React.SetStateAction<TreeType>>;
+    nodeData:TreeType;
+    isSelected:boolean
+    key:string
+  }
+}
+function CustomNode({ data }:CustomNodeProps) {
 
   const handleClick = () => {
     data.setCurrentComponent(data.nodeData);
@@ -16,8 +27,8 @@ function CustomNode({ data, sourcePosition, targetPosition }) {
         : { backgroundColor: "#1DF28F" }
     }>
       <button className="text-lg font-bold" onClick={handleClick}>{data.name}</button>
-      <Handle type="target" position={targetPosition} />
-      <Handle type="source" position={sourcePosition} />
+      <Handle type="target" position={Position.Top} />
+      <Handle type="source" position={Position.Bottom} />
     </div>
   );
 }

@@ -8,7 +8,7 @@ type SmallerPreviewPopupProps = {
   setCode: React.Dispatch<React.SetStateAction<string>>;
 }
 
-const SmallerPreviewPopup: React.FC<SmallerPreviewPopupProps> = ({ code, setCode, id }) => {
+const SmallerPreviewPopup: React.FC<SmallerPreviewPopupProps> = ({ code, setCode }) => {
 
   const handleEditorChange = (newValue: string) => {
     setCode(newValue);
@@ -17,7 +17,7 @@ const SmallerPreviewPopup: React.FC<SmallerPreviewPopupProps> = ({ code, setCode
 
 
   return (
-    <div className='bg-transparent p-2 h-full w-full' id={id}>
+    <div className='bg-transparent p-2 h-full w-full'>
       <MonacoEditor
         width='100%'
         height='100%'
