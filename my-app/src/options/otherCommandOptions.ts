@@ -1,4 +1,6 @@
-import { empty, encodingArray, commonAssertions } from "./optionVariables";
+import { empty, encodingArray } from "./optionVariables";
+
+type ModalCreateCodeType = (string | number)[];
 
 const otherCommandOptions = {
   blur: {
@@ -29,7 +31,7 @@ const otherCommandOptions = {
       { type: "label", labelText: "Clear a specific cookie by name." },
       { type: "input", inputType: "The name of the cookie to be cleared." },
     ],
-    modalCreateCode: function (text: []): string {
+    modalCreateCode: function (text: ModalCreateCodeType): string {
       if (text[0]) {
         return `cy.clearCookie('${text[0]}')`;
       } else {
@@ -53,7 +55,7 @@ const otherCommandOptions = {
         inputType: "OPTIONAL: Specify key to be cleared in localStorage.",
       },
     ],
-    modalCreateCode: function (args: []): string {
+    modalCreateCode: function (args: ModalCreateCodeType): string {
       if (args[0] === empty) {
         return `cy.clearLocalStorage()`;
       } else {
@@ -90,7 +92,7 @@ const otherCommandOptions = {
         inputType: "The system command to be executed from the project root",
       },
     ],
-    modalCreateCode: function (text: []): string {
+    modalCreateCode: function (text: ModalCreateCodeType): string {
       if (text[0]) {
         return `cy.exec('${text[0]}')`;
       } else {
@@ -114,7 +116,7 @@ const otherCommandOptions = {
       },
       { type: "select", options: encodingArray },
     ],
-    modalCreateCode: function (args: []): string {
+    modalCreateCode: function (args: ModalCreateCodeType): string {
       if (args[0] !== empty && args[1] === "null") {
         return `cy.fixture('${args[0]}')`;
       } else if (args[0] !== empty && args[1] !== "null") {
@@ -155,7 +157,7 @@ const otherCommandOptions = {
       },
       { type: "input", inputType: "The name of the cookie to get." },
     ],
-    modalCreateCode: function (text: []): string {
+    modalCreateCode: function (text: ModalCreateCodeType): string {
       if (text[0]) {
         return `cy.getCookie('${text[0]}')`;
       } else {
@@ -183,8 +185,10 @@ const otherCommandOptions = {
           "The direction to navigate. You can use back or forward to go one step back or forward. You could also navigate to a specific history position (-1 goes back one page, 1 goes forward one page, etc).",
       },
     ],
-    modalCreateCode: function (args: []): string {
-      const value1 = isNaN(args[0]) ? `'${args[0]}'` : args[0];
+    modalCreateCode: function (args: ModalCreateCodeType): string {
+      const value1: string | number = isNaN(Number(args[0]))
+        ? `'${args[0]}'`
+        : Number(args[0]);
       if (args[0]) {
         return `cy.go(${value1})`;
       } else {
@@ -204,7 +208,7 @@ const otherCommandOptions = {
           "Message to be printed to Cypress Command Log. Accepts a Markdown formatted message.",
       },
     ],
-    modalCreateCode: function (text: []): string {
+    modalCreateCode: function (text: ModalCreateCodeType): string {
       if (text[0]) {
         return `cy.log('${text[0]}')`;
       } else {
@@ -235,7 +239,7 @@ const otherCommandOptions = {
       },
       { type: "select", options: ["null", "true", "false"] },
     ],
-    modalCreateCode: function (args: []): string {
+    modalCreateCode: function (args: ModalCreateCodeType): string {
       if (args[0] === "null") {
         return `cy.reload()`;
       } else {
@@ -256,7 +260,7 @@ const otherCommandOptions = {
       },
       { type: "select", options: ["null", "true", "false"] },
     ],
-    modalCreateCode: function (args: []): string {
+    modalCreateCode: function (args: ModalCreateCodeType): string {
       if (args[0] === "null") {
         return `.screenshot()`;
       } else {
@@ -277,7 +281,7 @@ const otherCommandOptions = {
       },
       { type: "select", options: ["null", "true", "false"] },
     ],
-    modalCreateCode: function (args: []): string {
+    modalCreateCode: function (args: ModalCreateCodeType): string {
       if (args[0] === "null") {
         return `cy.screenshot()`;
       } else {
@@ -297,7 +301,7 @@ const otherCommandOptions = {
       { type: "input", inputType: "The name of the cookie to set." },
       { type: "input", inputType: "The value of the cookie to set." },
     ],
-    modalCreateCode: function (text: []): string {
+    modalCreateCode: function (text: ModalCreateCodeType): string {
       if (text[0] && text[1]) {
         return `cy.setCookie('${text[0]}', '${text[1]}')`;
       } else {
@@ -325,7 +329,7 @@ const otherCommandOptions = {
           "The number of milliseconds to move the clock. Any timers within the affected range of time will be called.",
       },
     ],
-    modalCreateCode: function (text: []): string {
+    modalCreateCode: function (text: ModalCreateCodeType): string {
       if (text[0]) {
         return `cy.tick(${text[0]})`;
       } else {
@@ -353,10 +357,14 @@ const otherCommandOptions = {
           "Height of viewport in pixels (must be a non-negative, finite number).",
       },
     ],
-    modalCreateCode: function (args: []): string {
+    modalCreateCode: function (args: ModalCreateCodeType): string {
       if (args[0] !== empty && args[1] !== empty) {
-        const value1 = isNaN(args[0]) ? `'${args[0]}'` : args[0];
-        const value2 = isNaN(args[1]) ? `'${args[1]}'` : args[1];
+        const value1: string | number = isNaN(Number(args[0]))
+          ? `'${args[0]}'`
+          : Number(args[0]);
+        const value2: string | number = isNaN(Number(args[1]))
+          ? `'${args[1]}'`
+          : Number(args[1]);
         return `cy.viewport(${value1}, ${value2})`;
       } else {
         return;
@@ -371,7 +379,7 @@ const otherCommandOptions = {
       { type: "label", labelText: "Navigate to a specific URL." },
       { type: "input", inputType: "The URL to visit." },
     ],
-    modalCreateCode: function (text: []): string {
+    modalCreateCode: function (text: ModalCreateCodeType): string {
       if (text[0]) {
         return `cy.visit('${text[0]}')`;
       } else {
@@ -395,9 +403,11 @@ const otherCommandOptions = {
         inputType: "The amount of time to wait in milliseconds.",
       },
     ],
-    modalCreateCode: function (args: []): string {
+    modalCreateCode: function (args: ModalCreateCodeType): string {
       if (args[0] !== empty && args[1] !== empty) {
-        const value1 = isNaN(args[0]) ? `'${args[0]}'` : args[0];
+        const value1: string | number = isNaN(Number(args[0]))
+          ? `'${args[0]}'`
+          : Number(args[0]);
         return `cy.wait(${value1})`;
       } else {
         return;
@@ -420,7 +430,7 @@ const otherCommandOptions = {
       },
       { type: "select", options: encodingArray },
     ],
-    modalCreateCode: function (args: []): string {
+    modalCreateCode: function (args: ModalCreateCodeType): string {
       if (args[0] !== empty && args[1] !== empty && args[2] === "null") {
         return `cy.writeFile('${args[0]}', '${args[1]}')`;
       } else if (args[0] !== empty && args[1] !== empty && args[2] !== "null") {

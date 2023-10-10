@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import ReactFlow, { Controls, ControlButton } from "react-flow-renderer";
 
 import "react-flow-renderer/dist/style.css";
@@ -10,7 +10,36 @@ const nodeTypes = {
   custom: CustomNode,
 };
 
-const HtmlFlow = ({ flowToggle, onComponentFlow, data, currentHTML, setCurrentHTML, setCurrentTestId, currentTestId }) => {
+type HtmlFlowProps = {
+  flowToggle:()=>void;
+  onComponentFlow:boolean;
+  data:string;
+  currentHTML:string;
+  setCurrentHTML:React.Dispatch<React.SetStateAction<string>>;
+  currentTestId:string;
+  setCurrentTestId:React.Dispatch<React.SetStateAction<string>>;
+};
+
+type NodeType = {
+  id:string;
+  type:string;
+  data: {
+    name:string;
+    attributes:any;
+    setCurrentHTML:React.Dispatch<React.SetStateAction<string>>;
+    setCurrentTestId:React.Dispatch<React.SetStateAction<string>>;
+    isSelected:boolean;
+  }
+  position: {x:number, y:number}
+}
+
+type EdgeType = {
+  id:string;
+  target:string;
+  source:string;
+}
+
+const HtmlFlow = ({ flowToggle, onComponentFlow, data, currentHTML, setCurrentHTML, setCurrentTestId, currentTestId }:HtmlFlowProps) => {
   
   const [edges, setEdges] = React.useState([]);
   const [nodes, setNodes] = React.useState([]);
@@ -18,12 +47,12 @@ const HtmlFlow = ({ flowToggle, onComponentFlow, data, currentHTML, setCurrentHT
   React.useEffect(() => {
     const parsedHtml = new DOMParser().parseFromString(data, "text/html");
       let counter = 0;
-      const nodesArr = [];
-      const edgesArr = [];
+      const nodesArr:NodeType[] = [];
+      const edgesArr:EdgeType[] = [];
       let maxDepth = 0;
 
       const createNodeFromElement = (
-        element,
+        element:any,
         depth: number,
         parent: any = null
       ) => {
@@ -53,7 +82,7 @@ const HtmlFlow = ({ flowToggle, onComponentFlow, data, currentHTML, setCurrentHT
       };
 
       const connectParentToChildren = (
-        element,
+        element:any,
         depth: number,
         parent: any = null
       ) => {
@@ -68,9 +97,9 @@ const HtmlFlow = ({ flowToggle, onComponentFlow, data, currentHTML, setCurrentHT
       connectParentToChildren(parsedHtml.body, 0);
       // depth is correct, need to fix horizonatl positioning of the nodes arr.
       const newNodesArr = [];
-      for (let i = 0; i < maxDepth; i++) {
+      for (let i = 0; i <= maxDepth; i++) {
         // grab all nodes on the same y level;
-        let temp = nodesArr.filter((el) => el.position.y === i * 150);
+        const temp:NodeType[] = nodesArr.filter((el) => el.position.y === i * 150);
         if (temp.length !== 0) {
           const totalWidth = temp.length * 300; // Assuming node width is 176px
           // Calculate the initial x position for the first node
@@ -84,13 +113,11 @@ const HtmlFlow = ({ flowToggle, onComponentFlow, data, currentHTML, setCurrentHT
           newNodesArr.push(...temp);
         }
       }
-      console.log(newNodesArr, edgesArr)
       setNodes(newNodesArr);
       setEdges(edgesArr);
   }, [data]);
   React.useEffect(() => {
-    console.log('need to rerender!')
-    let temp = nodes.map((node) => ({
+    const temp:NodeType[] = nodes.map((node) => ({
       ...node,
       data: {
         ...node.data,

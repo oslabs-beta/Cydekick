@@ -1,12 +1,19 @@
 import React, { useState } from 'react';
 import DynamicModal from './DynamicModal';
 
+interface Modal {
+  type: string;
+  labelText?: string;
+  inputType?: string;
+  options?: string[]
+}
+
 interface OptionDetails {
   option: string;
   code: string;
   tooltip: string;
-  modal?: [];
-  modalCreateCode?: (text: string) => string;
+  modal?: Modal[];
+  modalCreateCode?: (text:string[]) => string;
 }
 
 interface Props {
@@ -27,8 +34,6 @@ const DropdownButton: React.FC<Props> = ({ dropDown, setDropDown, label, onClick
 
   function onButtonClick(index: number, optionDetails: OptionDetails) {
     if (!optionDetails.modal) {
-      console.log(modalOpenStates);
-      console.log(optionDetails.code);
       onClickOption(optionDetails.code, optionDetails);
     } else {
       // Open the modal for the selected option by updating its state

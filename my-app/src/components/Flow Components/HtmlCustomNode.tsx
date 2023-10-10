@@ -1,7 +1,18 @@
 import React from "react";
 import { Handle, Position } from "react-flow-renderer";
 
-const CustomNode = ({ data }) => {
+type HtmlCustomNode = {
+  id:string;
+  data: {
+    name:string;
+    attributes:any;
+    setCurrentHTML:React.Dispatch<React.SetStateAction<string>>;
+    setCurrentTestId:React.Dispatch<React.SetStateAction<string>>;
+    isSelected:boolean;
+  }
+}
+
+const CustomNode = ({ id, data }:HtmlCustomNode) => {
   
   const handleClick = () =>{
     // if data-cy exists set current html to that data.name and set currentTestid to that testid
@@ -17,7 +28,7 @@ const CustomNode = ({ data }) => {
 
   return (
     <div
-      key={data.key}
+      key={id}
       className="px-4 py-2 shadow-md rounded-md border-2 border-stone-400 w-60 h-24 flex flex-col justify-center items-center"
       style={
         data.isSelected

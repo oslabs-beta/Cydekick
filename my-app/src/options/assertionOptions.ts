@@ -1,4 +1,6 @@
-import { empty, encodingArray, commonAssertions } from "./optionVariables";
+import { empty, commonAssertions } from "./optionVariables";
+
+type ModalCreateCodeType = (string | number)[];
 
 const assertionOptions = {
   should: {
@@ -17,15 +19,21 @@ const assertionOptions = {
         inputType: "OPTIONAL: A method to be called on the chainer.",
       },
     ],
-    modalCreateCode: function (args: []): string {
+    modalCreateCode: function (args: ModalCreateCodeType): string {
       if (args[1] === empty && args[2] === empty) {
         return `.should('${args[0]}')`;
       } else if (args[2] === empty) {
-        const value1 = isNaN(args[1]) ? `'${args[1]}'` : args[1];
+        const value1: string | number = isNaN(Number(args[0]))
+          ? `'${args[0]}'`
+          : Number(args[0]);
         return `.should('${args[0]}', ${value1})`;
       } else if (args[0] && args[1] && args[2]) {
-        const value1 = isNaN(args[1]) ? `'${args[1]}'` : args[1];
-        const value2 = isNaN(args[2]) ? `'${args[2]}'` : args[2];
+        const value1: string | number = isNaN(Number(args[0]))
+          ? `'${args[0]}'`
+          : Number(args[0]);
+        const value2: string | number = isNaN(Number(args[1]))
+          ? `'${args[1]}'`
+          : Number(args[1]);
         return `.should('${args[0]}', ${value1}, ${value2})`;
       } else {
         return;
@@ -48,15 +56,21 @@ const assertionOptions = {
         inputType: "OPTIONAL: A method to be called on the chainer.",
       },
     ],
-    modalCreateCode: function (args: []): string {
+    modalCreateCode: function (args: ModalCreateCodeType): string {
       if (args[1] === empty && args[2] === empty) {
         return `.and('${args[0]}')`;
       } else if (args[2] === empty) {
-        const value1 = isNaN(args[1]) ? `'${args[1]}'` : args[1];
+        const value1: string | number = isNaN(Number(args[0]))
+          ? `'${args[0]}'`
+          : Number(args[0]);
         return `.and('${args[0]}', ${value1})`;
       } else if (args[0] && args[1] && args[2]) {
-        const value1 = isNaN(args[1]) ? `'${args[1]}'` : args[1];
-        const value2 = isNaN(args[2]) ? `'${args[2]}'` : args[2];
+        const value1: string | number = isNaN(Number(args[0]))
+          ? `'${args[0]}'`
+          : Number(args[0]);
+        const value2: string | number = isNaN(Number(args[1]))
+          ? `'${args[1]}'`
+          : Number(args[1]);
         return `.and('${args[0]}', ${value1}, ${value2})`;
       } else {
         return;

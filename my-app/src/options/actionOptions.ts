@@ -1,4 +1,6 @@
-import { empty, encodingArray, commonAssertions } from "./optionVariables";
+import { empty } from "./optionVariables";
+
+type ModalCreateCodeType = (string | number)[];
 
 const actionOptions = {
   check: {
@@ -13,7 +15,7 @@ const actionOptions = {
           "OPTIONAL: Value of checkbox or radio that should be checked.",
       },
     ],
-    modalCreateCode: function (args: []): string {
+    modalCreateCode: function (args: ModalCreateCodeType): string {
       if (args[0] === empty) {
         return `.check()`;
       } else {
@@ -43,14 +45,18 @@ const actionOptions = {
           "OPTIONAL: (x,y) x: The distance in pixels from window/element's left or percentage of the window/element's width to scroll to. y: the distance in pixels from window/element's top or percentage of the window/element's height to scroll to.",
       },
     ],
-    modalCreateCode: function (args: []): string {
+    modalCreateCode: function (args: ModalCreateCodeType): string {
       if (args[0] === empty && args[1] === empty) {
         return `.click()`;
       } else if (args[1] === empty) {
         return `.click('${args[0]}')`;
       } else if (args[0] !== empty && args[1] !== empty) {
-        const value1 = isNaN(args[0]) ? `'${args[0]}'` : args[0];
-        const value2 = isNaN(args[1]) ? `'${args[1]}'` : args[1];
+        const value1: string | number = isNaN(Number(args[0]))
+          ? `'${args[0]}'`
+          : Number(args[0]);
+        const value2: string | number = isNaN(Number(args[1]))
+          ? `'${args[1]}'`
+          : Number(args[1]);
         return `.click(${value1}, ${value2})`;
       }
     },
@@ -72,14 +78,18 @@ const actionOptions = {
           "OPTIONAL: (x,y) x: The distance in pixels from window/element's left or percentage of the window/element's width to scroll to. y: the distance in pixels from window/element's top or percentage of the window/element's height to scroll to.",
       },
     ],
-    modalCreateCode: function (args: []): string {
+    modalCreateCode: function (args: ModalCreateCodeType): string {
       if (args[0] === empty && args[1] === empty) {
         return `.dblclick()`;
       } else if (args[1] === empty) {
         return `.dblclick('${args[0]}')`;
       } else if (args[0] !== empty && args[1] !== empty) {
-        const value1 = isNaN(args[0]) ? `'${args[0]}'` : args[0];
-        const value2 = isNaN(args[1]) ? `'${args[1]}'` : args[1];
+        const value1: string | number = isNaN(Number(args[0]))
+          ? `'${args[0]}'`
+          : Number(args[0]);
+        const value2: string | number = isNaN(Number(args[1]))
+          ? `'${args[1]}'`
+          : Number(args[1]);
         return `.dblclick(${value1}, ${value2})`;
       }
     },
@@ -101,14 +111,18 @@ const actionOptions = {
           "OPTIONAL: (x,y) x: The distance in pixels from window/element's left or percentage of the window/element's width to scroll to. y: the distance in pixels from window/element's top or percentage of the window/element's height to scroll to.",
       },
     ],
-    modalCreateCode: function (args: []): string {
+    modalCreateCode: function (args: ModalCreateCodeType): string {
       if (args[0] === empty && args[1] === empty) {
         return `.rightclick()`;
       } else if (args[1] === empty) {
         return `.rightclick('${args[0]}')`;
       } else if (args[0] !== empty && args[1] !== empty) {
-        const value1 = isNaN(args[0]) ? `'${args[0]}'` : args[0];
-        const value2 = isNaN(args[1]) ? `'${args[1]}'` : args[1];
+        const value1: string | number = isNaN(Number(args[0]))
+          ? `'${args[0]}'`
+          : Number(args[0]);
+        const value2: string | number = isNaN(Number(args[1]))
+          ? `'${args[1]}'`
+          : Number(args[1]);
         return `.rightclick(${value1}, ${value2})`;
       }
     },
@@ -138,12 +152,16 @@ const actionOptions = {
           "(x,y) x: The distance in pixels from window/element's left or percentage of the window/element's width to scroll to. y: the distance in pixels from window/element's top or percentage of the window/element's height to scroll to.",
       },
     ],
-    modalCreateCode: function (args: []): string {
+    modalCreateCode: function (args: ModalCreateCodeType): string {
       if (args[1] === empty) {
         return `.scrollTo('${args[0]}')`;
       } else if (args[0] !== empty && args[1] !== empty) {
-        const value1 = isNaN(args[0]) ? `'${args[0]}'` : args[0];
-        const value2 = isNaN(args[1]) ? `'${args[1]}'` : args[1];
+        const value1: string | number = isNaN(Number(args[0]))
+          ? `'${args[0]}'`
+          : Number(args[0]);
+        const value2: string | number = isNaN(Number(args[1]))
+          ? `'${args[1]}'`
+          : Number(args[1]);
         return `.scrollTo(${value1}, ${value2})`;
       } else {
         return;
@@ -170,12 +188,16 @@ const actionOptions = {
           "(x,y) x: The distance in pixels from window/element's left or percentage of the window/element's width to scroll to. y: the distance in pixels from window/element's top or percentage of the window/element's height to scroll to.",
       },
     ],
-    modalCreateCode: function (args: []): string {
+    modalCreateCode: function (args: ModalCreateCodeType): string {
       if (args[1] === empty) {
         return `cy.scrollTo('${args[0]}')`;
       } else if (args[0] !== empty && args[1] !== empty) {
-        const value1 = isNaN(args[0]) ? `'${args[0]}'` : args[0];
-        const value2 = isNaN(args[1]) ? `'${args[1]}'` : args[1];
+        const value1: string | number = isNaN(Number(args[0]))
+          ? `'${args[0]}'`
+          : Number(args[0]);
+        const value2: string | number = isNaN(Number(args[1]))
+          ? `'${args[1]}'`
+          : Number(args[1]);
         return `cy.scrollTo(${value1}, ${value2})`;
       } else {
         return;
@@ -194,11 +216,13 @@ const actionOptions = {
           "The value, index, or text content of the <option> to be selected.",
       },
     ],
-    modalCreateCode: function (args: []): string {
+    modalCreateCode: function (args: ModalCreateCodeType): string {
       if (args[0] === empty) {
         return `.select()`;
       } else {
-        const value1 = isNaN(args[0]) ? `'${args[0]}'` : args[0];
+        const value1: string | number = isNaN(Number(args[0]))
+          ? `'${args[0]}'`
+          : Number(args[0]);
         return `.select(${value1})`;
       }
     },
@@ -211,7 +235,7 @@ const actionOptions = {
       { type: "label", labelText: "Select a file to upload." },
       { type: "input", inputType: "A path to a file within the project root" },
     ],
-    modalCreateCode: function (args: []): string {
+    modalCreateCode: function (args: ModalCreateCodeType): string {
       if (args[0]) {
         return `.selectFile('${args[0]}')`;
       } else {
@@ -240,14 +264,18 @@ const actionOptions = {
           "OPTIONAL: The distance in pixels from element's top to trigger the event.",
       },
     ],
-    modalCreateCode: function (args: []): string {
+    modalCreateCode: function (args: ModalCreateCodeType): string {
       if (args[0] && args[1] === empty && args[2] === empty) {
         return `.trigger('${args[0]}')`;
       } else if (args[0] !== empty && args[1] !== empty && args[2] === empty) {
         return `.trigger('${args[0]}', '${args[1]}')`;
       } else if (args[0] !== empty && args[1] !== empty && args[2] !== empty) {
-        const value1 = isNaN(args[1]) ? `'${args[1]}'` : args[1];
-        const value2 = isNaN(args[2]) ? `'${args[2]}'` : args[2];
+        const value1: string | number = isNaN(Number(args[0]))
+          ? `'${args[0]}'`
+          : Number(args[0]);
+        const value2: string | number = isNaN(Number(args[1]))
+          ? `'${args[1]}'`
+          : Number(args[1]);
         return `.trigger('${args[0]}', ${value1}, ${value2})`;
       } else {
         return;
@@ -265,7 +293,7 @@ const actionOptions = {
         inputType: "The text to be typed into the DOM element.",
       },
     ],
-    modalCreateCode: function (text: []): string {
+    modalCreateCode: function (text: ModalCreateCodeType): string {
       if (text[0]) {
         return `.type('${text[0]}')`;
       } else {
@@ -284,7 +312,7 @@ const actionOptions = {
         inputType: "OPTIONAL: Value of checkbox that should be unchecked.",
       },
     ],
-    modalCreateCode: function (args: []): string {
+    modalCreateCode: function (args: ModalCreateCodeType): string {
       if (args[0] === empty) {
         return `.uncheck()`;
       } else {
