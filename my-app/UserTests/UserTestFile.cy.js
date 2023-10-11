@@ -1,7 +1,7 @@
-describe('poop', () => {
-	it('poop', () => {
-		cy.get('[data-cy=totalMarketsLabel]').click()
-		cy.get('[data-cy=totalMarketsLabel]').should()})
-	it('poop pt 2', () => {
-	})
-})
+cy.get('.tab:nth-child(1)').click();cy.get('.tab:nth-child(1)').click();cy.get('.tab:nth-child(1)').click();cy.get('.xterm-cursor-layer').click();
+cy.get('.tab:nth-child(1)').click();
+cy.get('.tab:nth-child(1)').click();
+cy.get('.xterm-cursor-layer').click();
+cy.get('.tab:nth-child(1)').click();
+cy.get('.xterm-cursor-layer').click();
+null

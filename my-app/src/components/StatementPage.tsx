@@ -5,6 +5,7 @@ const fs = window.require('fs');
 const path = window.require('path');
 import { Tree } from '../types/Tree';
 import { text } from 'stream/consumers';
+import { ipcRenderer } from 'electron';
 
 type StatementPageProps = {
   setCurrentPageNum: React.Dispatch<React.SetStateAction<number>>;
@@ -23,6 +24,7 @@ const StatementPage: React.FC<StatementPageProps> = ({
   const [selectedOptions, setSelectedOptions] = useState<string[]>([]);
   const [dataCy, setDataCy] = useState<string>('');
   const [code, setCode] = React.useState<string>('');
+  const [recording, SetRecording] = React.useState<boolean>(false);
   const filePath = path.join(process.cwd(), 'UserTests', 'TestBlock.cy.js');
   const filePreviewPath = path.join(
     process.cwd(),
@@ -46,11 +48,63 @@ const StatementPage: React.FC<StatementPageProps> = ({
   const handleOptionClick = (option: string) => {
     setSelectedOptions([...selectedOptions, option]);
   };
-
+  fs.watch(filePath, (eventType, filename) => {
+    if (eventType === 'change') {
+      const fileContent = fs.readFileSync(filePath, 'utf8');
+      setCode(fileContent);
+    }
+  });
   //a function attached to a button to append the Itblock onto the editor
   function endItBlock() {
     fs.appendFileSync(filePath, '})');
     setCurrentPageNum(1);
+  }
+  function recordInputs() {
+    const webview = document.getElementById(
+      'webview',
+    ) as Electron.WebviewTag | null;
+    if (recording) {
+      webview.executeJavaScript(`
+      Object.values({
+        CLICK: 'click',
+        CHANGE: 'change',
+        DBLCLICK: 'dblclick',
+        KEYDOWN: 'keydown',
+        SUBMIT: 'submit',
+      }).forEach(event => {
+        document.removeEventListener(event, handleEvent, { capture: true });
+      });
+      `);
+      SetRecording(false);
+    } else {
+      webview.executeJavaScript(`function handleEvent(event){
+      let value = event.target.value
+      const objToSend = {
+        type: event.type,
+        tiltX: event.tiltX,
+        isTrusted: event.isTrusted,
+        target: event.target.outerHTML,
+        fakeVal: value,
+    }
+    fetch('http://localhost:9471/bebop', {
+  method: 'POST',
+  headers: {'Content-Type': 'application/json'},
+  body: JSON.stringify(objToSend),
+  });
+  }`);
+      webview.executeJavaScript(`
+    Object.values({
+      CLICK: 'click',
+      CHANGE: 'change',
+      DBLCLICK: 'dblclick',
+      KEYDOWN: 'keydown',
+      SUBMIT: 'submit',
+    }).forEach(event => {
+      document.addEventListener(event, handleEvent, { capture: true, passive: true,});
+    });
+`);
+      SetRecording(true);
+    }
   }
 
   function endDescribeBlock() {
@@ -134,11 +188,6 @@ const StatementPage: React.FC<StatementPageProps> = ({
     },
   };
 
-  //   .should(chainers)
-  // .should(chainers, value)
-  // .should(chainers, method, value)
-  // .should(callbackFn)
-
   return (
     <div className='flex h-screen'>
       <div className='flex flex-col w-3/5 p-5'>
@@ -185,6 +234,11 @@ const StatementPage: React.FC<StatementPageProps> = ({
             className='bg-blue-500 text-white px-4 py-2 rounded'
             onClick={endItBlock}>
             End it block
+          </button>
+          <button
+            className='bg-blue-500 text-white px-4 py-2 rounded'
+            onClick={recordInputs}>
+            {recording ? 'Stop recording' : 'Start recording'}
           </button>
           <button
             className='bg-blue-500 text-white px-4 py-2 rounded'
