@@ -1,5 +1,6 @@
 import SmallerPreviewPopup from './SmallerPreviewPopup';
 const fs = window.require('fs');
+const os = window.require('os');
 const path = window.require('path')
 import React from 'react';
 
@@ -13,7 +14,9 @@ function ItBlockPage({ setCurrentPageNum }: ItBlockPageProps) {
 
   //renders the current state of the editor
   React.useEffect(() => {
-    const filePath = path.join(process.cwd(), 'UserTests', 'TestBlock.cy.js');
+    // const filePath = path.join(__dirname, 'src', 'UserTests', 'TestBlock.cy.js');
+    const filePath = path.join(os.tmpdir(), 'UserTests', 'TestBlock.cy.js');
+
     const fileContent = fs.readFileSync(filePath, 'utf8')
     setCode(fileContent);
   }, []);
@@ -22,7 +25,9 @@ function ItBlockPage({ setCurrentPageNum }: ItBlockPageProps) {
   function createItBlock(): void {
     const itText = (document.getElementById('itText') as HTMLInputElement).value
     const testFileContent = itBlock(itText);
-    const filePath = path.join(process.cwd(), 'UserTests', 'TestBlock.cy.js');
+    // const filePath = path.join(__dirname, 'src', 'UserTests', 'TestBlock.cy.js');
+    const filePath = path.join(os.tmpdir(), 'UserTests', 'TestBlock.cy.js');
+
     fs.appendFileSync(filePath, testFileContent);
     setCurrentPageNum(2);
   }

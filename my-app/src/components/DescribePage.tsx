@@ -1,6 +1,8 @@
 import SmallerPreviewPopup from './SmallerPreviewPopup'
 import React from 'react';
 const fs = window.require('fs');
+const os = window.require('os');
+
 const path = window.require('path')
 
 type DescribePageProps = {
@@ -22,7 +24,10 @@ function DescribePage({ setCurrentPageNum }: DescribePageProps) {
   function createDescribeBlock(): void {
     const describeText = (document.getElementById('describeText') as HTMLInputElement).value
     const testFileContent = describeBlock(describeText);
-    const filePath = path.join(process.cwd(), 'UserTests', 'TestBlock.cy.js');
+    // const filePath = path.join(__dirname, 'src', 'UserTests', 'TestBlock.cy.js');
+    const filePath = path.join(os.tmpdir(), 'UserTests', 'TestBlock.cy.js');
+
+
     fs.writeFileSync(filePath, testFileContent);
     setCurrentPageNum(1)
   }
