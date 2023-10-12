@@ -5,12 +5,14 @@ import ButtonComponent from '../components/ButtonComponent';
 import TestGenContainer from '../components/TestGenContainer';
 import { Tree as TreeType } from '../types/Tree';
 import HtmlFlow from '../components/Flow Components/HtmlFlow';
-
+import server from '../server/server';
 type MainPageProps = {
   url: string;
   fileTree: TreeType;
   setPageState: React.Dispatch<React.SetStateAction<string>>;
 };
+// this is kinda scuffed but this turns on the server. the servers sole purpose is for event recording see server.ts if u want more details
+server;
 
 const MainPage = (props: MainPageProps) => {
   const { url, fileTree, setPageState } = props;
@@ -47,27 +49,24 @@ const MainPage = (props: MainPageProps) => {
   };
   const handleReload = () => {
     const webview = document.getElementById(
-      "webview"
+      'webview',
     ) as Electron.WebviewTag | null;
     webview.loadURL(url);
   };
 
   return (
-    <div className=" w-full h-screen flex flex-col">
+    <div className=' w-full h-screen flex flex-col'>
       <div
-        id="NavBar"
-        className="w-screen flex bg-gradient-to-b from-secondaryPrimary to-secondaryPrimaryDark rounded-b-lg"
-      >
+        id='NavBar'
+        className='w-screen flex bg-gradient-to-b from-secondaryPrimary to-secondaryPrimaryDark rounded-b-lg'>
         <button
-          className="justify-center w-1/4 rounded-bl-lg border-2 border-transparent border-r-secondary transition duration-300 ease-in-out hover:bg-secondary hover:text-secondaryPrimary hover:font-bold hover:border-secondaryPrimary"
-          onClick={handleBack}
-        >
+          className='justify-center w-1/4 rounded-bl-lg border-2 border-transparent border-r-secondary transition duration-300 ease-in-out hover:bg-secondary hover:text-secondaryPrimary hover:font-bold hover:border-secondaryPrimary'
+          onClick={handleBack}>
           Back
         </button>
         <button
-          className="w-1/4 border-2 border-transparent border-r-secondary transition duration-300 ease-in-out hover:bg-secondary hover:text-secondaryPrimary hover:font-bold hover:border-secondaryPrimary"
-          onClick={handleReload}
-        >
+          className='w-1/4 border-2 border-transparent border-r-secondary transition duration-300 ease-in-out hover:bg-secondary hover:text-secondaryPrimary hover:font-bold hover:border-secondaryPrimary'
+          onClick={handleReload}>
           Reload URL
         </button>
         <ButtonComponent />
@@ -96,7 +95,7 @@ const MainPage = (props: MainPageProps) => {
           setData={setData}
         />
       </div>
-      <div className="w-full flex-grow mt-2 bg-transparent">
+      <div className='w-full flex-grow mt-2 bg-transparent'>
         <TestGenContainer
           currentTestId={currentTestId}
           currentHTML={currentHTML}
