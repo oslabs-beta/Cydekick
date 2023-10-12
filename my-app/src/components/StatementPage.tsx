@@ -3,7 +3,6 @@ import SmallerPreviewPopup from './SmallerPreviewPopup';
 import DropdownButton from './DropdownButton';
 const fs = window.require('fs');
 const os = window.require('os');
-
 const path = window.require('path');
 import { Tree } from '../types/Tree';
 import actionOptions from '../options/actionOptions';
@@ -32,16 +31,17 @@ const StatementPage: React.FC<StatementPageProps> = ({
   const [code, setCode] = React.useState<string>('');
   const [empty, setEmpty] = React.useState<string>('');
   const [recording, SetRecording] = React.useState<boolean>(false);
-  const filePath = path.join(process.cwd(), 'UserTests', 'TestBlock.cy.js');
+  const filePath = path.join(os.tmpdir(), 'UserTests', 'TestBlock.cy.js');
   const filePreviewPath = path.join(
-    process.cwd(),
+    os.tmpdir(),
     'UserTests',
     'UserTestFile.cy.js',
   );
   const [dropDown, setDropDown] = useState<string>('');
   //renders current state of testblock.cy.js onto the monaco editor
   React.useEffect(() => {
-    const filePath = path.join(process.cwd(), 'UserTests', 'TestBlock.cy.js');
+    // const filePath = path.join(__dirname, 'src', 'UserTests', 'TestBlock.cy.js');
+    const filePath = path.join(os.tmpdir(), 'UserTests', 'TestBlock.cy.js');
     const fileContent = fs.readFileSync(filePath, 'utf8');
     setCode(fileContent);
   }, []);

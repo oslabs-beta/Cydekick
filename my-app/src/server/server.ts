@@ -4,6 +4,7 @@ import { finder } from '@medv/finder';
 import inputToString from '../eventRecording/recordedInputToString';
 const fs = window.require('fs');
 const path = window.require('path');
+const os = window.require('os');
 const app = express();
 const port = 9471;
 import type { ParsedEvent } from '../types/parsedEvent';
@@ -17,7 +18,7 @@ app.use(express.json());
 // are making. look at the recordInput function in stamentPage.tsx if you are still confused. now is there a better way to do this very likley yes. however i do not know that way.
 // one day we will live in a world were this server file is not nessacary
 
-const filePath = path.join(process.cwd(), 'UserTests', 'TestBlock.cy.js');
+const filePath = path.join(os.tmpdir(), 'UserTests', 'TestBlock.cy.js');
 
 function parseEvent(event: Event, passedInRoot: Element): ParsedEvent {
   console.log('we parsing');
