@@ -1,20 +1,18 @@
-import React from "react";
-import Tree from "../components/tree";
-import Webview from "../components/Webview";
-
-import ButtonComponent from "../components/ButtonComponent";
-import TestGenContainer from "../components/TestGenContainer";
-import {Tree as TreeType} from "../types/Tree"
-
+import React from 'react';
+import Webview from '../components/Webview';
+import Flow from '../components/Flow Components/Flow';
+import ButtonComponent from '../components/ButtonComponent';
+import TestGenContainer from '../components/TestGenContainer';
+import { Tree as TreeType } from '../types/Tree';
+import HtmlFlow from '../components/Flow Components/HtmlFlow';
 
 type MainPageProps = {
-  url:string,
-  fileTree:TreeType,
-  setPageState:React.Dispatch<React.SetStateAction<string>>
+  url: string;
+  fileTree: TreeType;
+  setPageState: React.Dispatch<React.SetStateAction<string>>;
 };
 
-
-const MainPage = (props:MainPageProps) => {
+const MainPage = (props: MainPageProps) => {
   const { url, fileTree, setPageState } = props;
   const [currentComponent, setCurrentComponent] = React.useState<TreeType>({
     id: '',
@@ -37,40 +35,76 @@ const MainPage = (props:MainPageProps) => {
   const [currentHTML, setCurrentHTML] = React.useState('');
   const [currentTestId, setCurrentTestId] = React.useState('');
   const [data, setData] = React.useState('');
-  
+  const [onComponentFlow, setOnComponentFlow] = React.useState(true);
+
+  React.useEffect(() => console.log(currentTestId), [currentTestId]);
   // Route Handling between pages
-  const handleBack = () =>{
-    setPageState('Home')
-  }
+  const handleBack = () => {
+    setPageState('Home');
+  };
+  const flowToggle = () => {
+    if (data) setOnComponentFlow(!onComponentFlow);
+  };
+  const handleReload = () => {
+    const webview = document.getElementById(
+      "webview"
+    ) as Electron.WebviewTag | null;
+    webview.loadURL(url);
+  };
+
   return (
-    <div className=" w-screen h-screen flex">
-      <div className="w-1/2 max-w-1/2 flex flex-col" >
-        <button className="rounded-lg p-2 w-fit mb-2" style={{backgroundColor: "#1DF28F"}} onClick={handleBack}>Back</button>
-        <Tree
-          data={fileTree}
-          setCurrentComponent={setCurrentComponent}
+    <div className=" w-full h-screen flex flex-col">
+      <div
+        id="NavBar"
+        className="w-screen flex bg-gradient-to-b from-secondaryPrimary to-secondaryPrimaryDark rounded-b-lg"
+      >
+        <button
+          className="justify-center w-1/4 rounded-bl-lg border-2 border-transparent border-r-secondary transition duration-300 ease-in-out hover:bg-secondary hover:text-secondaryPrimary hover:font-bold hover:border-secondaryPrimary"
+          onClick={handleBack}
+        >
+          Back
+        </button>
+        <button
+          className="w-1/4 border-2 border-transparent border-r-secondary transition duration-300 ease-in-out hover:bg-secondary hover:text-secondaryPrimary hover:font-bold hover:border-secondaryPrimary"
+          onClick={handleReload}
+        >
+          Reload URL
+        </button>
+        <ButtonComponent />
+      </div>
+      <div className='w-full h-3/5 flex'>
+        <Flow
+          onComponentFlow={onComponentFlow}
+          fileTree={fileTree}
           currentComponent={currentComponent}
-          htmlData={data}
+          setCurrentComponent={setCurrentComponent}
+          flowToggle={flowToggle}
+        />
+        <HtmlFlow
+          onComponentFlow={onComponentFlow}
+          flowToggle={flowToggle}
+          data={data}
+          currentHTML={currentHTML}
           setCurrentHTML={setCurrentHTML}
           setCurrentTestId={setCurrentTestId}
-          currentHTML={currentHTML}
           currentTestId={currentTestId}
-        ></Tree>
-      <div className="fixed bottom-0 left-0 w-1/2 h-2/5 border-2 border-green-400 rounded bg-slate-500">
-        <TestGenContainer currentTestId={currentTestId} currentHTML={currentHTML} currentComponent={currentComponent}/>
+        />
+        <Webview
+          url={url}
+          currentComponent={currentComponent}
+          currentTestId={currentTestId}
+          setData={setData}
+        />
       </div>
+      <div className="w-full flex-grow mt-2 bg-transparent">
+        <TestGenContainer
+          currentTestId={currentTestId}
+          currentHTML={currentHTML}
+          currentComponent={currentComponent}
+        />
       </div>
-      <Webview
-        url={url}
-        currentComponent={currentComponent}
-        currentTestId={currentTestId}
-        setData={setData}
-      />
-      
-      <ButtonComponent/>
     </div>
-
   );
 };
 
-export default MainPage
+export default MainPage;

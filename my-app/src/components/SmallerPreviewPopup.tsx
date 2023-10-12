@@ -1,6 +1,8 @@
 import React from 'react';
 import MonacoEditor from 'react-monaco-editor';
-
+const path = window.require('path')
+const fs = window.require('fs');
+const os = window.require('os');
 
 
 type SmallerPreviewPopupProps = {
@@ -10,28 +12,26 @@ type SmallerPreviewPopupProps = {
 
 const SmallerPreviewPopup: React.FC<SmallerPreviewPopupProps> = ({ code, setCode }) => {
 
-  // const [code, setCode] = React.useState('');
-
-  // React.useEffect(() => {
-  //   const fileContent = ipcRenderer.sendSync('read-file');
-  //   setCode(fileContent);
-  // }, []);
-
   const handleEditorChange = (newValue: string) => {
     setCode(newValue);
+    const filePath = path.join(os.tmpdir(), 'UserTests', 'TestBlock.cy.js');
+    fs.writeFileSync(filePath, newValue);
   };
 
+
+
   return (
-    <div >
+    <div className='bg-transparent p-2 h-full w-full'>
       <MonacoEditor
-        width='370'
-        height='400'
+        width='100%'
+        height='100%'
         language='javascript'
         theme='vs-dark'
         value={code}
         options={{
           selectOnLineNumbers: true,
           autoClosingQuotes: 'always',
+          automaticLayout:true,
         }}
         onChange={handleEditorChange}
       />
@@ -39,5 +39,5 @@ const SmallerPreviewPopup: React.FC<SmallerPreviewPopupProps> = ({ code, setCode
   );
 };
 
-export default SmallerPreviewPopup;
+export default SmallerPreviewPopup
 

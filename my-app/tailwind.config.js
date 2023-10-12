@@ -1,15 +1,18 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ['./src/**/*.{js,jsx,ts,tsx}'],
+  important: true,
   theme: {
     extend: {
       colors:{
         secondary: "#14161d",
         primary: "#1DF28F",
+        primaryDark: "#0bc06c",
         secondaryPrimary: "#048C7F",
+        secondaryPrimaryDark: "#037066"
       },
       backgroundImage: {
-        'logo': "url('/logo.png')",
+        logo: "url('/logo.png')",
       },
     },
   },
