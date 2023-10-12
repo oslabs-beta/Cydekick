@@ -135,7 +135,7 @@ const Flow = ({
   const [edges, setEdges, onEdgesChange] = useEdgesState(layoutedEdges);
 
   return (
-    <div className={`relative w-1/2 p-2 ${onComponentFlow ? "" : "hidden"}`}>
+    <div className={`relative w-1/2 p-2 ${onComponentFlow ? "" : "hidden"} z-0`}>
       <ReactFlow
         nodes={nodes.map((node) => ({
           ...node,

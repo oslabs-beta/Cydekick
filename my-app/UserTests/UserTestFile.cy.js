@@ -1,4 +1,0 @@
-describe('wewa', () => {
-	it('ead', () => {
-	})
-})

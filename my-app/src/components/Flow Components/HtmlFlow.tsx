@@ -134,7 +134,7 @@ const HtmlFlow = ({ flowToggle, onComponentFlow, data, currentHTML, setCurrentHT
   }, [currentHTML, currentTestId]);
 
   return (
-    <div className={`relative w-1/2 p-2 ${onComponentFlow ? "hidden" : '' }`}>
+    <div className={`relative w-1/2 p-2 ${onComponentFlow ? "hidden" : ""} z-0`}>
       <ReactFlow
         nodes={nodes}
         edges={edges}

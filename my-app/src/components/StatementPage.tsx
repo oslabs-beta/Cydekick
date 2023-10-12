@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import SmallerPreviewPopup from './SmallerPreviewPopup';
 import DropdownButton from './DropdownButton';
 const fs = window.require('fs');
+const os = window.require('os');
+
 const path = window.require('path');
 import { Tree } from '../types/Tree';
 import actionOptions from '../options/actionOptions';

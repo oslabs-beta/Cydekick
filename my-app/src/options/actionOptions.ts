@@ -270,12 +270,12 @@ const actionOptions = {
       } else if (args[0] !== empty && args[1] !== empty && args[2] === empty) {
         return `.trigger('${args[0]}', '${args[1]}')`;
       } else if (args[0] !== empty && args[1] !== empty && args[2] !== empty) {
-        const value1: string | number = isNaN(Number(args[0]))
-          ? `'${args[0]}'`
-          : Number(args[0]);
-        const value2: string | number = isNaN(Number(args[1]))
+        const value1: string | number = isNaN(Number(args[1]))
           ? `'${args[1]}'`
           : Number(args[1]);
+        const value2: string | number = isNaN(Number(args[2]))
+          ? `'${args[2]}'`
+          : Number(args[2]);
         return `.trigger('${args[0]}', ${value1}, ${value2})`;
       } else {
         return;

@@ -11,7 +11,10 @@ import { rendererConfig } from './webpack.renderer.config';
 
 const config: ForgeConfig = {
   packagerConfig: {
-    asar: true,
+    asar: {
+      unpackDir: "src/UserTests"
+    },
+    icon: './icons/icon', // based on platform, will "add" .png for linux, .ico for windows, and .icns for mac
   },
   rebuildConfig: {},
   makers: [new MakerSquirrel({}), new MakerZIP({}, ['darwin']), new MakerRpm({}), new MakerDeb({})],
