@@ -29,23 +29,6 @@ const PreviewPopup: React.FC<PreviewPopupProps> = ({ onClose }) => {
   };
 
   return (
-    // <div style={{ position: 'fixed', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', zIndex: 1000 }}>
-    //   <MonacoEditor
-    //     width="800"
-    //     height="600"
-    //     language="javascript"
-    //     theme="vs-dark"
-    //     value={code}
-    //     options={
-    //       {
-    //         selectOnLineNumbers: true,
-    //         autoClosingQuotes: "always",
-    //       }}
-    //     onChange={handleEditorChange}
-    //   />
-    //   <button className="bg-blue-500 text-white font-semibold px-4 py-2 rounded-md mt-4" onClick={handleClose}>Close</button>
-    // </div>
-
     <div
       style={{
         position: 'fixed',
