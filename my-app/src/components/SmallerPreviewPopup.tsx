@@ -1,6 +1,8 @@
 import React from 'react';
 import MonacoEditor from 'react-monaco-editor';
-
+const path = window.require('path')
+const fs = window.require('fs');
+const os = window.require('os');
 
 
 type SmallerPreviewPopupProps = {
@@ -12,6 +14,8 @@ const SmallerPreviewPopup: React.FC<SmallerPreviewPopupProps> = ({ code, setCode
 
   const handleEditorChange = (newValue: string) => {
     setCode(newValue);
+    const filePath = path.join(os.tmpdir(), 'UserTests', 'TestBlock.cy.js');
+    fs.writeFileSync(filePath, newValue);
   };
 
 
