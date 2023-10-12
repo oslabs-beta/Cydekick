@@ -8,6 +8,9 @@
     "start": "electron-forge start",
     "package": "electron-forge package",
     "make": "electron-forge make",
+    "make:linux": "electron-forge make --platform=linux",
+    "make:win": "electron-forge make --platform=win32",
+    "make:mac": "electron-forge make --platform=darwin",
     "publish": "electron-forge publish",
     "lint": "eslint --ext .ts,.tsx ."
   },
