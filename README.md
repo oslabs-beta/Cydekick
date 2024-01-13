@@ -17,6 +17,7 @@
 Cydekick is a Cypress test code generator designed for React applications. It enables you to visualize the component hierarchy of your React application, interact with your application in real-time, and seamlessly generate test code.
 
 ## Table of Contents
+- [Interface & Features](#interface--features)
 - [Prerequisites](#prerequisites)
 - [Installation](#installation)
 - [Usage](#usage)
@@ -25,6 +26,23 @@ Cydekick is a Cypress test code generator designed for React applications. It en
 - [For Future Iterations](#future-iterations)
 - [License](#license-information)
 - [The Cydekick Team](#the-cydekick-team)
+
+## Interface & Features
+
+Overview:
+Upon launching Cydekick, users are presented with an intuitive interface designed to simplify Cypress testing for React applications. The main features include:
+
+1. Visual Component Hierarchy:
+   - Navigate through the component hierarchy using React Flow, providing a visual representation of your React application's structure.
+
+2. Highlight Components:
+   - Click on a component to reveal its HTML structure, allowing users to inspect and interact with individual components.
+
+3. Generate Test Code:
+   - Seamlessly generate Cypress test code by providing text for "describe" and "it" blocks, along with selecting Cypress commands for testing.
+
+4. Preview and Save:
+   - Preview and save the generated test code in a separate file, giving users the flexibility to edit and download the code at their convenience.
 
 ## Prerequisites
 
