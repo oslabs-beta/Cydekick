@@ -12,7 +12,7 @@ Cydekick is a Cypress test code generator designed for React applications. It en
 - [Usage](#usage)
 - [Contributing](#contributing)
 - [Support](#support)
-- [Known Bugs](#known-bugs)
+- [For Future Iterations](#future-iterations)
 - [License](#license)
 - [The Cydekick Team](#the-cydekick-team)
 
@@ -30,6 +30,7 @@ Follow these steps to install Cydekick:
 
 1. Download the latest version of Cydekick from LINK
 2. Choose the version that matches your operating system: Mac, Windows, or Linux.
+3. Unzip the file onto your Computer and proceed to the next steps below.
 
 
 ## Usage
@@ -68,7 +69,7 @@ When submitting code or changes, provide clear and comprehensive commit messages
 If you're working on new features or bug fixes, consider including tests to maintain the project's reliability.
 By following these guidelines, you can actively participate in enhancing the project and shaping its future. Your contributions are greatly appreciated!
 
-## For Future Iterations:
+## For Future Iterations
 Currently, the Cypress commands are not compatible with anonymous functions.
 The commands do not support an "options" object  parameter.
 The commands only support strings and numbers.
@@ -77,7 +78,7 @@ There is a limited number of command options.
 
 ## Support
 
-Encounter issues or have suggestions? Submit feedback HERE.
+Encounter issues or have suggestions? Please feel free to message the creators down below.
 
 
 ## License Information
