@@ -11,7 +11,7 @@
 </p>
 
 <p align="center">
-  [Cydekick.com](https://cydekick.dev/#home)
+  <a href="https://cydekick.dev/#home">Cydekick.com</a>
 </p>
 
 Cydekick is a Cypress test code generator designed for React applications. It enables you to visualize the component hierarchy of your React application, interact with your application in real-time, and seamlessly generate test code.
@@ -23,7 +23,7 @@ Cydekick is a Cypress test code generator designed for React applications. It en
 - [Contributing](#contributing)
 - [Support](#support)
 - [For Future Iterations](#future-iterations)
-- [License](#license)
+- [License](#license-information)
 - [The Cydekick Team](#the-cydekick-team)
 
 ## Prerequisites
