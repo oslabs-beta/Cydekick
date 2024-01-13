@@ -1,8 +1,18 @@
-**Cydekick Banner Image**
+<p align="center">
+  <img src="https://github.com/oslabs-beta/Cydekick/assets/122579382/c9b55008-81dd-4f78-af10-78a5466e6963" alt="image">
+</p>
 
-![Demo Image Placeholder](path_to_demo_image)
+<p align="center">
+  <img src="https://img.shields.io/badge/Electron-2e2e2e"> <img src="https://img.shields.io/badge/React-61dafb"> <img src="https://img.shields.io/badge/Typescript-3178c6">
+  <img src="https://img.shields.io/badge/Node.js-43853d"> <img src="https://img.shields.io/badge/Express-000000"> <img src="https://img.shields.io/badge/Webpack-8dd6f9">
+  <img src="https://img.shields.io/badge/Cypress-17202c"> <img src="https://img.shields.io/badge/Selenium-43b02a"> <img src="https://img.shields.io/badge/Mocha-8d6748">
+  <img src="https://img.shields.io/badge/Chai-a52a2a"> <img src="https://img.shields.io/badge/React_Flow-2f2f2f"> <img src="https://img.shields.io/badge/Tailwind_CSS-38b2ac">
+  <img src="https://img.shields.io/badge/HTML-e34c26">
+</p>
 
-**List of Cydekick Technologies**
+<p align="center">
+  [Cydekick.com](https://cydekick.dev/#home)
+</p>
 
 Cydekick is a Cypress test code generator designed for React applications. It enables you to visualize the component hierarchy of your React application, interact with your application in real-time, and seamlessly generate test code.
 
@@ -28,10 +38,9 @@ To use Cydekick, you will need to:
 
 Follow these steps to install Cydekick:
 
-1. Download the latest version of Cydekick from LINK
+1. Download the latest version of Cydekick from [HERE](https://cydekick.dev/#home).
 2. Choose the version that matches your operating system: Mac, Windows, or Linux.
 3. Unzip the file onto your Computer and proceed to the next steps below.
-
 
 ## Usage
 
@@ -41,15 +50,21 @@ To use Cydekick effectively, follow these steps:
 
 2. Input the files of your React application and the URL where it's hosted.
 
-   ![](https://cydekick.dev/assets/DemoGif1.gif)
+   <p align="center">
+     <img src="https://cydekick.dev/assets/DemoGif1.gif" alt="DemoGif1">
+   </p>
 
 3. Explore the component hierarchy using React Flow and select the component of your application that you want to test.
 
-   ![](https://cydekick.dev/assets/DemoGif2.gif)
+   <p align="center">
+     <img src="https://cydekick.dev/assets/DemoGif2.gif" alt="DemoGif2">
+   </p>
 
 4. Generate test code by providing text for "describe" and "it" blocks, and selecting Cypress commands.
 
-   ![](https://cydekick.dev/assets/DemoGif3.gif)
+   <p align="center">
+     <img src="https://cydekick.dev/assets/DemoGif3.gif" alt="DemoGif3">
+   </p>
 
 5. Ensure you add the statement to the editor by clicking the "end statement" button.
 
@@ -57,44 +72,47 @@ To use Cydekick effectively, follow these steps:
 
 7. Congratulations on your first test code; You're free to edit, preview, or save the generated code.
 
-   ![](https://cydekick.dev/assets/DemoGif4.gif)
+   <p align="center">
+     <img src="https://cydekick.dev/assets/DemoGif4.gif" alt="DemoGif4">
+   </p>
 
+## Contributing
+<a id="contributing"></a>
 
-## How to Contribute
-
-Contributions from the community are highly valued and crucial to the success of our open-source project. We encourage you to get involved in several ways:
-
-Make use of the established coding style to ensure consistency in your contributions.
-When submitting code or changes, provide clear and comprehensive commit messages and descriptions in your pull requests.
-If you're working on new features or bug fixes, consider including tests to maintain the project's reliability.
-By following these guidelines, you can actively participate in enhancing the project and shaping its future. Your contributions are greatly appreciated!
+We've launched Cydekick as a valuable tool to streamline Cypress testing for users. We plan to introduce more features, extensions, and enhancements to make Cypress testing even more efficient. We appreciate any contributions from the community and encourage you to give Cydekick a try. Feel free to suggest improvements or report any issues you encounter using the application. Your interest and involvement are highly valued!
 
 ## For Future Iterations
-Currently, the Cypress commands are not compatible with anonymous functions.
-The commands do not support an "options" object  parameter.
-The commands only support strings and numbers.
-There is a limited number of command options.
-
+<a id="future-iterations"></a>
+- Currently, the Cypress commands are not compatible with anonymous functions.
+- The commands do not support an "options" object parameter.
+- The commands only support strings and numbers.
+- There is a limited number of command options.
 
 ## Support
 
 Encounter issues or have suggestions? Please feel free to message the creators down below.
 
-
 ## License Information
 
-Open source licensing information is essential for your repository to facilitate contributions. If you haven't added this manually, GitHub makes it easy. Follow these steps:
-
-1. Visit your OSP's main GitHub page and click "Add file" at the top.
-2. Create a new file named "LICENSE.md" (in all caps).
-3. When prompted, select the "MIT License" template.
-4. Commit your new licensing file to your main repository.
+Cydekick is licensed under the MIT License. See the [LICENSE](https://github.com/oslabs-beta/Cydekick/blob/main/LICENSE) file for details.
 
 ## The Cydekick Team
 
 Developed by:
 
-- Preston Mounivong: [LinkedIn][GitHub]
-- Sid Saxena: [LinkedIn][GitHub]
-- Jacob Sasser: [LinkedIn][GitHub]
-- Quinn Craddock: [LinkedIn][GitHub]
+- **Preston Mounivong**
+  - LinkedIn: [Preston Mounivong](https://www.linkedin.com/in/prestonmounivong/)
+  - GitHub: [prrrrreston](https://github.com/prrrrreston)
+
+- **Sid Saxena**
+  - LinkedIn: [Sid Saxena](https://www.linkedin.com/in/siddhantsaxena27/)
+  - GitHub: [sidsaxena27](https://github.com/sidsaxena27)
+
+- **Jacob Sasser**
+  - LinkedIn: [Jacob Sasser](https://www.linkedin.com/in/jacob-sasser-11a424112/)
+  - GitHub: [jacobsasser](https://github.com/jacobsasser)
+
+- **Quinn Craddock**
+  - LinkedIn: [Quinn Craddock](https://www.linkedin.com/in/quinn-craddock4/)
+  - GitHub: [quinnCraddock4](https://github.com/quinnCraddock4)
+
