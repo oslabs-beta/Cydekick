@@ -38,17 +38,17 @@ To use Cydekick effectively, follow these steps:
 
 1. Launch Cydekick.
 
-   ![Cydekick Launch](insert_gif_url_here)
-
 2. Input the files of your React application and the URL where it's hosted.
 
-   ![Input Application Details](insert_gif_url_here)
+   ![image](https://github.com/oslabs-beta/Cydekick/assets/122579382/c50837b4-7437-4d85-9ae6-566084bd420c)
 
 3. Explore the component hierarchy using React Flow and select the component of your application that you want to test.
 
-   ![Explore Component Hierarchy](insert_gif_url_here)
+   ![image](https://github.com/oslabs-beta/Cydekick/assets/122579382/37f358d3-e963-488c-8c58-c439c765a91a)
 
 4. Generate test code by providing text for "describe" and "it" blocks, and selecting Cypress commands.
+
+   ![image](https://github.com/oslabs-beta/Cydekick/assets/122579382/e90818aa-2b95-4b0b-9060-7ce76925afd5)
 
 5. Ensure you add the statement to the editor by clicking the "end statement" button.
 
@@ -56,8 +56,7 @@ To use Cydekick effectively, follow these steps:
 
 7. Congratulations on your first test code; You're free to edit, preview, or save the generated code.
 
-   ![Generate Test Code](insert_gif_url_here)
-
+   ![image](https://github.com/oslabs-beta/Cydekick/assets/122579382/ada9e1f9-cab8-4044-bfec-c5c43adc799c)
 
 
 ## How to Contribute
