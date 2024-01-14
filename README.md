@@ -3,12 +3,21 @@
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/Electron-2e2e2e"> <img src="https://img.shields.io/badge/React-61dafb"> <img src="https://img.shields.io/badge/Typescript-3178c6">
-  <img src="https://img.shields.io/badge/Node.js-43853d"> <img src="https://img.shields.io/badge/Express-000000"> <img src="https://img.shields.io/badge/Webpack-8dd6f9">
-  <img src="https://img.shields.io/badge/Cypress-17202c"> <img src="https://img.shields.io/badge/Selenium-43b02a"> <img src="https://img.shields.io/badge/Mocha-8d6748">
-  <img src="https://img.shields.io/badge/Chai-a52a2a"> <img src="https://img.shields.io/badge/React_Flow-2f2f2f"> <img src="https://img.shields.io/badge/Tailwind_CSS-38b2ac">
-  <img src="https://img.shields.io/badge/HTML-e34c26">
+  <img src="https://img.shields.io/badge/Electron-2e2e2e?style=for-the-badge&logo=electron&logoColor=white"> 
+  <img src="https://img.shields.io/badge/React-61dafb?style=for-the-badge&logo=react&logoColor=white"> 
+  <img src="https://img.shields.io/badge/Typescript-3178c6?style=for-the-badge&logo=typescript&logoColor=white">
+  <img src="https://img.shields.io/badge/Node.js-43853d?style=for-the-badge&logo=node.js&logoColor=white"> 
+  <img src="https://img.shields.io/badge/Express-000000?style=for-the-badge&logo=express&logoColor=white"> 
+  <img src="https://img.shields.io/badge/Webpack-8dd6f9?style=for-the-badge&logo=webpack&logoColor=white">
+  <img src="https://img.shields.io/badge/Cypress-17202c?style=for-the-badge&logo=cypress&logoColor=white"> 
+  <img src="https://img.shields.io/badge/Selenium-43b02a?style=for-the-badge&logo=selenium&logoColor=white"> 
+  <img src="https://img.shields.io/badge/Mocha-8d6748?style=for-the-badge&logo=mocha&logoColor=white">
+  <img src="https://img.shields.io/badge/Chai-a52a2a?style=for-the-badge&logo=chai&logoColor=white"> 
+  <img src="https://img.shields.io/badge/React_Flow-2f2f2f?style=for-the-badge&logo=react&logoColor=white"> 
+  <img src="https://img.shields.io/badge/Tailwind_CSS-38b2ac?style=for-the-badge&logo=tailwind-css&logoColor=white">
+  <img src="https://img.shields.io/badge/HTML-e34c26?style=for-the-badge">
 </p>
+
 
 <p align="center">
   <a href="https://cydekick.dev/#home">Cydekick.com</a>
